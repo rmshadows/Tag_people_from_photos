@@ -124,7 +124,6 @@ gbReFaceRecognition.py
 
  ### 截屏
 
-![0](https://images.gitee.com/uploads/images/2020/0627/230648_1e922454_7423713.png "屏幕截图.png")
 ![1](https://images.gitee.com/uploads/images/2020/0627/230714_fe2be21f_7423713.png "屏幕截图.png")
 ![2](https://images.gitee.com/uploads/images/2020/0627/230730_b25555a8_7423713.png "屏幕截图.png")
 ![3](https://images.gitee.com/uploads/images/2020/0627/230747_9f5f01ec_7423713.png "屏幕截图.png")
