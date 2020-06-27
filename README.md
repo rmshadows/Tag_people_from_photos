@@ -1,20 +1,43 @@
-名称：简单人脸管理
-语言：Python
-平台：仅支持Linux
-用途：仅限于个人使用，协助照片分类，帮助标记人物。本项目基于 face_recognition > https://github.com/ageitgey/face_recognition
+ ### 简单人脸管理
 
- ### 安装依赖：
+ - 版本：Python 3.8
 
+ - 平台：仅支持Linux
+
+ - 用途：仅限于个人使用，协助照片分类，帮助标记人物。本项目基于 face_recognition > https://github.com/ageitgey/face_recognition
+
+ ### 安装：
+ 
+ 首先安装face_recognition模块：
+ `sudo pip install face_recognition`
+ 
+ `git clone https://github.com/rmshadows/Tag_people_from_photos`
+ 
+ `cd Tag_people_from_photos`
+ 
+ 第一次使用请执行：
+ `sudo chmod +x RESET_FRS.sh`
+
+ `./RESET_FRS.sh`
+ 
 文件分类（前缀）：
-a-本地人像识别库处理
-b-模型训练操作
-c-待识别图片预处理
-d-主程序（开始识别）
-e-清除工作
-f-演示Demo
-g-其他
+
+- a-本地人像识别库处理
+
+- b-模型训练操作
+
+- c-待识别图片预处理
+
+- d-主程序（开始识别）
+
+- e-清除工作
+
+- f-演示Demo
+
+- g-其他
 
  ### 标准流程：
+ 
 一、添加已知人像：得有已知人像库才能进行人脸识别。所以这一步是添加已知人脸.
 1.将人像文件夹放入Prescreen中：PrescreenPicture.py 过滤不合适的图像。
 注意：人名中不可出现“-”
@@ -31,7 +54,6 @@ g-其他
                +-2.jpg
                +-...
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 =======>2.人工复查Perscreen文件夹中的文件，确认无误：0-1-AddKnownPerson.py添加到已知人像库。    FR_DATA/A-KnownPeople/
 
 二、建立已知人像库模型到KNN_MOD：
@@ -42,13 +64,11 @@ g-其他
 三、待识别文件处理：
 1.2-0-FindFaces.py 分配文件到temp目录。
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 =======>2.到temp目录检查文件是否正确
 
 四、开始识别：
 FaceRecognition_KNN.py
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 =======>2.到temp目录检查识别结果是否正确
 
 3.Moved2Data.py添加识别后的文件到数据库。
