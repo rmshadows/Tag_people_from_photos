@@ -8,7 +8,7 @@
 
  ### 安装：
  
- 首先安装face_recognition模块(需要sudo权限、cmake等，dlib要编译)。具体可以参考face_recognition的[中文文档](https://github.com/ageitgey/face_recognition/blob/master/README_Simplified_Chinese.md)：
+ 首先安装face_recognition模块(需要sudo权限、cmake `sudo apt install cmake` 等，dlib要编译)。具体可以参考face_recognition的[中文文档](https://github.com/ageitgey/face_recognition/blob/master/README_Simplified_Chinese.md)：
  
  `sudo pip install face_recognition`
  
