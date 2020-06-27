@@ -12,15 +12,29 @@
  
  `sudo pip install face_recognition`
  
+ 国内用户可以用清华镜像，快很多(后面如果报错说缺什么模块的，一样。`pip install xxx` ,记得看下`pip --version` 是哪个python版本的pip。)：
+ 
+ `pip install -i https://pypi.tuna.tsinghua.edu.cn/simple face_recognition`
+ 
+ - 关于修改pip：
+ 
+ `type pip`查看pip在哪里
+ 
+ `vi /usr/bin/pip` 假如pip在“/usr/bin/”下，用vi打开，把#!后面的打开pip的python改成3.8版本就是(前提是你装了python3.8)。
+ 
  `git clone https://github.com/rmshadows/Tag_people_from_photos`
  
  `cd Tag_people_from_photos`
  
  第一次使用请执行：
+ 
  `sudo chmod +x RESET_FRS.sh`
 
  `./RESET_FRS.sh`
  
+ - 使用：
+ 
+ `python3 xxx.py`
  
 文件分类（前缀）：
 
