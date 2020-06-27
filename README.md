@@ -125,3 +125,7 @@ gbReFaceRecognition.py
  ### 许可
  
 [LICENSE](https://github.com/rmshadows/Tag_people_from_photos/blob/master/LICENSE)
+
+ ### 感谢
+ 
+ 再次感谢face_recognition项目 > https://github.com/ageitgey/face_recognition
