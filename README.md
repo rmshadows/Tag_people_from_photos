@@ -8,7 +8,8 @@
 
  ### 安装：
  
- 首先安装face_recognition模块：
+ 首先安装face_recognition模块(需要sudo权限、cmake等，dlib要编译)。具体可以参考face_recognition的[中文文档](https://github.com/ageitgey/face_recognition/blob/master/README_Simplified_Chinese.md)：
+ 
  `sudo pip install face_recognition`
  
  `git clone https://github.com/rmshadows/Tag_people_from_photos`
@@ -19,6 +20,7 @@
  `sudo chmod +x RESET_FRS.sh`
 
  `./RESET_FRS.sh`
+ 
  
 文件分类（前缀）：
 
@@ -38,7 +40,10 @@
 
  ### 标准流程：
  
+ 注:=======>是要人工参与审核的步骤
+ 
 一、添加已知人像：得有已知人像库才能进行人脸识别。所以这一步是添加已知人脸.
+
 1.将人像文件夹放入Prescreen中：PrescreenPicture.py 过滤不合适的图像。
 注意：人名中不可出现“-”
 
@@ -54,20 +59,27 @@
                +-2.jpg
                +-...
 
-=======>2.人工复查Perscreen文件夹中的文件，确认无误：0-1-AddKnownPerson.py添加到已知人像库。    FR_DATA/A-KnownPeople/
+=======>2.人工复查Perscreen文件夹中的文件，确认无误：AddKnownPerson.py添加到已知人像库。    FR_DATA/A-KnownPeople/
 
 二、建立已知人像库模型到KNN_MOD：
+
 单线程：TrainingOneProcessing.py
+
 4线程：Four_processing_training.py
+
 10线程：Training_multi_processing_of_Ten.py
 
+[10线程好像并没有更快的样子，略过吧。]
+
 三、待识别文件处理：
-1.2-0-FindFaces.py 分配文件到temp目录。
+
+1.FindFaces.py 分配文件到temp目录。
 
 =======>2.到temp目录检查文件是否正确
 
 四、开始识别：
-FaceRecognition_KNN.py
+
+1.FaceRecognition_KNN.py
 
 =======>2.到temp目录检查识别结果是否正确
 
@@ -75,29 +87,27 @@ FaceRecognition_KNN.py
 
  ### 其他：
 一、有演示用的Demo：
+
 FaceRecognitionDemo：演示人脸识别。可以直接识别已训练的世界知名人物5000人。
+
 TrainingDemo：演示训练。训练完后的模型保存在KNN_MOD，需要自己修改FaceRecognitionDemo中的参数才能使用。
 
 二、清空已识别的人物数据：
+
 ebCLEAN_UP_FRed.py
 
 三、清除所有FRS数据：
+
 RESET_FRS.sh
 
 四、查找某人：
+
 gaFindSomebody.py
 
 五、重新识别已识别人物
+
 gbReFaceRecognition.py
 
-
-
-
-
-
-
-
-
-
-
-
+ ### 许可
+ 
+[LICENSE](https://github.com/rmshadows/Tag_people_from_photos/blob/master/LICENSE)
