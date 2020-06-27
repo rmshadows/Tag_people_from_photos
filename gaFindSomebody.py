@@ -1,0 +1,45 @@
+import os
+from datetime import datetime
+'''
+从已识别的数据库中搜寻人物，结果会创建一个检索词开头的文件夹。
+'''
+
+def findSingleFaceData(who,time):
+	person=os.listdir("./FR_DATA/D-Singleface/")
+	found=False
+	dst="./{0}{1}".format(who,time)
+	os.makedirs(dst)
+	for unit in person:
+		if who in unit:
+			found=True
+			try:
+				commandInput = "cp -r ./FR_DATA/D-Singleface/{0} {1}".format(unit,dst)
+				commandImplementation = os.popen(commandInput)
+			except Exception as e:
+				print("MOVE FILE ERROR.")
+		else:
+			pass
+	if found:
+		print("在单人面孔中发现{}。".format(who))
+	else:
+		print("未发现{}的单人面孔数据。".format(who))
+	return dst
+
+def findMultiFacesData(who,time,dst):
+	person=os.listdir("./FR_DATA/E-Morefaces/")
+	for unit in person:
+		if who in unit:
+			try:
+				commandInput = "cp ./FR_DATA/E-Morefaces/{0} {1}".format(unit,dst)
+				commandImplementation = os.popen(commandInput)
+			except Exception as e:
+				print("MOVE FILE ERROR.")
+
+def FindSomebody(name):
+	time=str(datetime.now())
+	dst=findSingleFaceData(name,time[11:])
+	#print(dst)
+	findMultiFacesData(name,time,dst)
+
+if __name__ == "__main__":
+	FindSomebody("Albert")#要查找的人名
