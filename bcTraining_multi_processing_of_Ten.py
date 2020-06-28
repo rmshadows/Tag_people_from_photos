@@ -124,7 +124,7 @@ def doTask(train_dir,listIn,id,color):
 		T = T+len(listdir(join(train_dir,x)))
 	n = 1
 	for class_dir in listIn:#Person
-		print("\033[1;{0};40m线程-".format(color)+id+"-正在添加：\033[0m:"+class_dir)
+		print("\033[1;{0};40m线程-{1}-正在添加：{2}\033[0m:".format(color,id,class_dir))
 		if not isdir(join(train_dir, class_dir)):#跳过目录
 			continue
 		for img_path in image_files_in_folder(join(train_dir, class_dir)):
@@ -160,15 +160,17 @@ class TaskSubmit (threading.Thread):
 		except Exception:
 			return None
 	def run(self):
-		print ("开始线程：" + self.id)
+		print ("开始线程：" + self.id + "\n")
 		X,y = doTask(self.train_dir ,self.listIn,self.id,self.color)
-		print ("退出线程：" + self.id)
+		print ("退出线程：" + self.id + "\n")
 		self.X=X
 		self.y=y
 
 def main(train_dir,model_save_path):
+	print("\033[5;33;40m开始训练模型(10线程)....\033[0m\n")
 	time=datetime.now()
 	knn_clf = train("./FR_DATA/"+train_dir+"/","./KNN_MOD/"+model_save_path+str(time),True)
+	print("\n\033[5;31;40m模型训练结束，已经导出到KNN_MOD文件夹下。\033[0m\n")
 
 if __name__ == "__main__":
 	#训练的文件夹/输出模型文件名
