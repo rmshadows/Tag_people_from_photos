@@ -58,6 +58,7 @@ def Moving():
 		raise e
 	finally:
 		eaCLEAN_UP_TEMP.cleanUpTemp()
+	print("\n\033[5;31;40m文件已经添加到数据库，下面如有报错，请忽略。\033[0m\n")
 
 
 if __name__ == "__main__":
