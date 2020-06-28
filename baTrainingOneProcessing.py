@@ -62,8 +62,10 @@ def calcTask(path):
 	return task
 
 def main(train_dir,model_save_path):
+	print("\033[5;33;40m开始训练模型(单线程)....\033[0m\n")
 	time=datetime.now()
 	knn_clf = train("./FR_DATA/"+train_dir+"/","./KNN_MOD/"+model_save_path+str(time),None,"ball_tree",True)
+	print("\n\033[5;31;40m模型训练结束，已经导出到KNN_MOD文件夹下。\033[0m\n")
 
 if __name__ == "__main__":
 	#训练的文件夹/输出模型文件名
