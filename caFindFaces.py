@@ -41,7 +41,7 @@ def renameFile():
 			#print("Rename file success.")
 			pass
 		n += 1
-	print("Renamed.")
+	#print("Renamed.")
 
 def checkFaces(file):
 	# Load the jpg file into a numpy array
@@ -53,7 +53,7 @@ def checkFaces(file):
 	# See also: find_faces_in_picture_cnn.py
 	face_locations = face_recognition.face_locations(image)
 	faceNum = len(face_locations)
-	print("Found {0} face(s) in {1} photograph.".format(faceNum ,file), end = " ==> ")
+	print("Found \033[1;33;40m{0} face(s)\033[0m: in \033[1;35;40m{1} photograph.\033[0m:".format(faceNum ,file), end = " ==> ")
 
 	for face_location in face_locations:
 		# Print the location of each face in this image
@@ -87,7 +87,7 @@ def copyFiles():
 		print("No Morefaces")
 
 def fileCtrl():
-	print("File Control Start")
+	#print("File Control Start")
 	dir = "./INPUT_PIC"
 	pic = (os.listdir(dir))
 
@@ -152,9 +152,9 @@ class TaskSubmit (threading.Thread):
 		self.id = id
 		self.listIn = listIn
 	def run(self):
-		print ("开始线程：" + self.id)
+		print ("开始线程：" + self.id +"\n")
 		doTask(self.listIn)
-		print ("退出线程：" + self.id)
+		print ("退出线程：" + self.id+"\n")
 
 def doTask(listIn):
 	for x in listIn:
@@ -175,9 +175,11 @@ def doTask(listIn):
 		#print("\033[1;36;40m{} of {}\033[0m".format(n,len(pic)))
 
 def FindFaces():
+	print("\033[5;33;40m开始分类待识别的照片....\033[0m\n")
 	renameFile()
 	fileCtrl()
 	copyFiles()
 
 if __name__ == "__main__":
 	FindFaces()
+	print("\n\033[5;31;40m待识别文件分类结束，接下来请人工复审temp*目录下的文件是否正确分类，如下方有报错，请忽略。\033[0m\n")
