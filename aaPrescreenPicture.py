@@ -35,7 +35,7 @@ def renameFile():
 		#len(pic)
 		for file in pic:
 			time=datetime.now()
-			srcFile = dir + "/" + person +"/	"+ file
+			srcFile = dir + "/" + person +"/"+ file
 			dstFile = dir + "/{0}/{1}.{2}".format(person,time,fex(srcFile))
 			try:
 				os.rename(srcFile,dstFile)
@@ -56,7 +56,8 @@ def renameFile():
 				print(e)
 				print("Rename file fail.")
 			else:
-				print("Rename file success.")
+				#print("Rename file success.")
+				pass
 			n += 1
 
 def checkFaces(file):
@@ -69,7 +70,7 @@ def checkFaces(file):
 	# See also: find_faces_in_picture_cnn.py
 	face_locations = face_recognition.face_locations(image)
 	faceNum = len(face_locations)
-	print("Found {0} face(s) in {1} photograph.".format(faceNum ,file), end = " ==> ")
+	print("Found \033[1;33;40m{0}\033[0m: face(s) in \033[1;35;40m{1}\033[0m: photograph.".format(faceNum ,file), end = " ==> ")
 	'''
 	for face_location in face_locations:
 		# Print the location of each face in this image
@@ -84,7 +85,7 @@ def checkFaces(file):
 	return faceNum
 
 def filePrescreen():
-	print("Prescreen Start")
+	print("Prescreen Start......\n")
 	renameFile()
 	dir = "./Prescreen"
 	folder = (os.listdir(dir))
@@ -177,3 +178,4 @@ def rmFiles():
 
 if __name__ == "__main__":
 	filePrescreen()
+	print("\n\033[5;31;40m训练材料预处理结束，请进行人工复审。下面如果有报错，请忽略。\033[0m\n")
