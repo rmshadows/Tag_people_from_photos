@@ -2,7 +2,9 @@
 
  - 版本：Python 3
 
- - 平台：仅支持Linux
+ - 平台：仅支持Linux Windows用户可以试用我搭建好了的[虚拟机](https://pan.baidu.com/wap/init?surl=ULEPSligSrtbVC4QHHMw2Q)。虚拟系统是基于Ubuntu的Linux_lite系统，界面与windows较像且体积较小（4.8G），固采用。
+
+
 
  - 用途：仅限于个人使用，协助照片分类，帮助标记人物。本项目基于 face_recognition > https://github.com/ageitgey/face_recognition
 
