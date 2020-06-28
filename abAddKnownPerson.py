@@ -23,3 +23,4 @@ def addTrainLib():
 
 if __name__ == "__main__":
 	addTrainLib()
+	print("\033[5;31;40m训练材料移动工作结束，接下来请进行模型训练。下面如果有报错，请忽略。\033[0m\n")
