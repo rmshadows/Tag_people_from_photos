@@ -37,9 +37,9 @@ def train(train_dir, model_save_path = "",verbose=False, n_neighbors = None, knn
 			pass
 		else:
 			gd = gd+person[gdn:gdn+left]
-		thread1 = TaskSubmit("1",train_dir,ga,T1,33)
+		thread1 = TaskSubmit("1",train_dir,ga,T1,31)
 		thread2 = TaskSubmit("2",train_dir,gb,T2,34)
-		thread3 = TaskSubmit("3",train_dir,gc,T3,35)
+		thread3 = TaskSubmit("3",train_dir,gc,T3,32)
 		thread4 = TaskSubmit("4",train_dir,gd,T4,36)
 		thread1.start()
 		thread2.start()
@@ -103,11 +103,11 @@ def doTask(train_dir,listIn,Temp,id,color):
 		T = T+len(listdir(join(train_dir,x)))
 	n = 1
 	for class_dir in listIn:#Person
-		#print("\033[1;{0};40m线程-".format(color)+id+"-正在添加：\033[0m:"+class_dir)
+		print("\033[1;{0};40m线程-".format(color)+id+"-正在添加：\033[0m:"+class_dir)
 		if not isdir(join(train_dir, class_dir)):#跳过目录
 			continue
 		for img_path in image_files_in_folder(join(train_dir, class_dir)):
-			print("-"+id+"-进度:({0}/{1})".format(n,T))
+			#print("\033[1;33;40m-"+id+"-进度:\033[0m\033[1;36;40m({0}/{1})\033[0m".format(n,T))
 			n+=1
 			image = face_recognition.load_image_file(img_path)
 			faces_bboxes = face_locations(image)
@@ -119,7 +119,6 @@ def doTask(train_dir,listIn,Temp,id,color):
 	Temp.clear()
 	listIn = X
 	Temp = y
-	#print(listIn,Temp)
 	return listIn,Temp
 
 class TaskSubmit (threading.Thread):
@@ -141,16 +140,19 @@ class TaskSubmit (threading.Thread):
 		except Exception:
 			return None
 	def run(self):
-		print ("开始线程：" + self.id)
+		print ("开始线程：" + self.id + "\n")
 		X,y = doTask(self.train_dir ,self.listIn,self.Temp,self.id,self.color)
-		print ("退出线程：" + self.id)
+		print ("退出线程：" + self.id + "\n")
 		self.X=X
 		self.y=y
 
 def main(train_dir,model_save_path):
+	print("\033[5;33;40m开始训练模型(4线程)....\033[0m\n")
 	time=datetime.now()
 	knn_clf = train("./FR_DATA/"+train_dir+"/","./KNN_MOD/"+model_save_path+str(time),True)
+	print("\n\033[5;31;40m模型训练结束，已经导出到KNN_MOD文件夹下。\033[0m\n")
 
 if __name__ == "__main__":
 	#训练的文件夹/输出模型文件名
-	main("KnowTest","KnownTest")
+	#main("KnowTest","KnownTest")
+	main("G-WorldWidePeople","G-WorldWidePeople")
