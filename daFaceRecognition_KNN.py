@@ -96,6 +96,7 @@ def faceRec(toRec,mod):
 				#print(tempName)
 				for x in preds:
 					srcFile = tempName
+					print("文件{0}:".format(img_path),end="")
 					print("发现:"+x[0],end="  ")
 					if x[0]=="N/A":
 						if n==1:
@@ -141,6 +142,7 @@ def faceRec(toRec,mod):
 			if(fex("./{}/{}".format(toRec,img_path))=="jpg"):
 				n=1
 				tempName=join(toRec,img_path)
+				print("文件{0}:".format(img_path),end="")
 				#print(tempName)
 				for x in preds:
 					srcFile = tempName
@@ -192,6 +194,7 @@ def faceRec(toRec,mod):
 				#print(tempName)
 				for x in preds:
 					srcFile = tempName
+					print("文件{0}:".format(img_path),end="")
 					print("发现:"+x[0],end="  ")
 					if x[0]=="N/A":
 						if n==1:
@@ -236,8 +239,13 @@ def faceRec(toRec,mod):
 				pass
 
 def FaceRecognitionKNN(model_name):
+	print("\033[5;33;40m开始识别temp*目录下的分类文件(单线程)....\033[0m\n")
+	print("处理单人面孔：")
 	faceRec("tempSingle",model_name)
+	print("处理多人面孔：")
 	faceRec("tempMore",model_name)
+	print("\033[5;31;40m--------识别完毕--------\033[0m")
 
 if __name__ == "__main__":
 	FaceRecognitionKNN("WorldWideKnown_202006")
+	print("\n\033[5;31;40m识别完毕,接下来请再次到temp*目录下人工复审识别结果。\033[0m\n")
