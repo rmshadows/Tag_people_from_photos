@@ -1,22 +1,32 @@
  ### 简单人脸管理
 
- - 版本：Python 3.8
+ - 版本：Python 3
 
  - 平台：仅支持Linux
 
  - 用途：仅限于个人使用，协助照片分类，帮助标记人物。本项目基于 face_recognition > https://github.com/ageitgey/face_recognition
 
+ - 原理：通过训练一个模型来识别人脸。所以首先要训练模型（用已知人物照片作为训练内容）。训练完成就可以进行人脸识别了。
+
+ ### 目录结构：
+
+
+
  ### 安装：
  
- 首先安装face_recognition模块(需要sudo权限、cmake `sudo apt install cmake` 等，dlib要编译)。具体可以参考face_recognition的[中文文档](https://github.com/ageitgey/face_recognition/blob/master/README_Simplified_Chinese.md)：
+ 首先：更新你的python3和pip：`apt-get update` `apt-get upgrade python3` `apt upgrade python3-pip`
+
+ 然后安装face_recognition模块(需要sudo权限、cmake `sudo apt-get install cmake` 等，dlib要编译)。具体可以参考face_recognition的[中文文档](https://github.com/ageitgey/face_recognition/blob/master/README_Simplified_Chinese.md)：
  
- `sudo pip install face_recognition`
+ `sudo pip3 install face_recognition`
  
  国内用户可以用清华镜像，快很多(后面如果报错说缺什么模块的，一样。`pip install xxx` ,记得看下`pip --version` 是哪个python版本的pip。)：
  
- `pip install -i https://pypi.tuna.tsinghua.edu.cn/simple face_recognition`
+ `pip3 install -i https://pypi.tuna.tsinghua.edu.cn/simple face_recognition`
+
+ 安装其他依赖：`pip3 install -r requirements.txt`
  
- - 关于修改pip：
+ - 关于修改pip(可以忽略不看)：
  
  `type pip`查看pip在哪里
  
@@ -25,6 +35,8 @@
  `git clone https://github.com/rmshadows/Tag_people_from_photos`
  
  `cd Tag_people_from_photos`
+
+ ### 使用
  
  第一次使用请执行：
  
@@ -36,7 +48,7 @@
  
  `python3 xxx.py`
  
-文件分类（前缀）：
+ 脚本文件分类（前缀）：
 
 - a-本地人像识别库处理
 
@@ -54,7 +66,7 @@
 
  ### 标准流程：
  
- 注:=======>是要人工参与审核的步骤
+ 注:标记“=======>”的是要人工参与重复审核的步骤，保证数据正确性。
  
 一、添加已知人像：得有已知人像库才能进行人脸识别。所以这一步是添加已知人脸.
 
@@ -100,6 +112,7 @@
 3.Moved2Data.py添加识别后的文件到数据库。
 
  ### 其他：
+
 一、有演示用的Demo：
 
 FaceRecognitionDemo：演示人脸识别。可以直接识别已训练的世界知名人物5000人。
@@ -124,10 +137,22 @@ gbReFaceRecognition.py
 
  ### 截屏
 
-![1](https://images.gitee.com/uploads/images/2020/0627/230714_fe2be21f_7423713.png "屏幕截图.png")
+- 训练模型：
+
+![0](https://images.gitee.com/uploads/images/2020/0628/110830_d8900709_7423713.png "屏幕截图.png")
+
+ - 识别中...
+
 ![2](https://images.gitee.com/uploads/images/2020/0627/230730_b25555a8_7423713.png "屏幕截图.png")
-![3](https://images.gitee.com/uploads/images/2020/0627/230747_9f5f01ec_7423713.png "屏幕截图.png")
-![4](https://images.gitee.com/uploads/images/2020/0627/230807_f8aeb779_7423713.png "屏幕截图.png")
+
+ - 识别单人面孔（每人一个文件夹）：
+
+![4](https://images.gitee.com/uploads/images/2020/0628/110924_cd058f8a_7423713.png "屏幕截图.png")
+
+ - 识别多人面孔（注意文件名，两个人的名字）：
+
+![5](https://images.gitee.com/uploads/images/2020/0628/111010_05ef2cc7_7423713.png "屏幕截图.png")
+
 
  ### 许可
  
