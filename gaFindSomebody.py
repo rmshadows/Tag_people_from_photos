@@ -36,10 +36,12 @@ def findMultiFacesData(who,time,dst):
 				print("MOVE FILE ERROR.")
 
 def FindSomebody(name):
+	print("\033[5;32;40m新建检索结果文件夹...\033[0m")
 	time=str(datetime.now())
 	dst=findSingleFaceData(name,time[11:])
 	#print(dst)
 	findMultiFacesData(name,time,dst)
+	print("\n\033[5;31;40m检索完毕\033[0m\n")
 
 if __name__ == "__main__":
 	FindSomebody("Albert")#要查找的人名
