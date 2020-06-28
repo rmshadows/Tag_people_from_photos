@@ -10,7 +10,7 @@
 
  ### 目录结构：
 
-
+![constru](https://images.gitee.com/uploads/images/2020/0628/113927_8d40ba65_7423713.png "屏幕截图.png")
 
  ### 安装：
  
@@ -115,9 +115,9 @@
 
 一、有演示用的Demo：
 
-FaceRecognitionDemo：演示人脸识别。可以直接识别已训练的世界知名人物5000人。
+FaceRecognitionDemo.py：演示人脸识别。可以直接识别已训练的世界知名人物5000人。
 
-TrainingDemo：演示训练。训练完后的模型保存在KNN_MOD，需要自己修改FaceRecognitionDemo中的参数才能使用。
+TrainingDemo.py：演示训练。训练完后的模型保存在KNN_MOD，需要自己修改FaceRecognitionDemo中的参数才能使用。
 
 二、清空已识别的人物数据：
 
