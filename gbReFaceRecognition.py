@@ -30,3 +30,4 @@ if __name__ == "__main__":
 	daFaceRecognition_KNN.FaceRecognitionKNN("WorldWideKnown_202006")
 	print("开始添加数据。")
 	dbMoved2Data.Moving()
+	print("重新识别完毕。")
