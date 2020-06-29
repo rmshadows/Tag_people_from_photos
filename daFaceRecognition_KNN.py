@@ -13,10 +13,13 @@ from face_recognition import face_locations
 from face_recognition.face_recognition_cli import image_files_in_folder
 from datetime import datetime
 import os
+import time
+import psutil
 
+SEE_ALL_FACES=False
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 
-def predict(X_img_path, knn_clf = None, model_save_path ="", DIST_THRESH = .5):
+def __predict(X_img_path, knn_clf = None, model_save_path ="", DIST_THRESH = .5):
 	"""
 	recognizes faces in given image, based on a trained knn classifier
 	:param X_img_path: path to image to be recognized
@@ -44,31 +47,56 @@ def predict(X_img_path, knn_clf = None, model_save_path ="", DIST_THRESH = .5):
 	# predict classes and cull classifications that are not with high confidence
 	return [(pred, loc) if rec else ("N/A", loc) for pred, loc, rec in zip(knn_clf.predict(faces_encodings), X_faces_loc, is_recognized)]
 
-def draw_preds(img_path, preds):
+
+def __show_prediction_labels_on_image(name,ext,img_path, predictions):
 	"""
-	shows the face recognition results visually.
+	Shows the face recognition results visually.
+
 	:param img_path: path to image to be recognized
-	:param preds: results of the predict function
+	:param predictions: results of the predict function
 	:return:
 	"""
-	source_img = Image.open(img_path).convert("RGBA")
-	draw = ImageDraw.Draw(source_img)
-	for pred in preds:
-		loc = pred[1]
-		name = pred[0]
-		# (top, right, bottom, left) => (left,top,right,bottom)
-		draw.rectangle(((loc[3], loc[0]), (loc[1],loc[2])), outline="red")
-		draw.text((loc[3], loc[0] - 30), name, font=ImageFont.truetype('Pillow/Tests/fonts/FreeMono.ttf', 30))
-	source_img.show()
+	pil_image = Image.open(img_path).convert("RGB")
+	draw = ImageDraw.Draw(pil_image)
 
-def fex(path): 
+	for name, (top, right, bottom, left) in predictions:
+		# Draw a box around the face using the Pillow module
+		draw.rectangle(((left, top), (right, bottom)), outline=(0, 0, 255))
+
+		# There's a bug in Pillow where it blows up with non-UTF-8 text
+		# when using the default bitmap font
+		name = name.encode("UTF-8")
+
+		# Draw a label with a name below the face
+		text_width, text_height = draw.textsize(name)
+		draw.rectangle(((left, bottom - text_height - 10), (right, bottom)), fill=(0, 0, 255), outline=(0, 0, 255))
+		draw.text((left + 6, bottom - text_height - 5), name, fill=(255, 255, 255, 255))
+
+	# Remove the drawing library from memory as per the Pillow docs
+	del draw
+
+	# Display the resulting image
+	if (SEE_ALL_FACES):
+		pil_image.show()
+	time=datetime.now()
+	pil_image.save("./tempFaceRecognition/{0}{1}.{2}".format(name,str(time)[17:],ext))
+
+#得到扩展名
+def __fex(path): 
 	ex=os.path.splitext(path)[1]
 	return ex[1:]
 
-def faceRec(toRec,mod):
-	for img_path in listdir("./{}".format(toRec)):
-		preds = predict(join("./{}".format(toRec), img_path) ,None,"./KNN_MOD/{}".format(mod))
-		#preds = predict(join("./{}".format(toRec), img_path) ,None,"."./KNN_MOD/{}".format(mod))
+def __faceRec(toRec,mod):
+	for img_path in listdir("./{}".format(toRec)):#./folder/*
+		NA = ""#Name
+		ext = __fex(join("./{}".format(toRec), img_path))#get ext
+		#./folder/xxx.jpg  None  ./KNN_MOD/{model}
+		preds = __predict(join("./{}".format(toRec), img_path) ,None,"./KNN_MOD/{}".format(mod))
+		for name, (top, right, bottom, left) in preds:
+			NA=name
+			print("- Found {} at ({}, {})".format(name, left, top))
+		#Name  ext  ./{folder}/xxx.jpg  preds
+		__show_prediction_labels_on_image(NA,ext,os.path.join("./{}".format(toRec), img_path), preds)
 
 		if len(preds)==0:
 			print("ERROR-None face")
@@ -76,24 +104,21 @@ def faceRec(toRec,mod):
 			srcFile = "./{0}/{1}".format(toRec,img_path)
 			time=datetime.now()#获取当前时间
 			if preds[0][0]=="N/A":
-				dstFile = "./{0}/unknown-{1}.{2}".format(toRec,str(time)[17:],fex(srcFile))
+				dstFile = "./{0}/unknown-{1}.{2}".format(toRec,str(time)[17:],__fex(srcFile))
 			else:
-				dstFile = "./{0}/{1}-{2}.{3}".format(toRec,preds[0][0],str(time)[17:],fex(srcFile))
+				dstFile = "./{0}/{1}-{2}.{3}".format(toRec,preds[0][0],str(time)[17:],__fex(srcFile))
 			print(dstFile)
 			try:
 				os.rename(srcFile,dstFile)
 			except Exception as e:
-				print("Rename file fail.")
 				print(e)
 			else:
-				#print("Rename file success.")
 				pass
 		else:
 			#A Long If:
-			if(fex("./{}/{}".format(toRec,img_path))=="png"):
+			if(__fex("./{}/{}".format(toRec,img_path))=="png"):
 				n=1
 				tempName=join(toRec,img_path)
-				#print(tempName)
 				for x in preds:
 					srcFile = tempName
 					print("文件{0}:".format(img_path),end="")
@@ -118,32 +143,25 @@ def faceRec(toRec,mod):
 						tempName=dstFile
 						os.rename(srcFile,dstFile)
 					except Exception as e:
-						print("Rename file fail.")
 						print(e)
 					else:
-						#print("Rename file success.")
 						pass
 				srcFile = tempName
-				#print(srcFile)
 				time=datetime.now()
 				dstFile = "{0}-{1}.png".format(tempName[:-9],str(time)[17:],)
-				#print(dstFile)
 				try:
 					os.rename(srcFile,dstFile)
 				except Exception as e:
-					print("Rename file fail.")
 					print(e)
 				else:
-					#print("Rename file success.")
 					pass
 				print("\n")
 			else:
 				pass
-			if(fex("./{}/{}".format(toRec,img_path))=="jpg"):
+			if(__fex("./{}/{}".format(toRec,img_path))=="jpg"):
 				n=1
 				tempName=join(toRec,img_path)
 				print("文件{0}:".format(img_path),end="")
-				#print(tempName)
 				for x in preds:
 					srcFile = tempName
 					print("发现:"+x[0],end="  ")
@@ -167,28 +185,23 @@ def faceRec(toRec,mod):
 						tempName=dstFile
 						os.rename(srcFile,dstFile)
 					except Exception as e:
-						print("Rename file fail.")
 						print(e)
 					else:
-						#print("Rename file success.")
 						pass
 				srcFile = tempName
 				#print(srcFile)
 				time=datetime.now()
 				dstFile = "{0}-{1}.jpg".format(tempName[:-9],str(time)[17:],)
-				#print(dstFile)
 				try:
 					os.rename(srcFile,dstFile)
 				except Exception as e:
-					print("Rename file fail.")
 					print(e)
 				else:
-					#print("Rename file success.")
 					pass
 				print("\n")
 			else:
 				pass
-			if(fex("./{}/{}".format(toRec,img_path))=="jpeg"):
+			if(__fex("./{}/{}".format(toRec,img_path))=="jpeg"):
 				n=1
 				tempName=join(toRec,img_path)
 				#print(tempName)
@@ -216,10 +229,8 @@ def faceRec(toRec,mod):
 						tempName=dstFile
 						os.rename(srcFile,dstFile)
 					except Exception as e:
-						print("Rename file fail.")
 						print(e)
 					else:
-						#print("Rename file success.")
 						pass
 				srcFile = tempName
 				#print(srcFile)
@@ -238,14 +249,28 @@ def faceRec(toRec,mod):
 			else:
 				pass
 
-def FaceRecognitionKNN(model_name):
+def __killPro(second,pro):
+	time.sleep(second)
+	print("展示时间："+str(second)+"秒")
+	for proc in psutil.process_iter():  # 遍历当前process
+		if proc.name() == pro:  # 如果process的name是display
+			proc.kill()  # 关闭该process
+	#SystemExit()
+
+#mainX
+def faceRecognitionKNN(model_name):
 	print("\033[5;33;40m开始识别temp*目录下的分类文件(单线程)....\033[0m\n")
 	print("处理单人面孔：")
-	faceRec("tempSingle",model_name)
+	__faceRec("tempSingle",model_name)
 	print("处理多人面孔：")
-	faceRec("tempMore",model_name)
+	__faceRec("tempMore",model_name)
 	print("\033[5;31;40m--------识别完毕--------\033[0m")
 
 if __name__ == "__main__":
-	FaceRecognitionKNN("WorldWideKnown_202006")
+	#SEE_ALL_FACES=True
+	faceRecognitionKNN("WorldWideKnown_202006")
+	if SEE_ALL_FACES:
+		#延时5秒
+		__killPro(5,"display")
+		SystemExit()
 	print("\n\033[5;31;40m识别完毕,接下来请再次到temp*目录下人工复审识别结果。\033[0m\n")
