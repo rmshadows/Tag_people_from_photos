@@ -14,7 +14,7 @@ from face_recognition.face_recognition_cli import image_files_in_folder
 import threading
 from datetime import datetime
 
-def train(train_dir, model_save_path = "",verbose=False, n_neighbors = None, knn_algo = 'ball_tree' ):
+def __train(train_dir, model_save_path = "",verbose=False, n_neighbors = None, knn_algo = 'ball_tree' ):
 	X = []
 	y = []
 
@@ -72,7 +72,7 @@ def train(train_dir, model_save_path = "",verbose=False, n_neighbors = None, knn
 		y = thread1.returnY()+thread2.returnY()+thread3.returnY()+thread4.returnY()+thread5.returnY()+thread6.returnY()+thread7.returnY()+thread8.returnY()+thread9.returnY()+thread10.returnY()
 
 	else:
-		TASK = calcTask(train_dir)
+		TASK = __calcTask(train_dir)
 		n = 0
 		num = 1
 		for class_dir in listdir(train_dir):
@@ -88,7 +88,7 @@ def train(train_dir, model_save_path = "",verbose=False, n_neighbors = None, knn
 				faces_bboxes = face_locations(image)
 				if len(faces_bboxes) != 1:
 					if verbose:
-						print("\033[1;31;40mWARN：\033[0m image {} not fit for training: {}".format(img_path, "didn't find a face" if len(faces_bboxes) < 1 else "found more than one face"))
+						print("\033[1;31;40mWARN：\033[0m image {} not fit for __training: {}".format(img_path, "didn't find a face" if len(faces_bboxes) < 1 else "found more than one face"))
 					continue
 				X.append(face_recognition.face_encodings(image, known_face_locations=faces_bboxes)[0])
 				y.append(class_dir)
@@ -105,8 +105,15 @@ def train(train_dir, model_save_path = "",verbose=False, n_neighbors = None, knn
 		with open(model_save_path, 'wb') as f:
 			pickle.dump(knn_clf, f)
 	return knn_clf
-	
-def calcTask(path):
+
+'''
+def Sub(num,train_dir,g,color):
+	thread1 = TaskSubmit("1",train_dir,g1,31)
+	thread1.start()
+	thread1.join()
+'''
+
+def __calcTask(path):
 	dir = listdir(path)
 	task = 0
 	for person in dir:
@@ -166,10 +173,11 @@ class TaskSubmit (threading.Thread):
 		self.X=X
 		self.y=y
 
+#mainX
 def main(train_dir,model_save_path):
 	print("\033[5;33;40m开始训练模型(10线程)....\033[0m\n")
 	time=datetime.now()
-	knn_clf = train("./FR_DATA/"+train_dir+"/","./KNN_MOD/"+model_save_path+str(time),True)
+	knn_clf = __train("./FR_DATA/"+train_dir+"/","./KNN_MOD/"+model_save_path+str(time),True)
 	print("\n\033[5;31;40m模型训练结束，已经导出到KNN_MOD文件夹下。\033[0m\n")
 
 if __name__ == "__main__":
