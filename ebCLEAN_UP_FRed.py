@@ -2,9 +2,9 @@
 '''
 删除已识别的数据
 '''
-#from PIL import Image
 import os
 
+#mainX
 def cleanUpRecognized():
 	try:
 		commandInput = 'rm ./FR_DATA/B-Unknown/*'
