@@ -258,7 +258,7 @@ def __killPro(second,pro):
 	#SystemExit()
 
 #mainX
-def faceRecognitionKNN(model_name):
+def FaceRecognitionKNN(model_name):
 	print("\033[5;33;40m开始识别temp*目录下的分类文件(单线程)....\033[0m\n")
 	print("处理单人面孔：")
 	__faceRec("tempSingle",model_name)
@@ -268,7 +268,7 @@ def faceRecognitionKNN(model_name):
 
 if __name__ == "__main__":
 	#SEE_ALL_FACES=True
-	faceRecognitionKNN("WorldWideKnown_202006")
+	FaceRecognitionKNN("WorldWideKnown_202006")
 	if SEE_ALL_FACES:
 		#延时5秒
 		__killPro(5,"display")
