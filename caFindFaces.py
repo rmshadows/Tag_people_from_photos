@@ -2,48 +2,50 @@
 '''
 将需要识别的人物图片分类成无面孔、单人、多人并分配到临时目录。
 '''
-#from PIL import Image
+from PIL import Image
 import face_recognition
 import os
 from datetime import datetime
 import threading
+import time
 
-def fex(path): 
+SEE_ALL_FACES=False
+
+#返回扩展名
+def __fex(path): 
 	ex=os.path.splitext(path)[1]
 	return ex[1:]
 
-def renameFile():
-	dir = "./INPUT_PIC"
-	pic = (os.listdir(dir))
+#重命名
+def __renameFile():
+	dir = "./INPUT_PIC"#./INPUT_PIC
+	pic = (os.listdir(dir))#./INPUT_PIC/*
 	for file in pic:
 		time=datetime.now()
-		srcFile = dir + "/" + file
-		dstFile = dir + "/{0}.{1}".format(time,fex(srcFile))
+		srcFile = dir + "/" + file#./INPUT_PIC/xxx.jpg
+		#./INPUT_PIC/{time}.{ext}
+		dstFile = dir + "/{0}.{1}".format(str(time)[17:],__fex(srcFile))
 		try:
 			os.rename(srcFile,dstFile)
 		except Exception as e:
 			print(e)
-			print("Rename file fail.")
 		else:
-			#print("Rename file success.")
 			pass
-	pic = (os.listdir(dir))
+	pic = (os.listdir(dir))#./INPUT_PIC/*
 	n = 1
 	for file in pic:
-		srcFile = dir + "/" + file
-		dstFile = dir + "/{0}.{1}".format(n,fex(srcFile))
+		srcFile = dir + "/" + file#./INPUT_PIC/xxx.jpg
+		#./INPUT_PIC/{n}.{ext}
+		dstFile = dir + "/{0}.{1}".format(n,__fex(srcFile))
 		try:
 			os.rename(srcFile,dstFile)
 		except Exception as e:
 			print(e)
-			print("Rename file fail.")
 		else:
-			#print("Rename file success.")
 			pass
 		n += 1
-	#print("Renamed.")
 
-def checkFaces(file):
+def __checkFaces(file):
 	# Load the jpg file into a numpy array
 	inputPic = "./INPUT_PIC/"+file
 	image = face_recognition.load_image_file(inputPic)
@@ -60,36 +62,39 @@ def checkFaces(file):
 		top, right, bottom, left = face_location
 		print("A face is located at pixel location Top: {}, Left: {}, Bottom: {}, Right: {}".format(top, left, bottom, right))
 
-		'''
-		# You can access the actual face itself like this:
-		face_image = image[top:bottom, left:right]
-		pil_image = Image.fromarray(face_image)
-		pil_image.show()
-		'''
+		if SEE_ALL_FACES:
+			# You can access the actual face itself like this:
+			face_image = image[top:bottom, left:right]
+			pil_image = Image.fromarray(face_image)
+			pil_image.show()
+
 	return faceNum
 
-def copyFiles():
+def __copyFiles():
 	#print("\n")
 	try:
+		#cp ./INPUT_PIC/0* ./tempNone
 		commandInput = 'cp ./INPUT_PIC/0* ./tempNone'
 		commandImplementation = os.popen(commandInput)
 	except Exception as e:
 		print("No None fece")
 	try:
+		#cp ./INPUT_PIC/1* ./tempSingle
 		commandInput = 'cp ./INPUT_PIC/1* ./tempSingle'
 		commandImplementation = os.popen(commandInput)
 	except Exception as e:
 		print("No Singleface")
 	try:
+		#cp ./INPUT_PIC/MF* ./tempMore
 		commandInput = 'cp ./INPUT_PIC/MF* ./tempMore'
 		commandImplementation = os.popen(commandInput)
 	except Exception as e:
 		print("No Morefaces")
 
-def fileCtrl():
+def __fileCtrl():
 	#print("File Control Start")
 	dir = "./INPUT_PIC"
-	pic = (os.listdir(dir))
+	pic = (os.listdir(dir))#./INPUT_PIC/*
 
 	if len(pic)>=8:
 		taskNum = int(len(pic)/4)
@@ -128,21 +133,21 @@ def fileCtrl():
 			thread5.join()
 	else:
 		n=1
-		for file in pic:
+		for file in pic:#./INPUT_PIC/xxx.jpg
 			time=datetime.now()#获取当前时间
-			srcFile = dir + "/" + file
-			if checkFaces(file)>=2:
-				print(fex(srcFile))
-				dstFile = dir + "/MF{0}.{1}".format(time,fex(srcFile))
+			srcFile = dir + "/" + file#./INPUT_PIC/xxx.jpg
+			if __checkFaces(file)>=2:
+				print(__fex(srcFile))
+				#./INPUT_PIC/MF{time}{ext}
+				dstFile = dir + "/MF{0}.{1}".format(time,__fex(srcFile))
 			else:
-				dstFile = dir + "/{0}F{1}.{2}".format(checkFaces(file),time,fex(srcFile))
+				dstFile = dir + "/{0}F{1}.{2}".format(__checkFaces(file),time,__fex(srcFile))
 			try:
 				os.rename(srcFile,dstFile)
 			except Exception as e:
 				print(e)
-				print("Rename file fail.")
 			else:
-				print("Rename file success.")
+				pass
 			n+=1
 			print("\033[1;36;40m{} of {}\033[0m".format(n,len(pic)))
 
@@ -160,25 +165,23 @@ def doTask(listIn):
 	for x in listIn:
 		time=datetime.now()#获取当前时间
 		srcFile = "./INPUT_PIC/{0}".format(x)
-		if checkFaces(x)>=2:
-			dstFile = "./INPUT_PIC/MF{0}.{1}".format(time,fex(srcFile))
+		if __checkFaces(x)>=2:
+			dstFile = "./INPUT_PIC/MF{0}.{1}".format(time,__fex(srcFile))
 		else:
-			dstFile = "./INPUT_PIC/{0}F{1}.{2}".format(checkFaces(x),time,fex(srcFile))
+			dstFile = "./INPUT_PIC/{0}F{1}.{2}".format(__checkFaces(x),time,__fex(srcFile))
 		try:
 			os.rename(srcFile,dstFile)
 		except Exception as e:
 			print(e)
-			print("Rename file fail.")
 		else:
-			#print("Rename file success.")
 			pass
-		#print("\033[1;36;40m{} of {}\033[0m".format(n,len(pic)))
 
+#mainX
 def FindFaces():
 	print("\033[5;33;40m开始分类待识别的照片....\033[0m\n")
-	renameFile()
-	fileCtrl()
-	copyFiles()
+	__renameFile()
+	__fileCtrl()
+	__copyFiles()
 
 if __name__ == "__main__":
 	FindFaces()
