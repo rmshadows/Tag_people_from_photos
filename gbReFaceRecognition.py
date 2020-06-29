@@ -7,7 +7,7 @@ import dbMoved2Data
 重新识别已识别的人物
 '''
 
-def MoveData():
+def __MoveData():
 	people=os.listdir("./FR_DATA/D-Singleface/")
 	for who in people:
 		try:
@@ -24,7 +24,7 @@ def MoveData():
 		print("MOVE FILE ERROR.")
 
 if __name__ == "__main__":
-	MoveData()
+	__MoveData()
 	caFindFaces.FindFaces()
 	print("开始识别。")
 	daFaceRecognition_KNN.FaceRecognitionKNN("WorldWideKnown_202006")
