@@ -15,8 +15,8 @@ from face_recognition import face_locations
 from face_recognition.face_recognition_cli import image_files_in_folder
 from datetime import datetime
 
-def train(train_dir, model_save_path = "", n_neighbors = None, knn_algo = 'ball_tree', verbose=False):
-	TASK = calcTask(train_dir)
+def __train(train_dir, model_save_path = "", n_neighbors = None, knn_algo = 'ball_tree', verbose=False):
+	TASK = __calcTask(train_dir)
 	X = []
 	y = []
 	n = 0
@@ -34,7 +34,7 @@ def train(train_dir, model_save_path = "", n_neighbors = None, knn_algo = 'ball_
 			faces_bboxes = face_locations(image)
 			if len(faces_bboxes) != 1:
 				if verbose:
-					print("\033[1;31;40mWARN：\033[0m image {} not fit for training: {}".format(img_path, "didn't find a face" if len(faces_bboxes) < 1 else "found more than one face"))
+					print("\033[1;31;40mWARN：\033[0m image {} not fit for __training: {}".format(img_path, "didn't find a face" if len(faces_bboxes) < 1 else "found more than one face"))
 				continue
 			X.append(face_recognition.face_encodings(image, known_face_locations=faces_bboxes)[0])
 			y.append(class_dir)
@@ -52,7 +52,8 @@ def train(train_dir, model_save_path = "", n_neighbors = None, knn_algo = 'ball_
 			pickle.dump(knn_clf, f)
 	return knn_clf
 
-def calcTask(path):
+#计算任务总量
+def __calcTask(path):
 	dir = listdir(path)
 	task = 0
 	for person in dir:
@@ -61,12 +62,14 @@ def calcTask(path):
 		task = task + num
 	return task
 
+#mainX
 def main(train_dir,model_save_path):
 	print("\033[5;33;40m开始训练模型(单线程)....\033[0m\n")
 	time=datetime.now()
-	knn_clf = train("./FR_DATA/"+train_dir+"/","./KNN_MOD/"+model_save_path+str(time),None,"ball_tree",True)
+	#./FR_DATA/"{train_dir}/		./KNN_MOD/{name}
+	knn_clf = __train("./FR_DATA/"+train_dir+"/","./KNN_MOD/"+model_save_path+str(time),None,"ball_tree",True)
 	print("\n\033[5;31;40m模型训练结束，已经导出到KNN_MOD文件夹下。\033[0m\n")
 
 if __name__ == "__main__":
 	#训练的文件夹/输出模型文件名
-	main("G-WorldWidePeople","G-WorldWidePeople")
+	main("G-WorldWidePeople","WorldWidePeople")
