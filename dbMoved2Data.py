@@ -6,7 +6,7 @@ import eaCLEAN_UP_TEMP
 单人面孔将创建单独的文件夹。
 已识别的数据将储存在./FR_DATA
 '''
-def findUnknown(str):
+def __findUnknown(str):
 	un=False
 	if 'unknown' in str:
 		un=True
@@ -14,34 +14,34 @@ def findUnknown(str):
 		un=False
 	return un
 
-def returnPersonName(fileName):
+def __returnPersonName(fileName):
 	#Aaron_Peirsol-19.013784
 	str=fileName.split("-")
 	#ext=fileName.split(".")
 	#name=str[0]+"."+ext[-1]
 	return str[0]
 
-def moveSingleFaceData():
+def __moveSingleFaceData():
 	person=os.listdir("./tempSingle/")
 	#print(person)
 	for unit in person:
-		if(findUnknown(unit)):
+		if(__findUnknown(unit)):
 			src="./tempSingle/"+unit
 			dst="./FR_DATA/B-Unknown/"+unit
 			#print(src+" to "+dst)
 			shutil.move(src,dst)
 		else:
 			src="./tempSingle/"+unit
-			dst="./FR_DATA/D-Singleface/"+returnPersonName(unit)+"/"+unit
-			personDir = "./FR_DATA/D-Singleface/"+returnPersonName(unit)
+			dst="./FR_DATA/D-Singleface/"+__returnPersonName(unit)+"/"+unit
+			personDir = "./FR_DATA/D-Singleface/"+__returnPersonName(unit)
 			if not os.path.exists(personDir):
-				print("Mkdir...{}".format(returnPersonName(unit)))
+				print("Mkdir...{}".format(__returnPersonName(unit)))
 				os.makedirs(personDir)	# 创建目录
 			else:
 				pass
 			shutil.move(src,dst)
 
-def moveMultiFacesData():
+def __moveMultiFacesData():
 	person=os.listdir("./tempMore/")
 	#print(person)
 	for unit in person:
@@ -50,10 +50,11 @@ def moveMultiFacesData():
 		#print(src+"  to  "+dst)
 		shutil.move(src,dst)
 
+#mainX
 def Moving():
 	try:
-		moveSingleFaceData()
-		moveMultiFacesData()
+		__moveSingleFaceData()
+		__moveMultiFacesData()
 	except Exception as e:
 		raise e
 	finally:
