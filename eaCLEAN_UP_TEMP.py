@@ -2,9 +2,9 @@
 '''
 删除临时目录中的未知人物识别
 '''
-#from PIL import Image
 import os
 
+#mainX
 def cleanUpTemp():
 	try:
 		commandInput = 'rm ./tempMore/*'
