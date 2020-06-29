@@ -24,7 +24,7 @@ if __name__ == "__main__":
 	print("处理训练材料。")
 	aaPrescreenPicture.filePrescreen()
 	print("添加训练素材。")
-	abAddKnownPerson.addTrainLib()
+	abAddKnownPerson.addKnowPeople()
 	print("开始训练。")
 	#训练文件夹（FR_DATA中）和训练模型名称（在KNN_MOD中）
 	baTrainingOneProcessing.main("A-KnownPeople","KnowPeopleDemo")
