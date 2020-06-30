@@ -43,7 +43,7 @@
 
  1. 下载Visual Studio：巨硬[官网下载](https://visualstudio.microsoft.com/zh-hans/)，记住，是VS不是VSC，看清楚。下载安装包后打开，选择C++桌面应用开发，确保右边安装列表中有“Windows上的Cmake”选项打勾。
 
- 1. 在命令行输入`python --version` `pip --version` `cmake` 如果三个命令都有反应，那就是OK了。
+ 1. 在命令行输入`python --version` 、 `pip --version` 、 `cmake` 如果三个命令都有反应，那就是OK了。
 
  1. 以上三个安装完毕后，打开命令行。运行`pip install pip -U`更新pipy。然后运行`pip install dlib`。等待完成，这个会久一点，因为dlib需要编译。dlib安装成功后，输入`pip install face_recognition`，这个很快的。
 
@@ -55,6 +55,8 @@
 
  Windows须知：我不能保证源代码在Windows可以很好的运行，因为我在Windows上做测试的时间不多，所以有些小问题还是有各位亲们自己修改下源代码解决了。Windows用户需要 **自己搭建** [原项目(face_recognition)](https://github.com/ageitgey/face_recognition)的环境 **并修改少许源代码** ，如何搭建请参考原项目的说明文档([中文版传送门](https://github.com/ageitgey/face_recognition/blob/master/README_Simplified_Chinese.md))和ISSUES中的[指南](https://github.com/ageitgey/face_recognition/issues/175#issue-257710508)。也可以试用我搭建好环境了的Linux Lite[虚拟机](https://pan.baidu.com/s/1ULEPSIigSrtbVC4QHHMw2Q)[提取码：90km]。你当然也可以使用Adam Geitgey大神为原项目提供的Ubuntu虚拟机镜像文件安装配置虚拟机（比我提供的大很多，但下载速度可能？？你们自己试试。），然后git clone本仓库。（需要电脑中安装VMWare Player，Vbox好像不能直接使用这个镜像，但没事，你可以先用vm把虚拟机导出为ova格式，就可导入VBox了。）[VBox下载](https://mirrors.tuna.tsinghua.edu.cn/help/virtualbox/)
 
+ - **_虚拟机须知：_** 性能真的和物理机没法比，卡顿可能有，习惯就好，黑屏就重启。卡卡卡卡卡反正……所以还是自己搭建环境撒。
+
  -  **注意** ： **我提供的** 虚拟机中的演示已经过期(Demo in Virtual machine is out to date ,try the lastest release!)，请更新到最新版本:`git clone https://gitee.com/rmshadows/Tag_people_from_photos.git`
 
  -  **我提供的** 虚拟机已知问题：虚拟系统是基于Ubuntu的Linux_lite系统，界面与windows较像且体积较小（4.8G），固采用。(1)虚拟机中的AddKnowPerson.py不能正常运行，请下载最新版本的文件。addKnowPerson.py CANOT WORK CORRECTLY ，PLEASE DOWNLOAD THE LASTEST RELEASE.(2)虚拟机里的faxxxdemo脚本可能无法正常运行，但你只需要把demo中的Moving方法注释掉，或者分步运行就没问题了。算是个小小的bug吧，因为物理机里运行没这个问题。（Note:The faxxxdemo.py may not work correct in virtual machine ,but just comment out the daxxx.facerxxxKNN() method and run it separately ,it will work correctly.）
@@ -64,9 +66,9 @@
 
  ### 使用
  
- 1. **第一次** 使用请执行： `sudo chmod +x RESET_FRS.sh` 和 `./RESET_FRS.sh`
+ 1. **第一次** 使用，Linux请执行： `sudo chmod +x RESET_FRS.sh` 和 `./RESET_FRS.sh` 。Windows用户当然是运行那个bat文件了好吧。
  
- 1. 运行脚本： `python3 xxx.py` xxx是要运行的脚本的名字。
+ 1. 运行脚本： `python3 xxx.py` xxx是要运行的脚本的名字。 Windows的话一般是`python xxx.py` (只装了一个Python吧？)
  
  脚本文件分类（前缀）：
 
@@ -184,19 +186,19 @@ TrainingDemo.py：演示训练。训练完后的模型保存在KNN_MOD，需要�
 
 二、清空已识别的人物数据：
 
-ebCLEAN_UP_FRed.py
+ebCLEAN_UP_FRed.py 清理tempXXX目录下的文件。
 
 三、清除所有FRS数据：
 
-RESET_FRS.sh
+RESET_FRS.sh 清除已识别人物的信息。
 
 四、查找某人：
 
-gaFindSomebody.py
+gaFindSomebody.py 查找已识别数据库中是否有某人。
 
 五、重新识别已识别人物
 
-gbReFaceRecognition.py
+gbReFaceRecognition.py 重新识别已识别过的人物。
 
  ### 截屏
 
