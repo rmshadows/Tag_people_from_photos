@@ -1,16 +1,10 @@
  ### 简单de离线人脸管理
 
- - 版本：Python 3
+ - 版本：Python 3.6+
 
  - 最新版本：v1.2
 
- - 平台： **_仅支持Linux。_** Windows用户需要 **自己搭建** [原项目(face_recognition)](https://github.com/ageitgey/face_recognition)的环境 **并修改少许源代码** ，如何搭建请参考原项目的说明文档([中文版传送门](https://github.com/ageitgey/face_recognition/blob/master/README_Simplified_Chinese.md))和ISSUES中的[指南](https://github.com/ageitgey/face_recognition/issues/175#issue-257710508)。也可以试用我搭建好环境了的Linux Lite[虚拟机](https://pan.baidu.com/s/1ULEPSIigSrtbVC4QHHMw2Q)[提取码：90km]。你当然也可以使用Adam Geitgey大神为原项目提供的Ubuntu虚拟机镜像文件安装配置虚拟机（比我提供的大很多，但下载速度可能？？你们自己试试。），然后git clone本仓库。（需要电脑中安装VMWare Player，Vbox好像不能直接使用这个镜像，但没事，你可以先用vm把虚拟机导出为ova格式，就可导入VBox了。）
-
- -  **注意** ： **我提供的** 虚拟机中的演示已经过期(Demo in Virtual machine is out to date ,try the lastest release!)，请更新到最新版本:`git clone https://gitee.com/rmshadows/Tag_people_from_photos.git`
-
- -  **我提供的** 虚拟机已知问题：虚拟系统是基于Ubuntu的Linux_lite系统，界面与windows较像且体积较小（4.8G），固采用。(1)虚拟机中的AddKnowPerson.py不能正常运行，请下载最新版本的文件。addKnowPerson.py CANOT WORK CORRECTLY ，PLEASE DOWNLOAD THE LASTEST RELEASE.(2)虚拟机里的faxxxdemo脚本可能无法正常运行，但你只需要把demo中的Moving方法注释掉，或者分步运行就没问题了。算是个小小的bug吧，因为物理机里运行没这个问题。（Note:The faxxxdemo.py may not work correct in virtual machine ,but just comment out the daxxx.facerxxxKNN() method and run it separately ,it will work correctly.）
-
-![vbox](https://images.gitee.com/uploads/images/2020/0628/212812_1ca99837_7423713.png "屏幕截图.png")
+ - 平台： 首选Linux、OSX，Windows也可以运行，但据说Windows运行效率只有Linux平台的四分之一。
 
  - 用途：仅限于个人使用，协助照片分类，帮助标记人物。本项目基于 face_recognition > https://github.com/ageitgey/face_recognition
 
@@ -24,12 +18,12 @@
  
 1. 首先：更新你的python3和pip：`apt-get update` `apt-get upgrade python3` `apt upgrade python3-pip`
 
-
 1. 然后安装face_recognition模块(需要sudo权限、cmake `sudo apt-get install cmake` 等，dlib要编译)。具体可以参考face_recognition的[中文文档](https://github.com/ageitgey/face_recognition/blob/master/README_Simplified_Chinese.md)：
-`sudo pip3 install face_recognition`国内用户可以用清华镜像，快很多(后面如果报错说缺什么模块的，一样。`pip install xxx` ,记得看下`pip --version` 是哪个python版本的pip。)：
-`pip3 install -i https://pypi.tuna.tsinghua.edu.cn/simple face_recognition`
+`sudo pip3 install face_recognition`国内用户可以用清华镜像，快很多(后面如果报错说缺什么模块的，一样。`pip install xxx` ,记得看下`pip --version` 是哪个python版本的pip。)：`pip3 install -i https://pypi.tuna.tsinghua.edu.cn/simple face_recognition`
 
-1. 安装其他依赖：`pip3 install -r requirements.txt`
+1. 克隆本仓库：`git clone https://gitee.com/rmshadows/Tag_people_from_photos.git`
+
+1. 安装其他依赖：`cd Tag_people_from_photos` `pip3 install -r requirements.txt`
  
  - 关于修改pip(可以忽略不看)：
  
@@ -40,6 +34,33 @@
  `git clone https://github.com/rmshadows/Tag_people_from_photos`
  
  `cd Tag_people_from_photos`
+
+ ### Windows从零开始安装（只测试了Win 10系统）：
+
+ 1. 安装Cmake：去[Cmake官网](https://cmake.org/download/)下载Cmake，然后把Cmake添加到系统环境变量中。
+
+ 1. 下载Python3.8：[Python官网](https://www.python.org/downloads/)，安装完记得添加python环境变量，当然还有安装目录下Script文件夹中的pip的环境变量！两个环境变量哦～
+
+ 1. 下载Visual Studio：巨硬[官网下载](https://visualstudio.microsoft.com/zh-hans/)，记住，是VS不是VSC，看清楚。下载安装包后打开，选择C++桌面应用开发，确保右边安装列表中有“Windows上的Cmake”选项打勾。
+
+ 1. 在命令行输入`python --version` `pip --version` `cmake` 如果三个命令都有反应，那就是OK了。
+
+ 1. 以上三个安装完毕后，打开命令行。运行`pip install pip -U`更新pipy。然后运行`pip install dlib`。等待完成，这个会久一点，因为dlib需要编译。dlib安装成功后，输入`pip install face_recognition`，这个很快的。
+
+ 1. 上面步骤都成功了，环境基本搭建完成。失败的话请挪步[这里](https://github.com/ageitgey/face_recognition/issues/175#issue-257710508)。接下来克隆本仓库，没有git的[下载](https://git-scm.com/downloads)一个或者去我[项目地址](https://gitee.com/rmshadows/Tag_people_from_photos)下载源代码包。`git clone https://github.com/rmshadows/Tag_people_from_photos`
+
+ 1. 进入项目文件夹`cd Tag_people_from_photos` 安装其他依赖包：`pip3 install -r requirements.txt`
+
+ 1. 到这里就都搭建完毕了。现在Visual Studio和Cmake你可以卸载掉。
+
+ Windows须知：我不能保证源代码在Windows可以很好的运行，因为我在Windows上做测试的时间不多，所以有些小问题还是有各位亲们自己修改下源代码解决了。Windows用户需要 **自己搭建** [原项目(face_recognition)](https://github.com/ageitgey/face_recognition)的环境 **并修改少许源代码** ，如何搭建请参考原项目的说明文档([中文版传送门](https://github.com/ageitgey/face_recognition/blob/master/README_Simplified_Chinese.md))和ISSUES中的[指南](https://github.com/ageitgey/face_recognition/issues/175#issue-257710508)。也可以试用我搭建好环境了的Linux Lite[虚拟机](https://pan.baidu.com/s/1ULEPSIigSrtbVC4QHHMw2Q)[提取码：90km]。你当然也可以使用Adam Geitgey大神为原项目提供的Ubuntu虚拟机镜像文件安装配置虚拟机（比我提供的大很多，但下载速度可能？？你们自己试试。），然后git clone本仓库。（需要电脑中安装VMWare Player，Vbox好像不能直接使用这个镜像，但没事，你可以先用vm把虚拟机导出为ova格式，就可导入VBox了。）[VBox下载](https://mirrors.tuna.tsinghua.edu.cn/help/virtualbox/)
+
+ -  **注意** ： **我提供的** 虚拟机中的演示已经过期(Demo in Virtual machine is out to date ,try the lastest release!)，请更新到最新版本:`git clone https://gitee.com/rmshadows/Tag_people_from_photos.git`
+
+ -  **我提供的** 虚拟机已知问题：虚拟系统是基于Ubuntu的Linux_lite系统，界面与windows较像且体积较小（4.8G），固采用。(1)虚拟机中的AddKnowPerson.py不能正常运行，请下载最新版本的文件。addKnowPerson.py CANOT WORK CORRECTLY ，PLEASE DOWNLOAD THE LASTEST RELEASE.(2)虚拟机里的faxxxdemo脚本可能无法正常运行，但你只需要把demo中的Moving方法注释掉，或者分步运行就没问题了。算是个小小的bug吧，因为物理机里运行没这个问题。（Note:The faxxxdemo.py may not work correct in virtual machine ,but just comment out the daxxx.facerxxxKNN() method and run it separately ,it will work correctly.）
+
+![vbox](https://images.gitee.com/uploads/images/2020/0628/212812_1ca99837_7423713.png "屏幕截图.png")
+
 
  ### 使用
  
