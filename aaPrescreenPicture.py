@@ -25,6 +25,8 @@ import threading
 import time
 
 SEE_ALL_FACES=False
+WINDOWS=os.sep=="\\"
+SS=os.sep
 
 #获取扩展名
 def __fex(path): 
@@ -33,16 +35,17 @@ def __fex(path):
 
 #重命名
 def __renameFile():
-	dir = "./Prescreen"#./Prescreen目录
+	dir = ".{0}Prescreen".format(SS)#./Prescreen目录
 	folder = (os.listdir(dir))#显示预筛选文件夹下的人物文件夹#./Prescreen/*
 	for person in folder:#./Prescreen/person
-		personDir = "./Prescreen/"+person
+		personDir = ".{0}Prescreen{1}".format(SS,SS)+person
 		pic = (os.listdir(personDir))#./Prescreen/person/*
 		for file in pic:#./Prescreen/person/xxx.jpg
 			time=datetime.now()
-			srcFile = dir + "/" + person +"/"+ file#./Prescreen/person/xxx.jpg
+			srcFile = dir + SS + person + SS + file#./Prescreen/person/xxx.jpg
 			#dst=./Prescreen/{人名}/{时间后面的秒数}.{扩展名}
-			dstFile = dir + "/{0}/{1}.{2}".format(person,str(time)[17:],__fex(srcFile))
+			TI=str(time)[17:]
+			dstFile = dir + SS + "{0}{1}{2}.{3}".format(person,SS,TI.replace(" ",""),__fex(srcFile))
 			try:
 				os.rename(srcFile,dstFile)#重命名
 			except Exception as e:
@@ -52,9 +55,9 @@ def __renameFile():
 		pic = (os.listdir(personDir))#./Prescreen/person/*
 		n = 1
 		for file in pic:#./Prescreen/person/file
-			srcFile = personDir + "/" + file#./Prescreen/person/xxx.jpg
+			srcFile = personDir + SS + file#./Prescreen/person/xxx.jpg
 			#dst=./Prescreen/person/{n}.{ext}
-			dstFile = personDir + "/{0}.{1}".format(n,__fex(srcFile))
+			dstFile = personDir + SS + "{0}.{1}".format(n,__fex(srcFile))
 			try:
 				os.rename(srcFile,dstFile)
 			except Exception as e:
@@ -75,27 +78,28 @@ def __checkFaces(file):
 	face_locations = face_recognition.face_locations(image)
 	faceNum = len(face_locations)
 	print("Found \033[1;33;40m{0}\033[0m: face(s) in \033[1;35;40m{1}\033[0m: photograph.".format(faceNum ,file), end = " ==> ")
-	if(SEE_ALL_FACES):
-		for face_location in face_locations:
-			# Print the location of each face in this image
-			top, right, bottom, left = face_location
-			print("A face is located at pixel location Top: {}, Left: {}, Bottom: {}, Right: {}".format(top, left, bottom, right))
-			# You can access the actual face itself like this:
-			face_image = image[top:bottom, left:right]
-			pil_image = Image.fromarray(face_image)
+	for face_location in face_locations:
+		# Print the location of each face in this image
+		top, right, bottom, left = face_location
+		print("A face is located at pixel location Top: {}, Left: {}, Bottom: {}, Right: {}".format(top, left, bottom, right))
+		# You can access the actual face itself like this:
+		face_image = image[top:bottom, left:right]
+		pil_image = Image.fromarray(face_image)
+		if(SEE_ALL_FACES):
 			pil_image.show()
+		#pil_image.save(file)
 	return faceNum
 
 #MainX
 def filePrescreen():
 	print("Prescreen Start......\n")
 	__renameFile()
-	dir = "./Prescreen"
+	dir = ".{0}Prescreen".format(SS)
 	folder = (os.listdir(dir))#./Prescreen/*
 	for person in folder:#./Prescreen/person/
-		personDir = "./Prescreen/"+person#./Prescreen/person/
+		personDir = ".{0}Prescreen{1}".format(SS,SS)+person#./Prescreen/person/
 		pic = (os.listdir(personDir))#./Prescreen/person/*
-		if len(pic)>=20:#./Prescreen/person/下的图片20张以上
+		if (len(pic)>=20) & (not WINDOWS):#./Prescreen/person/下的图片20张以上
 			taskNum = int(len(pic)/4)
 			taskLef = len(pic)%4
 			# 创建新线程
@@ -127,13 +131,13 @@ def filePrescreen():
 		else:
 			for file in pic:#./Prescreen/person/xxx.jpg
 				time=datetime.now()#获取当前时间
-				srcFile = personDir + "/" + file #"./Prescreen/"+person+ "/" +file
+				srcFile = personDir + SS + file #"./Prescreen/"+person+ "/" +file
 				if __checkFaces(srcFile)!=1:#如果脸的数量不是一的不要
 					#./Prescreen/person/rm{time}
-					dstFile = personDir + "/rm{0}".format(str(time)[17:])
+					dstFile = personDir + SS +"rm{0}".format(str(time)[17:].replace(" ",""))
 				else:
 					#./Prescreen/person/1F{时间}.{扩展名}
-					dstFile = personDir + "/1F{0}.{1}".format(str(time)[17:],__fex(srcFile))
+					dstFile = personDir + SS +"1F{0}.{1}".format(str(time)[17:].replace(" ",""),__fex(srcFile))
 				try:
 					os.rename(srcFile,dstFile)
 				except Exception as e:
@@ -148,9 +152,9 @@ def doTask(who,person):
 		srcFile = "./Prescreen/{0}/{1}".format(person,f)#./Prescreen/{person}/{xxx.jpg}
 		if __checkFaces(srcFile)!=1:
 			#./Prescreen/person/rm{}{}
-			dstFile = "./Prescreen/{0}/rm{1}.{2}".format(person,str(time)[17:],__fex(srcFile))
+			dstFile = "./Prescreen/{0}/rm{1}.{2}".format(person,str(time)[17:].replace(" ",""),__fex(srcFile))
 		else:
-			dstFile = "./Prescreen/{0}/1F{1}.{2}".format(person,str(time)[17:],__fex(srcFile))
+			dstFile = "./Prescreen/{0}/1F{1}.{2}".format(person,str(time)[17:].replace(" ",""),__fex(srcFile))
 		try:
 			os.rename(srcFile,dstFile)
 		except Exception as e:
@@ -164,22 +168,33 @@ class __TaskSubmit (threading.Thread):
 		self.id = id
 		self.who = who
 		self.person = person
+		self.result="1"
 	def run(self):
-		print ("开始线程：" + self.id)
+		print ("开始线程：" + self.id + " on stat " + self.result)
 		doTask(self.who,self.person)
-		print ("退出线程：" + self.id)
+		self.result="0"
+		print ("退出线程：" + self.id + " on stat " + self.result)
 
 def __rmFiles():
 	print("\nDelete files...")
-	dir = "./Prescreen"
+	dir = ".{0}Prescreen".format(SS)
 	folder = (os.listdir(dir))#显示预筛选文件夹下的人物文件夹#./Prescreen/*
 	for person in folder:#./Prescreen/person
-		try:
-			#rm ./Prescreen/{person}/rm*
-			commandInput = 'rm ./Prescreen/' + person + "/rm*"
-			commandImplementation = os.popen(commandInput)
-		except Exception as e:
-			print("REMOVE FILE ERROR.")
+		if WINDOWS:
+			try:
+				#del .\Prescreen\{person}\rm*
+				commandInput = 'del /S /Q .\\Prescreen\\' + person + "\\rm*"
+				commandImplementation = os.popen(commandInput)
+				print("Del...")
+			except Exception as e:
+				print(e)
+		else:
+			try:
+				#rm ./Prescreen/{person}/rm*
+				commandInput = 'rm ./Prescreen/' + person + "/rm*"
+				commandImplementation = os.popen(commandInput)
+			except Exception as e:
+				print("REMOVE FILE ERROR.")
 
 def __killPro(second,pro):
 	time.sleep(second)
@@ -190,7 +205,7 @@ def __killPro(second,pro):
 
 if __name__ == "__main__":
 	#True是显示识别出的图像
-	SEE_ALL_FACES=True
+	#SEE_ALL_FACES=True
 	filePrescreen()
 	print("\n\033[5;31;40m训练材料预处理结束，请进行人工复审。下面如果有报错，请忽略。\033[0m\n")
 	if SEE_ALL_FACES:
