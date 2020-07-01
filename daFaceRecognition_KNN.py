@@ -17,6 +17,8 @@ import time
 import psutil
 
 SEE_ALL_FACES=False
+WINDOWS=os.sep=="\\"
+SS=os.sep
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 
 def __predict(X_img_path, knn_clf = None, model_save_path ="", DIST_THRESH = .5):
@@ -79,7 +81,8 @@ def __show_prediction_labels_on_image(name,ext,img_path, predictions):
 	if (SEE_ALL_FACES):
 		pil_image.show()
 	time=datetime.now()
-	pil_image.save("./tempFaceRecognition/{0}{1}.{2}".format(name,str(time)[17:],ext))
+	#保存识别的图片
+	pil_image.save(".{0}tempFaceRecognition{1}{2}{3}.{4}".format(SS,SS,name,str(time)[17:],ext))
 
 #得到扩展名
 def __fex(path): 
@@ -87,26 +90,27 @@ def __fex(path):
 	return ex[1:]
 
 def __faceRec(toRec,mod):
-	for img_path in listdir("./{}".format(toRec)):#./folder/*
+	for img_path in listdir(".{0}{1}".format(SS,toRec)):#./folder/*
 		NA = ""#Name
-		ext = __fex(join("./{}".format(toRec), img_path))#get ext
+		ext = __fex(join(".{0}{1}".format(SS,toRec), img_path))#get ext
 		#./folder/xxx.jpg  None  ./KNN_MOD/{model}
-		preds = __predict(join("./{}".format(toRec), img_path) ,None,"./KNN_MOD/{}".format(mod))
+		preds = __predict(join(".{0}{1}".format(SS,toRec), img_path) ,None,".{0}KNN_MOD{1}{2}".format(SS,SS,mod))
 		for name, (top, right, bottom, left) in preds:
 			NA=name
-			print("- Found {} at ({}, {})".format(name, left, top))
+			print("- Found \033[1;32;40m{}\033[0m at ({}, {})".format(name, left, top))
 		#Name  ext  ./{folder}/xxx.jpg  preds
-		__show_prediction_labels_on_image(NA,ext,os.path.join("./{}".format(toRec), img_path), preds)
+		__show_prediction_labels_on_image(NA,ext,os.path.join(".{0}{1}".format(SS,toRec), img_path), preds)
 
 		if len(preds)==0:
 			print("ERROR-None face")
 		if(len(preds)==1):
-			srcFile = "./{0}/{1}".format(toRec,img_path)
+			srcFile = ".{0}{1}{2}{3}".format(SS,toRec,SS,img_path)
 			time=datetime.now()#获取当前时间
 			if preds[0][0]=="N/A":
-				dstFile = "./{0}/unknown-{1}.{2}".format(toRec,str(time)[17:],__fex(srcFile))
+				dstFile = ".{0}{1}{2}unknown-{1}.{2}".format(SS,toRec,SS,str(time)[17:],__fex(srcFile))
 			else:
-				dstFile = "./{0}/{1}-{2}.{3}".format(toRec,preds[0][0],str(time)[17:],__fex(srcFile))
+				dstFile = ".{0}{1}{2}{3}-{4}.{5}".format(SS,toRec,SS,preds[0][0],str(time)[17:],__fex(srcFile))
+			#显示正处理的文件
 			print(dstFile)
 			try:
 				os.rename(srcFile,dstFile)
@@ -116,7 +120,7 @@ def __faceRec(toRec,mod):
 				pass
 		else:
 			#A Long If:
-			if(__fex("./{}/{}".format(toRec,img_path))=="png"):
+			if(__fex(".{0}{1}{2}{3}".format(SS,toRec,SS,img_path))=="png"):
 				n=1
 				tempName=join(toRec,img_path)
 				for x in preds:
@@ -126,7 +130,7 @@ def __faceRec(toRec,mod):
 					if x[0]=="N/A":
 						if n==1:
 							time=datetime.now()
-							dstFile = "./{0}/{1}{2}".format(toRec,"unknown",str(time)[17:])
+							dstFile = ".{0}{1}{2}{3}{4}".format(SS,toRec,SS,"unknown",str(time)[17:])
 						else:
 							time=datetime.now()
 							dstFile = "{0}-{1}{2}".format(tempName[:-9],"unknown",str(time)[17:])
@@ -134,7 +138,7 @@ def __faceRec(toRec,mod):
 					else:
 						if n==1:
 							time=datetime.now()
-							dstFile = "./{0}/{1}{2}".format(toRec,x[0],str(time)[17:])
+							dstFile = ".{0}{1}{2}{3}{4}".format(SS,toRec,SS,x[0],str(time)[17:])
 						else:
 							time=datetime.now()
 							dstFile = "{0}-{1}{2}".format(tempName[:-9],x[0],str(time)[17:])
@@ -148,7 +152,7 @@ def __faceRec(toRec,mod):
 						pass
 				srcFile = tempName
 				time=datetime.now()
-				dstFile = "{0}-{1}.png".format(tempName[:-9],str(time)[17:],)
+				dstFile = "{0}-{1}.png".format(tempName[:-9],str(time)[17:])
 				try:
 					os.rename(srcFile,dstFile)
 				except Exception as e:
@@ -158,7 +162,7 @@ def __faceRec(toRec,mod):
 				print("\n")
 			else:
 				pass
-			if(__fex("./{}/{}".format(toRec,img_path))=="jpg"):
+			if(__fex(".{0}{1}{2}{3}".format(SS,toRec,SS,img_path))=="jpg"):
 				n=1
 				tempName=join(toRec,img_path)
 				print("文件{0}:".format(img_path),end="")
@@ -168,7 +172,7 @@ def __faceRec(toRec,mod):
 					if x[0]=="N/A":
 						if n==1:
 							time=datetime.now()
-							dstFile = "./{0}/{1}{2}".format(toRec,"unknown",str(time)[17:])
+							dstFile = ".{0}{1}{2}{3}{4}".format(SS,toRec,SS,"unknown",str(time)[17:])
 						else:
 							time=datetime.now()
 							dstFile = "{0}-{1}{2}".format(tempName[:-9],"unknown",str(time)[17:])
@@ -176,7 +180,7 @@ def __faceRec(toRec,mod):
 					else:
 						if n==1:
 							time=datetime.now()
-							dstFile = "./{0}/{1}{2}".format(toRec,x[0],str(time)[17:])
+							dstFile = ".{0}{1}{2}{3}{4}".format(SS,toRec,SS,x[0],str(time)[17:])
 						else:
 							time=datetime.now()
 							dstFile = "{0}-{1}{2}".format(tempName[:-9],x[0],str(time)[17:])
@@ -189,9 +193,8 @@ def __faceRec(toRec,mod):
 					else:
 						pass
 				srcFile = tempName
-				#print(srcFile)
 				time=datetime.now()
-				dstFile = "{0}-{1}.jpg".format(tempName[:-9],str(time)[17:],)
+				dstFile = "{0}-{1}.jpg".format(tempName[:-9],str(time)[17:])
 				try:
 					os.rename(srcFile,dstFile)
 				except Exception as e:
@@ -201,7 +204,7 @@ def __faceRec(toRec,mod):
 				print("\n")
 			else:
 				pass
-			if(__fex("./{}/{}".format(toRec,img_path))=="jpeg"):
+			if(__fex(".{0}{1}{2}{3}".format(SS,toRec,SS,img_path))=="jpeg"):
 				n=1
 				tempName=join(toRec,img_path)
 				#print(tempName)
@@ -212,7 +215,7 @@ def __faceRec(toRec,mod):
 					if x[0]=="N/A":
 						if n==1:
 							time=datetime.now()
-							dstFile = "./{0}/{1}{2}".format(toRec,"unknown",str(time)[17:])
+							dstFile = ".{0}{1}{2}{3}{4}".format(SS,toRec,SS,"unknown",str(time)[17:])
 						else:
 							time=datetime.now()
 							dstFile = "{0}-{1}{2}".format(tempName[:-9],"unknown",str(time)[17:])
@@ -220,7 +223,7 @@ def __faceRec(toRec,mod):
 					else:
 						if n==1:
 							time=datetime.now()
-							dstFile = "./{0}/{1}{2}".format(toRec,x[0],str(time)[17:])
+							dstFile = ".{0}{1}{2}{3}{4}".format(SS,toRec,SS,x[0],str(time)[17:])
 						else:
 							time=datetime.now()
 							dstFile = "{0}-{1}{2}".format(tempName[:-9],x[0],str(time)[17:])
@@ -235,7 +238,7 @@ def __faceRec(toRec,mod):
 				srcFile = tempName
 				#print(srcFile)
 				time=datetime.now()
-				dstFile = "{0}-{1}.jpeg".format(tempName[:-9],str(time)[17:],)
+				dstFile = "{0}-{1}.jpeg".format(tempName[:-9],str(time)[17:])
 				#print(dstFile)
 				try:
 					os.rename(srcFile,dstFile)
