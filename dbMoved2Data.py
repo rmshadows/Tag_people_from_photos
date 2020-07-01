@@ -6,6 +6,10 @@ import eaCLEAN_UP_TEMP
 单人面孔将创建单独的文件夹。
 已识别的数据将储存在./FR_DATA
 '''
+
+WINDOWS=os.sep=="\\"
+SS=os.sep
+
 def __findUnknown(str):
 	un=False
 	if 'unknown' in str:
@@ -22,31 +26,31 @@ def __returnPersonName(fileName):
 	return str[0]
 
 def __moveSingleFaceData():
-	person=os.listdir("./tempSingle/")
+	person=os.listdir(".{0}tempSingle{1}".format(SS,SS))
 	#print(person)
 	for unit in person:
 		if(__findUnknown(unit)):
-			src="./tempSingle/"+unit
-			dst="./FR_DATA/B-Unknown/"+unit
+			src=".{0}tempSingle{1}".format(SS,SS)+unit
+			dst=".{0}FR_DATA{1}B-Unknown{2}".format(SS,SS,SS)+unit
 			#print(src+" to "+dst)
 			shutil.move(src,dst)
 		else:
-			src="./tempSingle/"+unit
-			dst="./FR_DATA/D-Singleface/"+__returnPersonName(unit)+"/"+unit
-			personDir = "./FR_DATA/D-Singleface/"+__returnPersonName(unit)
+			src=".{0}tempSingle{1}".format(SS,SS)+unit
+			dst=".{0}FR_DATA{1}D-Singleface{2}".format(SS,SS,SS)+__returnPersonName(unit)+SS+unit
+			personDir = ".{0}FR_DATA{1}D-Singleface{2}".format(SS,SS,SS)+__returnPersonName(unit)
 			if not os.path.exists(personDir):
-				print("Mkdir...{}".format(__returnPersonName(unit)))
+				print("Mkdir...{0}".format(__returnPersonName(unit)))
 				os.makedirs(personDir)	# 创建目录
 			else:
 				pass
 			shutil.move(src,dst)
 
 def __moveMultiFacesData():
-	person=os.listdir("./tempMore/")
+	person=os.listdir(".{0}tempMore{1}".format(SS,SS))
 	#print(person)
 	for unit in person:
-		src="./tempMore/"+unit
-		dst="./FR_DATA/E-Morefaces/"+unit
+		src=".{0}tempMore{1}".format(SS,SS)+unit
+		dst=".{0}FR_DATA{1}E-Morefaces{2}".format(SS,SS,SS)+unit
 		#print(src+"  to  "+dst)
 		shutil.move(src,dst)
 
