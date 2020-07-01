@@ -10,6 +10,8 @@ import threading
 import time
 
 SEE_ALL_FACES=False
+WINDOWS=os.sep=="\\"
+SS=os.sep
 
 #返回扩展名
 def __fex(path): 
@@ -18,13 +20,14 @@ def __fex(path):
 
 #重命名
 def __renameFile():
-	dir = "./INPUT_PIC"#./INPUT_PIC
+	dir = ".{0}INPUT_PIC".format(SS)#./INPUT_PIC
 	pic = (os.listdir(dir))#./INPUT_PIC/*
 	for file in pic:
 		time=datetime.now()
-		srcFile = dir + "/" + file#./INPUT_PIC/xxx.jpg
+		srcFile = dir + SS + file#./INPUT_PIC/xxx.jpg
 		#./INPUT_PIC/{time}.{ext}
-		dstFile = dir + "/{0}.{1}".format(str(time)[17:],__fex(srcFile))
+		TI=str(time).replace(" ","")
+		dstFile = dir + SS + "{0}.{1}".format(TI.replace(":",""),__fex(srcFile))
 		try:
 			os.rename(srcFile,dstFile)
 		except Exception as e:
@@ -34,9 +37,9 @@ def __renameFile():
 	pic = (os.listdir(dir))#./INPUT_PIC/*
 	n = 1
 	for file in pic:
-		srcFile = dir + "/" + file#./INPUT_PIC/xxx.jpg
+		srcFile = dir + SS + file#./INPUT_PIC/xxx.jpg
 		#./INPUT_PIC/{n}.{ext}
-		dstFile = dir + "/{0}.{1}".format(n,__fex(srcFile))
+		dstFile = dir + SS + "{0}.{1}".format(n,__fex(srcFile))
 		try:
 			os.rename(srcFile,dstFile)
 		except Exception as e:
@@ -47,7 +50,7 @@ def __renameFile():
 
 def __checkFaces(file):
 	# Load the jpg file into a numpy array
-	inputPic = "./INPUT_PIC/"+file
+	inputPic = ".{0}INPUT_PIC{1}".format(SS,SS)+file
 	image = face_recognition.load_image_file(inputPic)
 
 	# Find all the faces in the image using the default HOG-based model.
@@ -71,32 +74,52 @@ def __checkFaces(file):
 	return faceNum
 
 def __copyFiles():
-	#print("\n")
-	try:
-		#cp ./INPUT_PIC/0* ./tempNone
-		commandInput = 'cp ./INPUT_PIC/0* ./tempNone'
-		commandImplementation = os.popen(commandInput)
-	except Exception as e:
-		print("No None fece")
-	try:
-		#cp ./INPUT_PIC/1* ./tempSingle
-		commandInput = 'cp ./INPUT_PIC/1* ./tempSingle'
-		commandImplementation = os.popen(commandInput)
-	except Exception as e:
-		print("No Singleface")
-	try:
-		#cp ./INPUT_PIC/MF* ./tempMore
-		commandInput = 'cp ./INPUT_PIC/MF* ./tempMore'
-		commandImplementation = os.popen(commandInput)
-	except Exception as e:
-		print("No Morefaces")
+	if WINDOWS:
+		try:
+			#copy ./INPUT_PIC/0* ./tempNone
+			commandInput = 'copy /Y .\\INPUT_PIC\\0* .\\tempNone'
+			commandImplementation = os.popen(commandInput)
+		except Exception as e:
+			print(e)
+		try:
+			#cp ./INPUT_PIC/1* ./tempSingle
+			commandInput = 'copy /Y .\\INPUT_PIC\\1* .\\tempSingle'
+			commandImplementation = os.popen(commandInput)
+		except Exception as e:
+			print("No Singleface")
+		try:
+			#cp ./INPUT_PIC/MF* ./tempMore
+			commandInput = 'copy /Y .\\INPUT_PIC\\MF* .\\tempMore'
+			commandImplementation = os.popen(commandInput)
+		except Exception as e:
+			print(e)
+	else:
+		try:
+			#cp ./INPUT_PIC/0* ./tempNone
+			commandInput = 'cp ./INPUT_PIC/0* ./tempNone'
+			commandImplementation = os.popen(commandInput)
+		except Exception as e:
+			print("No None fece")
+		try:
+			#cp ./INPUT_PIC/1* ./tempSingle
+			commandInput = 'cp ./INPUT_PIC/1* ./tempSingle'
+			commandImplementation = os.popen(commandInput)
+		except Exception as e:
+			print("No Singleface")
+		try:
+			#cp ./INPUT_PIC/MF* ./tempMore
+			commandInput = 'cp ./INPUT_PIC/MF* ./tempMore'
+			commandImplementation = os.popen(commandInput)
+		except Exception as e:
+			print(e)
 
 def __fileCtrl():
 	#print("File Control Start")
-	dir = "./INPUT_PIC"
+	dir = ".{0}INPUT_PIC".format(SS)
 	pic = (os.listdir(dir))#./INPUT_PIC/*
 
-	if len(pic)>=8:
+	#if (len(pic)>=8)|(not WINDOWS):
+	if (len(pic)>=8) & (not WINDOWS):
 		taskNum = int(len(pic)/4)
 		taskLef = len(pic)%4
 		ga=pic[0:taskNum]
@@ -135,13 +158,15 @@ def __fileCtrl():
 		n=1
 		for file in pic:#./INPUT_PIC/xxx.jpg
 			time=datetime.now()#获取当前时间
-			srcFile = dir + "/" + file#./INPUT_PIC/xxx.jpg
+			srcFile = dir + SS + file#./INPUT_PIC/xxx.jpg
 			if __checkFaces(file)>=2:
 				print(__fex(srcFile))
 				#./INPUT_PIC/MF{time}{ext}
-				dstFile = dir + "/MF{0}.{1}".format(time,__fex(srcFile))
+				TI=str(time).replace(" ","")
+				dstFile = dir + SS + "MF{0}.{1}".format(TI.replace(":",""),__fex(srcFile))
 			else:
-				dstFile = dir + "/{0}F{1}.{2}".format(__checkFaces(file),time,__fex(srcFile))
+				TI=str(time).replace(" ","")
+				dstFile = dir + SS + "{0}F{1}.{2}".format(__checkFaces(file),TI.replace(":",""),__fex(srcFile))
 			try:
 				os.rename(srcFile,dstFile)
 			except Exception as e:
@@ -164,11 +189,13 @@ class TaskSubmit (threading.Thread):
 def doTask(listIn):
 	for x in listIn:
 		time=datetime.now()#获取当前时间
-		srcFile = "./INPUT_PIC/{0}".format(x)
+		srcFile = ".{0}INPUT_PIC{1}{2}".format(SS,SS,x)
 		if __checkFaces(x)>=2:
-			dstFile = "./INPUT_PIC/MF{0}.{1}".format(time,__fex(srcFile))
+			TI=str(time).replace(" ","")
+			dstFile = ".{0}INPUT_PIC{1}MF{2}.{3}".format(SS,SS,TI.replace(":",""),__fex(srcFile))
 		else:
-			dstFile = "./INPUT_PIC/{0}F{1}.{2}".format(__checkFaces(x),time,__fex(srcFile))
+			TI=str(time).replace(" ","")
+			dstFile = ".{0}INPUT_PIC{1}{2}F{3}.{4}".format(SS,SS,__checkFaces(x),TI.replace(":",""),__fex(srcFile))
 		try:
 			os.rename(srcFile,dstFile)
 		except Exception as e:
