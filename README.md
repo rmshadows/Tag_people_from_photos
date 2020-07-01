@@ -2,7 +2,7 @@
 
  - 版本：Python 3.6+
 
- - 最新版本：v1.3
+ - 最新版本：v1.3.1
 
  - 平台： 首选Linux、OSX，Windows也可以运行，但据说Windows运行效率只有Linux平台的四分之一。
 
