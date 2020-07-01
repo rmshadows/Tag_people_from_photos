@@ -236,3 +236,46 @@ gbReFaceRecognition.py 重新识别已识别过的人物。
  ### 感谢
  
  再次感谢face_recognition项目 > https://github.com/ageitgey/face_recognition
+
+ --+--FRS-2020-+-FR_DATA-+-A-KnownPeople-+-PersonA-+-Person1.jpg      存放已知人物图片，用于训练对象，训练时填文件夹“A-KnownPeople”
+                |         |               |         +-Person2.jpg
+                |         |               |         +-......
+                |         |               +-PersonB-+-Person1.jpg
+                |         |               |         +-Person2.jpg
+                |         |               |         +-......
+                |         |               +-......
+                |         |                    
+                |         +-B-Unknown                                   存放识别后仍未知人物图片。
+                |         |                       
+                |         +-C-Noneface                                  存放识别无面孔的照片（未启用）
+                |         |                                  
+                |         +-D-Singleface-+-PersonA-+-Person1.jpg        存放识别后已知的单面孔人物图片
+                |         |              |         +-Person2.jpg
+                |         |              |         +-......
+                |         |              +-PersonB-+-Person1.jpg
+                |         |              |         +-Person2.jpg
+                |         |              |         +-......
+                |         |              +-......
+                |         |                  
+                |         +-E-Morefaces                                 存放识别后已知的多面孔人物图片
+                |                               
+                +-INPUT_PIC                                             存放需要识别人物的图片
+                |                     
+                +-KNN_MOD                                               存放训练出的模型
+                |              
+                +-Prescreen-+-PersonA-+-Person1.jpg                     临时存放需要预处理的训练材料
+                |           |         +-Person2.jpg
+                |           |         +-......
+                |           +-PersonB-+-Person1.jpg
+                |           |         +-Person2.jpg
+                |           |         +-......
+                |           +-......
+                |
+                +-tempMore                                              临时存放分类好的待识别多面孔图片
+                |
+                +-tempNone                                              临时存放分类好的待识别无面孔图片
+                |
+                +-tempSingle                                            临时存放分类好的待识别单面孔图片
+                |
+                +-tempFaceRecognition                                   存放识别的结果，图片带有识别方框
+
