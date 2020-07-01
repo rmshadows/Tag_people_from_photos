@@ -83,7 +83,8 @@ def __show_prediction_labels_on_image(name,ext,img_path, predictions):
 		pil_image.show()
 	time=datetime.now()
 	#保存识别的图片
-	pil_image.save(".{0}tempFaceRecognition{1}{2}{3}.{4}".format(SS,SS,name,str(time)[17:],ext))
+	pa = ".{0}tempFaceRecognition{1}{2}{3}.{4}".format(SS,SS,name,str(time)[17:],ext)
+	pil_image.save(pa.replace("N/A",""))
 
 #得到扩展名
 def __fex(path): 
@@ -110,7 +111,7 @@ def __faceRec(toRec,mod):
 				srcFile = ".{0}{1}{2}{3}".format(SS,toRec,SS,img_path)
 				time=datetime.now()#获取当前时间
 				if preds[0][0]=="N/A":
-					dstFile = ".{0}{1}{2}unknown-{1}.{2}".format(SS,toRec,SS,str(time)[17:],__fex(srcFile))
+					dstFile = ".{0}{1}{2}unknown-{3}.{4}".format(SS,toRec,SS,str(time)[17:],__fex(srcFile))
 				else:
 					dstFile = ".{0}{1}{2}{3}-{4}.{5}".format(SS,toRec,SS,preds[0][0],str(time)[17:],__fex(srcFile))
 				#显示正处理的文件
@@ -264,7 +265,7 @@ def FaceRecognitionKNN(model_name):
 	print("\033[5;31;40m--------识别完毕--------\033[0m")
 
 if __name__ == "__main__":
-	#SEE_ALL_FACES=True
+	SEE_ALL_FACES=True
 	FaceRecognitionKNN("WorldWideKnown_202006")
 	if SEE_ALL_FACES:
 		#延时5秒
