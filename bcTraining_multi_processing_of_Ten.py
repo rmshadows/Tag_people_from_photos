@@ -13,13 +13,20 @@ from face_recognition import face_locations
 from face_recognition.face_recognition_cli import image_files_in_folder
 import threading
 from datetime import datetime
+import os
+import Wait
+
+WINDOWS=os.sep=="\\"
+SS=os.sep
+#修改这里显示详情
+verbose=False
 
 def __train(train_dir, model_save_path = "",verbose=False, n_neighbors = None, knn_algo = 'ball_tree' ):
 	X = []
 	y = []
 
 	person = listdir(train_dir)
-	if len(person)>20:
+	if (len(person)>10)&(not WINDOWS):
 		group = (int)(len(person)/10)
 		left = len(person)%10
 		g1 = person[0:group]
@@ -77,13 +84,17 @@ def __train(train_dir, model_save_path = "",verbose=False, n_neighbors = None, k
 		num = 1
 		for class_dir in listdir(train_dir):
 			n += 1
-			print("\033[1;33;40m添加第{}个训练对象 \033[0m:\033[1;36;40m".format(n) + class_dir + "\033[0m")
+			if verbose:
+				print("\033[1;33;40m添加第{}个训练对象 \033[0m:\033[1;36;40m".format(n) + class_dir + "\033[0m")
 			if not isdir(join(train_dir, class_dir)):
 				print("continue.")
 				continue
 			for img_path in image_files_in_folder(join(train_dir, class_dir)):
 				image = face_recognition.load_image_file(img_path)
-				print("\033[1;34;40m添加第({0}/{1})个文件 \033[0m:\033[1;38;40m".format(num,TASK) + img_path + "\033[0m")
+				if verbose:
+					print("\033[1;34;40m添加第({0}/{1})个文件 \033[0m:\033[1;38;40m".format(num,TASK) + img_path + "\033[0m")
+				Wait.view(num,TASK,"31"," ")
+
 				num+=1
 				faces_bboxes = face_locations(image)
 				if len(faces_bboxes) != 1:
@@ -92,7 +103,7 @@ def __train(train_dir, model_save_path = "",verbose=False, n_neighbors = None, k
 					continue
 				X.append(face_recognition.face_encodings(image, known_face_locations=faces_bboxes)[0])
 				y.append(class_dir)
-	
+
 	if n_neighbors is None:
 		n_neighbors = int(round(sqrt(len(X))))
 		if verbose:
@@ -106,18 +117,11 @@ def __train(train_dir, model_save_path = "",verbose=False, n_neighbors = None, k
 			pickle.dump(knn_clf, f)
 	return knn_clf
 
-'''
-def Sub(num,train_dir,g,color):
-	thread1 = TaskSubmit("1",train_dir,g1,31)
-	thread1.start()
-	thread1.join()
-'''
-
 def __calcTask(path):
 	dir = listdir(path)
 	task = 0
 	for person in dir:
-		subDir = path+"/"+person
+		subDir = path+SS+person
 		num = len(listdir(subDir))
 		task = task + num
 	return task
@@ -131,11 +135,14 @@ def doTask(train_dir,listIn,id,color):
 		T = T+len(listdir(join(train_dir,x)))
 	n = 1
 	for class_dir in listIn:#Person
-		print("\033[1;{0};40m线程-{1}-正在添加：{2}\033[0m:".format(color,id,class_dir))
+		if verbose:
+			print("\033[1;{0};40m线程-{1}-正在添加：{2}\033[0m:".format(color,id,class_dir))
 		if not isdir(join(train_dir, class_dir)):#跳过目录
 			continue
 		for img_path in image_files_in_folder(join(train_dir, class_dir)):
-			print("-"+id+"-进度:({0}/{1})".format(n,T))
+			if verbose:
+				print("-"+id+"-进度:({0}/{1})".format(n,T))
+			Wait.view(n,T,color," ")
 			n+=1
 			image = face_recognition.load_image_file(img_path)
 			faces_bboxes = face_locations(image)
@@ -167,9 +174,11 @@ class TaskSubmit (threading.Thread):
 		except Exception:
 			return None
 	def run(self):
-		print ("开始线程：" + self.id + "\n")
+		if verbose:
+			print ("开始线程：" + self.id + "\n")
 		X,y = doTask(self.train_dir ,self.listIn,self.id,self.color)
-		print ("退出线程：" + self.id + "\n")
+		if verbose:
+			print ("退出线程：" + self.id + "\n")
 		self.X=X
 		self.y=y
 
@@ -177,10 +186,15 @@ class TaskSubmit (threading.Thread):
 def main(train_dir,model_save_path):
 	print("\033[5;33;40m开始训练模型(10线程)....\033[0m\n")
 	time=datetime.now()
-	knn_clf = __train("./FR_DATA/"+train_dir+"/","./KNN_MOD/"+model_save_path+str(time),True)
+	if WINDOWS:
+		TI=str(time).replace(":","")
+		knn_clf = __train(".\\FR_DATA\\"+train_dir+"\\",".\\KNN_MOD\\"+model_save_path+TI.replace(" ",""),verbose)
+	else:
+		knn_clf = __train("./FR_DATA/"+train_dir+"/","./KNN_MOD/"+model_save_path+str(time).replace(" ",""),verbose)
 	print("\n\033[5;31;40m模型训练结束，已经导出到KNN_MOD文件夹下。\033[0m\n")
 
 if __name__ == "__main__":
 	#训练的文件夹/输出模型文件名
-	main("G-WorldWidePeople","WorldWideKnown")
+	#main("G-WorldWidePeople","WorldWideKnown")
 	#main("KnowTest","KnownTest")
+	main("A-KnownPeople","KnownPeople")
