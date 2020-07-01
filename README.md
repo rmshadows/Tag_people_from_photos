@@ -2,7 +2,7 @@
 
  - 版本：Python 3.6+
 
- - 最新版本：v1.2
+ - 最新版本：v1.3
 
  - 平台： 首选Linux、OSX，Windows也可以运行，但据说Windows运行效率只有Linux平台的四分之一。
 
@@ -53,6 +53,8 @@
 
  1. 到这里就都搭建完毕了。现在Visual Studio和Cmake你可以卸载掉。
 
+ - Windows下默认禁用多线程方法，自己改下源码，把那个`not WINDOWS`注释掉就是。
+
  Windows须知：我不能保证源代码在Windows可以很好的运行，因为我在Windows上做测试的时间不多，所以有些小问题还是有各位亲们自己修改下源代码解决了。Windows用户需要 **自己搭建** [原项目(face_recognition)](https://github.com/ageitgey/face_recognition)的环境 **并修改少许源代码** ，如何搭建请参考原项目的说明文档([中文版传送门](https://github.com/ageitgey/face_recognition/blob/master/README_Simplified_Chinese.md))和ISSUES中的[指南](https://github.com/ageitgey/face_recognition/issues/175#issue-257710508)。也可以试用我搭建好环境了的Linux Lite[虚拟机](https://pan.baidu.com/s/1ULEPSIigSrtbVC4QHHMw2Q)[提取码：90km]。你当然也可以使用Adam Geitgey大神为原项目提供的Ubuntu虚拟机镜像文件安装配置虚拟机（比我提供的大很多，但下载速度可能？？你们自己试试。），然后git clone本仓库。（需要电脑中安装VMWare Player，Vbox好像不能直接使用这个镜像，但没事，你可以先用vm把虚拟机导出为ova格式，就可导入VBox了。）[VBox下载](https://mirrors.tuna.tsinghua.edu.cn/help/virtualbox/)
 
  - **_虚拟机须知：_** 性能真的和物理机没法比，卡顿可能有，习惯就好，黑屏就重启。卡卡卡卡卡反正……所以还是自己搭建环境撒。
@@ -92,7 +94,9 @@
  
  **一、添加已知人像：** 这是离线人脸识别，所以首先你得有已知姓名的人的人像库为训练材料，训练出模型后才能进行人脸识别。不用担心，这很简单的，让我一步一步跟你慢慢道来：
 
-1.将人像文件夹放入Prescreen中：用PrescreenPicture.py 过滤掉不合适的图像。比如照片中没有面孔、照片中有多张面孔、照片中模糊面孔，这些可不是好的训练材料，所以要预筛选出合适的训练材料，这样训练出的模型才有意义。
+1.将人像文件夹放入Prescreen中：用aaPrescreenPicture.py 过滤掉不合适的图像。比如照片中没有面孔、照片中有多张面孔、照片中模糊面孔，这些可不是好的训练材料，所以要预筛选出合适的训练材料，这样训练出的模型才有意义。
+
+  **_!!如果你提供的训练素材中有很多多人照片，请用acPrescreenPicture.py，这个是直接分离面孔的脚本。运行完后，直接到对应文件夹下面剔除错误人脸即可。_** 
 
  **注意：文件夹Person是某个人的名字，人名中不可出现 “-” 符号。** 放入Prescreen文件夹下面的训练材料结构是这样的，PersonA文件夹就是那个人的名字，文件夹里面装的是那个人的照片。你最好在文件夹里放入的图片最好仅有他正脸，一张图有一张目标人物的正脸，这才是咱们要的训练材料。
 
@@ -178,7 +182,7 @@
 
 一、有演示用的Demo：
 
-演示Demo其实就是省去人工检查，自动运行，一键识别。但这样会出现差错，比如张冠李戴、人物未识别到等。而且，在虚拟机！请单独运行FaceRecognition_KNN.py的识别方法，我也不知道为啥，反正物理机没这问题，只有虚拟机有，就Demo没法全部识别单人面孔。
+演示Demo其实就是省去人工检查，自动运行，一键识别。但这样会出现差错，比如张冠李戴、人物未识别到等。
 
 FaceRecognitionDemo.py：演示人脸识别。可以直接识别已训练的世界知名人物5000人。
 
@@ -219,6 +223,10 @@ gbReFaceRecognition.py 重新识别已识别过的人物。
  - 识别多人面孔（注意文件名，两个人的名字）：
 
 ![5](https://images.gitee.com/uploads/images/2020/0628/111010_05ef2cc7_7423713.png "屏幕截图.png")
+
+![Windows01](https://images.gitee.com/uploads/images/2020/0701/182814_7e25466a_7423713.png "屏幕截图.png")
+
+![Windows02](https://images.gitee.com/uploads/images/2020/0701/182839_2c8af54c_7423713.png "屏幕截图.png")
 
 
  ### 许可
