@@ -281,5 +281,5 @@ gbReFaceRecognition.py 重新识别已识别过的人物。
  再次感谢face_recognition项目 > https://github.com/ageitgey/face_recognition
  
  1.3.2 更新：
- 添加了aa、ac的错误反馈。
-
+  - 添加了aa、ac的错误反馈。
+  - ca新增大图片压缩，加速分类。
