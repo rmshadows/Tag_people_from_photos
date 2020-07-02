@@ -14,6 +14,7 @@ import Wait
 SEE_ALL_FACES=False
 WINDOWS=os.sep=="\\"
 SS=os.sep
+ERROR_REPORT=""
 
 def getSize(path):
 	s=os.path.getsize(path)
@@ -55,42 +56,48 @@ def __renameFile():
 		n += 1
 
 def __checkFaces(file):
-	# Load the jpg file into a numpy array
-	inputPic = ".{0}INPUT_PIC{1}".format(SS,SS)+file
-	#如果图片大于1.5M，压缩。
-	if (getSize(inputPic)>=1500000):
-		img = Image.open(inputPic)
+	global ERROR_REPORT
+	try:
+		# Load the jpg file into a numpy array
+		inputPic = ".{0}INPUT_PIC{1}".format(SS,SS)+file
+		#如果图片大于1.5M，压缩。
+		if (getSize(inputPic)>=1500000):
+			img = Image.open(inputPic)
 
-		w,h = img.size
-		qua=0.2
-		w,h = round(w * qua),round(h * qua)
-		img = img.resize((w,h), Image.ANTIALIAS)
-		image = np.array(img)
-		print("压缩图片...")
-	else:
-		image = face_recognition.load_image_file(inputPic)
-	#print("加载完成	")
+			w,h = img.size
+			qua=0.2
+			w,h = round(w * qua),round(h * qua)
+			img = img.resize((w,h), Image.ANTIALIAS)
+			image = np.array(img)
+			print("压缩图片...")
+		else:
+			image = face_recognition.load_image_file(inputPic)
+		#print("加载完成	")
 
-	# Find all the faces in the image using the default HOG-based model.
-	# This method is fairly accurate, but not as accurate as the CNN model and not GPU accelerated.
-	# See also: find_faces_in_picture_cnn.py
+		# Find all the faces in the image using the default HOG-based model.
+		# This method is fairly accurate, but not as accurate as the CNN model and not GPU accelerated.
+		# See also: find_faces_in_picture_cnn.py
 
-	face_locations = face_recognition.face_locations(image)
-	#print("定位完成")
-	faceNum = len(face_locations)
-	print("Found \033[1;33;40m{0} face(s)\033[0m: in \033[1;35;40m{1} photograph.\033[0m:".format(faceNum ,file), end = " ==> ")
+		face_locations = face_recognition.face_locations(image)
+		#print("定位完成")
+		faceNum = len(face_locations)
+		print("Found \033[1;33;40m{0} face(s)\033[0m: in \033[1;35;40m{1} photograph.\033[0m:".format(faceNum ,file), end = " ==> ")
 
-	for face_location in face_locations:
-		# Print the location of each face in this image
-		top, right, bottom, left = face_location
-		print("A face is located at pixel location Top: {}, Left: {}, Bottom: {}, Right: {}".format(top, left, bottom, right))
+		for face_location in face_locations:
+			# Print the location of each face in this image
+			top, right, bottom, left = face_location
+			print("A face is located at pixel location Top: {}, Left: {}, Bottom: {}, Right: {}".format(top, left, bottom, right))
 
-		if SEE_ALL_FACES:
-			# You can access the actual face itself like this:
-			face_image = image[top:bottom, left:right]
-			pil_image = Image.fromarray(face_image)
-			pil_image.show()
-	#print("Next")
+			if SEE_ALL_FACES:
+				# You can access the actual face itself like this:
+				face_image = image[top:bottom, left:right]
+				pil_image = Image.fromarray(face_image)
+				pil_image.show()
+			#print("Next")
+	except Exception as e:
+		#raise e
+		ERROR_REPORT="{}\n{}".format(ERROR_REPORT,e)
+		print(e)
 	return faceNum
 
 def __copyFiles():
@@ -231,8 +238,8 @@ def FindFaces():
 	__renameFile()
 	__fileCtrl()
 	__copyFiles()
+	print("\033[1;32;41m{0}\033[0m".format(ERROR_REPORT))
 
 if __name__ == "__main__":
 	FindFaces()
 	print("\n\033[5;31;40m待识别文件分类结束，接下来请人工复审temp*目录下的文件是否正确分类，如下方有报错，请忽略。\033[0m\n")
-
