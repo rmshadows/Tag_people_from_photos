@@ -159,7 +159,7 @@
 
 ![prescreen](https://images.gitee.com/uploads/images/2020/0629/231950_b30aae01_7423713.png "屏幕截图.png")
 
-「￥」2.运行完PrescreenPicture.py后，请人工复查Perscreen子文件夹中的图片文件，确保无误。
+「￥」2.运行完PrescreenPicture.py后，请人工复查Perscreen子文件夹中的图片文件，确保无误。想要更精确的识别，修改模型为CNN「慢」`face_locations = face_recognition.face_locations(image, number_of_times_to_upsample=0, model="cnn")`
 
  - 确认标准：
 
@@ -284,4 +284,3 @@ gbReFaceRecognition.py 重新识别已识别过的人物。
   - 添加了aa、ac的错误反馈。
   - ca新增大图片压缩，加速分类。
   - da、dc解决的中文乱码问题。
-
