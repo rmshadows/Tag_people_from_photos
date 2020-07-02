@@ -27,6 +27,7 @@ import time
 SEE_ALL_FACES=False
 WINDOWS=os.sep=="\\"
 SS=os.sep
+ERROR_INFO=""
 
 #获取扩展名
 def __fex(path): 
@@ -68,26 +69,31 @@ def __renameFile():
 
 #Find faces in pictures
 def __checkFaces(file):
-	# Load the jpg file into a numpy array
-	inputPic = file
-	image = face_recognition.load_image_file(inputPic)
-
-	# Find all the faces in the image using the default HOG-based model.
-	# This method is fairly accurate, but not as accurate as the CNN model and not GPU accelerated.
-	# See also: find_faces_in_picture_cnn.py
-	face_locations = face_recognition.face_locations(image)
-	faceNum = len(face_locations)
-	print("Found \033[1;33;40m{0}\033[0m: face(s) in \033[1;35;40m{1}\033[0m: photograph.".format(faceNum ,file), end = " ==> ")
-	for face_location in face_locations:
-		# Print the location of each face in this image
-		top, right, bottom, left = face_location
-		print("A face is located at pixel location Top: {}, Left: {}, Bottom: {}, Right: {}".format(top, left, bottom, right))
-		# You can access the actual face itself like this:
-		face_image = image[top:bottom, left:right]
-		pil_image = Image.fromarray(face_image)
-		if(SEE_ALL_FACES):
-			pil_image.show()
-		#pil_image.save(file)
+	global ERROR_INFO
+	try:
+		# Load the jpg file into a numpy array
+		inputPic = file
+		image = face_recognition.load_image_file(inputPic)
+		# Find all the faces in the image using the default HOG-based model.
+		# This method is fairly accurate, but not as accurate as the CNN model and not GPU accelerated.
+		# See also: find_faces_in_picture_cnn.py
+		face_locations = face_recognition.face_locations(image)
+		faceNum = len(face_locations)
+		print("Found \033[1;33;40m{0}\033[0m: face(s) in \033[1;35;40m{1}\033[0m: photograph.".format(faceNum ,file), end = " ==> ")
+		for face_location in face_locations:
+			# Print the location of each face in this image
+			top, right, bottom, left = face_location
+			print("A face is located at pixel location Top: {}, Left: {}, Bottom: {}, Right: {}".format(top, left, bottom, right))
+			# You can access the actual face itself like this:
+			face_image = image[top:bottom, left:right]
+			pil_image = Image.fromarray(face_image)
+			if(SEE_ALL_FACES):
+				pil_image.show()
+			#pil_image.save(file)
+	except Exception as e:
+		ERROR_INFO="{0}\n{1}".format(ERROR_INFO,e)
+		print("\033[1;32;41m{0}\033[0m".format(e))
+		raise e
 	return faceNum
 
 #MainX
@@ -207,6 +213,7 @@ if __name__ == "__main__":
 	#True是显示识别出的图像
 	#SEE_ALL_FACES=True
 	filePrescreen()
+	print("\033[2;32;41m{0}\033[0m".format(ERROR_INFO))
 	print("\n\033[5;31;40m训练材料预处理结束，请进行人工复审。下面如果有报错，请忽略。\033[0m\n")
 	if SEE_ALL_FACES:
 		#延时5秒
