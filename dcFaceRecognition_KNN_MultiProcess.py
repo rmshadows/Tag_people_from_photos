@@ -16,13 +16,19 @@ import os
 import time
 import psutil
 import threading
+import numpy as np
 
 SEE_ALL_FACES=False
 WINDOWS=os.sep=="\\"
 SS=os.sep
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 
+def getSize(path):
+	s=os.path.getsize(path)
+	return s
+
 def __predict(X_img_path, knn_clf = None, model_save_path ="", DIST_THRESH = .5):
+	isCprs=False
 	"""
 	recognizes faces in given image, based on a trained knn classifier
 	:param X_img_path: path to image to be recognized
@@ -40,7 +46,19 @@ def __predict(X_img_path, knn_clf = None, model_save_path ="", DIST_THRESH = .5)
 	if knn_clf is None:
 		with open(model_save_path, 'rb') as f:
 			knn_clf = pickle.load(f)
-	X_img = face_recognition.load_image_file(X_img_path)
+	#如果图片大于1.5M，压缩。
+	if (getSize(X_img_path)>=1500000):
+		img = Image.open(X_img_path)
+		w,h = img.size
+		qua=0.2
+		w,h = round(w * qua),round(h * qua)
+		img = img.resize((w,h), Image.ANTIALIAS)
+		X_img = np.array(img)
+		print("压缩图片...")
+		isCprs=True
+	else:
+		X_img = face_recognition.load_image_file(X_img_path)
+	#X_img = face_recognition.load_image_file(X_img_path)
 	X_faces_loc = face_locations(X_img)
 	if len(X_faces_loc) == 0:
 		return []
@@ -48,10 +66,10 @@ def __predict(X_img_path, knn_clf = None, model_save_path ="", DIST_THRESH = .5)
 	closest_distances = knn_clf.kneighbors(faces_encodings, n_neighbors=1)
 	is_recognized = [closest_distances[0][i][0] <= DIST_THRESH for i in range(len(X_faces_loc))]
 	# predict classes and cull classifications that are not with high confidence
-	return [(pred, loc) if rec else ("N/A", loc) for pred, loc, rec in zip(knn_clf.predict(faces_encodings), X_faces_loc, is_recognized)]
+	return [(pred, loc) if rec else ("N/A", loc) for pred, loc, rec in zip(knn_clf.predict(faces_encodings), X_faces_loc, is_recognized)],isCprs
 
 
-def __show_prediction_labels_on_image(name,ext,img_path, predictions):
+def __show_prediction_labels_on_image(name,ext,img_path, predictions,isCprs):
 	"""
 	Shows the face recognition results visually.
 
@@ -64,16 +82,39 @@ def __show_prediction_labels_on_image(name,ext,img_path, predictions):
 
 	for name, (top, right, bottom, left) in predictions:
 		# Draw a box around the face using the Pillow module
-		draw.rectangle(((left, top), (right, bottom)), outline=(0, 0, 255))
+		if isCprs:
+			A=left/0.2
+			B=top/0.2
+			C=right/0.2
+			D=bottom/0.2
+			draw.rectangle(((A, B), (C, D)), outline=(0, 0, 255))
+		else:
+			draw.rectangle(((left, top), (right, bottom)), outline=(0, 0, 255))
 
 		# There's a bug in Pillow where it blows up with non-UTF-8 text
 		# when using the default bitmap font
-		name = name.encode("UTF-8")
+		print("Drawing"+name)
+		#name = name.encode("UTF-8")
 
 		# Draw a label with a name below the face
 		text_width, text_height = draw.textsize(name)
-		draw.rectangle(((left, bottom - text_height - 10), (right, bottom)), fill=(0, 0, 255), outline=(0, 0, 255))
-		draw.text((left + 6, bottom - text_height - 5), name, fill=(255, 255, 255, 255))
+		if isCprs:
+			A=left/0.2
+			B=(bottom - text_height - 7)/0.2
+			C=right/0.2
+			D=bottom/0.2
+			#文字位置
+			E=(left + 6)/0.2
+			F=(bottom - text_height - 5)/0.2
+			draw.rectangle(((A, B), (C, D)), fill=(0, 0, 255), outline=(0, 0, 255))
+			word_css  = ".{0}zh.ttf".format(SS)
+			font = ImageFont.truetype(word_css,50)
+
+			draw.text((E, F),name,(255,255,0),font=font)
+			#draw.text((E, F), name, fill=(255, 255, 255, 255))
+		else:
+			draw.rectangle(((left, bottom - text_height - 10), (right, bottom)), fill=(0, 0, 255), outline=(0, 0, 255))
+			draw.text((left + 6, bottom - text_height - 5), name, fill=(255, 255, 255, 255))
 
 	# Remove the drawing library from memory as per the Pillow docs
 	del draw
@@ -98,12 +139,12 @@ def __faceRec(toRec,mod):
 			NA = ""#Name
 			ext = __fex(join(".{0}{1}".format(SS,toRec), img_path))#get ext
 			#./folder/xxx.jpg  None  ./KNN_MOD/{model}
-			preds = __predict(join(".{0}{1}".format(SS,toRec), img_path) ,None,".{0}KNN_MOD{1}{2}".format(SS,SS,mod))
+			preds,isCprs = __predict(join(".{0}{1}".format(SS,toRec), img_path) ,None,".{0}KNN_MOD{1}{2}".format(SS,SS,mod))
 			for name, (top, right, bottom, left) in preds:
 				NA=name
 				print("- Found \033[1;32;40m{}\033[0m at ({}, {})".format(name, left, top))
 			#Name  ext  ./{folder}/xxx.jpg  preds
-			__show_prediction_labels_on_image(NA,ext,os.path.join(".{0}{1}".format(SS,toRec), img_path), preds)
+			__show_prediction_labels_on_image(NA,ext,os.path.join(".{0}{1}".format(SS,toRec), img_path), preds,isCprs)
 
 			if len(preds)==0:
 				print("ERROR-None face")
@@ -265,8 +306,7 @@ def FaceRecognitionKNN(model_name):
 	print("\033[5;31;40m--------识别完毕--------\033[0m")
 
 if __name__ == "__main__":
-	SEE_ALL_FACES=True
-	FaceRecognitionKNN("WorldWideKnown_202006")
+	FaceRecognitionKNN("KnownPeople")
 	if SEE_ALL_FACES:
 		#延时5秒
 		__killPro(5,"display")

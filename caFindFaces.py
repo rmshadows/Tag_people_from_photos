@@ -9,6 +9,7 @@ from datetime import datetime
 import threading
 import time
 import numpy as np
+import Wait
 
 SEE_ALL_FACES=False
 WINDOWS=os.sep=="\\"
@@ -206,6 +207,8 @@ class TaskSubmit (threading.Thread):
 		print ("退出线程：" + self.id+"\n")
 
 def doTask(listIn):
+	n = 1
+	total = len(listIn)
 	for x in listIn:
 		time=datetime.now()#获取当前时间
 		srcFile = ".{0}INPUT_PIC{1}{2}".format(SS,SS,x)
@@ -219,8 +222,8 @@ def doTask(listIn):
 			os.rename(srcFile,dstFile)
 		except Exception as e:
 			print(e)
-		else:
-			pass
+		Wait.view(n,total,"31","")
+		n+=1
 
 #mainX
 def FindFaces():
