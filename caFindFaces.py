@@ -8,10 +8,15 @@ import os
 from datetime import datetime
 import threading
 import time
+import numpy as np
 
 SEE_ALL_FACES=False
 WINDOWS=os.sep=="\\"
 SS=os.sep
+
+def getSize(path):
+	s=os.path.getsize(path)
+	return s
 
 #返回扩展名
 def __fex(path): 
@@ -51,12 +56,26 @@ def __renameFile():
 def __checkFaces(file):
 	# Load the jpg file into a numpy array
 	inputPic = ".{0}INPUT_PIC{1}".format(SS,SS)+file
-	image = face_recognition.load_image_file(inputPic)
+	#如果图片大于1.5M，压缩。
+	if (getSize(inputPic)>=1500000):
+		img = Image.open(inputPic)
+
+		w,h = img.size
+		qua=0.2
+		w,h = round(w * qua),round(h * qua)
+		img = img.resize((w,h), Image.ANTIALIAS)
+		image = np.array(img)
+		print("压缩图片...")
+	else:
+		image = face_recognition.load_image_file(inputPic)
+	#print("加载完成	")
 
 	# Find all the faces in the image using the default HOG-based model.
 	# This method is fairly accurate, but not as accurate as the CNN model and not GPU accelerated.
 	# See also: find_faces_in_picture_cnn.py
+
 	face_locations = face_recognition.face_locations(image)
+	#print("定位完成")
 	faceNum = len(face_locations)
 	print("Found \033[1;33;40m{0} face(s)\033[0m: in \033[1;35;40m{1} photograph.\033[0m:".format(faceNum ,file), end = " ==> ")
 
@@ -70,7 +89,7 @@ def __checkFaces(file):
 			face_image = image[top:bottom, left:right]
 			pil_image = Image.fromarray(face_image)
 			pil_image.show()
-
+	#print("Next")
 	return faceNum
 
 def __copyFiles():
@@ -213,3 +232,4 @@ def FindFaces():
 if __name__ == "__main__":
 	FindFaces()
 	print("\n\033[5;31;40m待识别文件分类结束，接下来请人工复审temp*目录下的文件是否正确分类，如下方有报错，请忽略。\033[0m\n")
+
