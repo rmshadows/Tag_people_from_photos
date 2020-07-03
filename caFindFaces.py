@@ -68,7 +68,7 @@ def __checkFaces(file):
 			qua=0.2
 			w,h = round(w * qua),round(h * qua)
 			img = img.resize((w,h), Image.ANTIALIAS)
-			image = np.array(img)
+			image = np.array(img)	
 			print("压缩图片...")
 		else:
 			image = face_recognition.load_image_file(inputPic)
@@ -78,6 +78,7 @@ def __checkFaces(file):
 		# This method is fairly accurate, but not as accurate as the CNN model and not GPU accelerated.
 		# See also: find_faces_in_picture_cnn.py
 
+		#face_locations = face_recognition.face_locations(image, number_of_times_to_upsample=0, model="cnn")
 		face_locations = face_recognition.face_locations(image)
 		#print("定位完成")
 		faceNum = len(face_locations)
@@ -96,7 +97,7 @@ def __checkFaces(file):
 			#print("Next")
 	except Exception as e:
 		#raise e
-		ERROR_REPORT="{}\n{}".format(ERROR_REPORT,e)
+		ERROR_REPORT="{0}\n{1}{2}".format(ERROR_REPORT,e,file)
 		print(e)
 	return faceNum
 
@@ -243,3 +244,4 @@ def FindFaces():
 if __name__ == "__main__":
 	FindFaces()
 	print("\n\033[5;31;40m待识别文件分类结束，接下来请人工复审temp*目录下的文件是否正确分类，如下方有报错，请忽略。\033[0m\n")
+

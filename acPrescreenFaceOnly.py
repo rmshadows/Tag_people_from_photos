@@ -30,6 +30,9 @@ WINDOWS=os.sep=="\\"
 SS=os.sep
 ERROR_INFO=""
 
+def TIS(n):
+	time.sleep(n)
+
 #获取扩展名
 def __fex(path): 
 	ex=os.path.splitext(path)[1]
@@ -78,6 +81,8 @@ def __checkFaces(file,person):
 		# Find all the faces in the image using the default HOG-based model.
 		# This method is fairly accurate, but not as accurate as the CNN model and not GPU accelerated.
 		# See also: find_faces_in_picture_cnn.py
+		#CNN:
+		#face_locations = face_recognition.face_locations(image, number_of_times_to_upsample=0, model="cnn")
 		face_locations = face_recognition.face_locations(image)
 		faceNum = len(face_locations)
 		print("Found \033[1;33;40m{0}\033[0m: face(s) in \033[1;35;40m{1}\033[0m: photograph.".format(faceNum ,file), end = " ==> ")
@@ -85,8 +90,25 @@ def __checkFaces(file,person):
 			# Print the location of each face in this image
 			top, right, bottom, left = face_location
 			print("A face is located at pixel location Top: {}, Left: {}, Bottom: {}, Right: {}".format(top, left, bottom, right))
-			# You can access the actual face itself like this:
-			face_image = image[top:bottom, left:right]
+			if (top-200<0):
+				if (top-150<0):
+					if (top-100<0):
+						T=top
+					else:
+						T=top-100
+				else:
+					T=top-150
+			else:
+				T=top-200
+			B=bottom+100
+			if (left-100<0):
+				L=left
+			else:
+				L=left-100
+			R=right+100
+			TIS(0.2)
+			print(T,B,L,R)
+			face_image = image[T:B, L:R]
 			pil_image = Image.fromarray(face_image)
 			if(SEE_ALL_FACES):
 				pil_image.show()

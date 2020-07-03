@@ -22,6 +22,7 @@ SEE_ALL_FACES=False
 WINDOWS=os.sep=="\\"
 SS=os.sep
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
+ERROR_REPORT=""
 
 def getSize(path):
 	s=os.path.getsize(path)
@@ -80,6 +81,9 @@ def __show_prediction_labels_on_image(name,ext,img_path, predictions,isCprs):
 	pil_image = Image.open(img_path).convert("RGB")
 	draw = ImageDraw.Draw(pil_image)
 
+	word_css  = ".{0}zh.ttf".format(SS)
+	font = ImageFont.truetype(word_css,20)
+
 	for name, (top, right, bottom, left) in predictions:
 		# Draw a box around the face using the Pillow module
 		if isCprs:
@@ -91,8 +95,6 @@ def __show_prediction_labels_on_image(name,ext,img_path, predictions,isCprs):
 		else:
 			draw.rectangle(((left, top), (right, bottom)), outline=(0, 0, 255))
 
-		# There's a bug in Pillow where it blows up with non-UTF-8 text
-		# when using the default bitmap font
 		print("Drawing"+name)
 		#name = name.encode("UTF-8")
 
@@ -100,23 +102,21 @@ def __show_prediction_labels_on_image(name,ext,img_path, predictions,isCprs):
 		text_width, text_height = draw.textsize(name)
 		if isCprs:
 			A=left/0.2
-			B=(bottom - text_height - 7)/0.2
+			B=(bottom - text_height+20)/0.2
 			C=right/0.2
 			D=bottom/0.2
 			#文字位置
 			E=(left + 6)/0.2
-			F=(bottom - text_height - 5)/0.2
+			F=(bottom - text_height + 13)/0.2
 			draw.rectangle(((A, B), (C, D)), fill=(0, 0, 255), outline=(0, 0, 255))
+			#word_css  = ".{0}msyh.ttc".format(SS)
 			word_css  = ".{0}zh.ttf".format(SS)
-			font = ImageFont.truetype(word_css,50)
+			font = ImageFont.truetype(word_css,20)
 
-			draw.text((E, F),name,(255,255,0),font=font)
-			#draw.text((E, F), name, fill=(255, 255, 255, 255))
+			draw.text((E, F), name, font=font,fill=(255, 255, 255, 255))
 		else:
 			draw.rectangle(((left, bottom - text_height - 10), (right, bottom)), fill=(0, 0, 255), outline=(0, 0, 255))
-			draw.text((left + 6, bottom - text_height - 5), name, fill=(255, 255, 255, 255))
-
-	# Remove the drawing library from memory as per the Pillow docs
+			draw.text((left + 6, bottom - text_height - 5), name, font=font, fill=(255, 255, 255, 255))
 	del draw
 
 	# Display the resulting image
@@ -133,43 +133,48 @@ def __fex(path):
 	return ex[1:]
 
 def __faceRec(toRec,mod):
+	global ERROR_REPORT
 	TASK=listdir(".{0}{1}".format(SS,toRec))#./folder/*
 	if len(TASK)<20 | WINDOWS:
 		for img_path in TASK:#./folder/*
 			NA = ""#Name
 			ext = __fex(join(".{0}{1}".format(SS,toRec), img_path))#get ext
 			#./folder/xxx.jpg  None  ./KNN_MOD/{model}
-			preds,isCprs = __predict(join(".{0}{1}".format(SS,toRec), img_path) ,None,".{0}KNN_MOD{1}{2}".format(SS,SS,mod))
-			for name, (top, right, bottom, left) in preds:
-				NA=name
-				print("- Found \033[1;32;40m{}\033[0m at ({}, {})".format(name, left, top))
-			#Name  ext  ./{folder}/xxx.jpg  preds
-			__show_prediction_labels_on_image(NA,ext,os.path.join(".{0}{1}".format(SS,toRec), img_path), preds,isCprs)
+			try:
+				preds,isCprs = __predict(join(".{0}{1}".format(SS,toRec), img_path) ,None,".{0}KNN_MOD{1}{2}".format(SS,SS,mod))
+				for name, (top, right, bottom, left) in preds:
+					NA=name
+					print("- Found \033[1;32;40m{}\033[0m at ({}, {})".format(name, left, top))
+				#Name  ext  ./{folder}/xxx.jpg  preds
+				__show_prediction_labels_on_image(NA,ext,os.path.join(".{0}{1}".format(SS,toRec), img_path), preds,isCprs)
 
-			if len(preds)==0:
-				print("ERROR-None face")
-			if(len(preds)==1):
-				srcFile = ".{0}{1}{2}{3}".format(SS,toRec,SS,img_path)
-				time=datetime.now()#获取当前时间
-				if preds[0][0]=="N/A":
-					dstFile = ".{0}{1}{2}unknown-{3}.{4}".format(SS,toRec,SS,str(time)[17:],__fex(srcFile))
+				if len(preds)==0:
+					print("ERROR-None face")
+				if(len(preds)==1):
+					srcFile = ".{0}{1}{2}{3}".format(SS,toRec,SS,img_path)
+					time=datetime.now()#获取当前时间
+					if preds[0][0]=="N/A":
+						dstFile = ".{0}{1}{2}unknown-{3}.{4}".format(SS,toRec,SS,str(time)[17:],__fex(srcFile))
+					else:
+						dstFile = ".{0}{1}{2}{3}-{4}.{5}".format(SS,toRec,SS,preds[0][0],str(time)[17:],__fex(srcFile))
+					#显示正处理的文件
+					print(dstFile)
+					try:
+						os.rename(srcFile,dstFile)
+					except Exception as e:
+						print(e)
+					else:
+						pass
 				else:
-					dstFile = ".{0}{1}{2}{3}-{4}.{5}".format(SS,toRec,SS,preds[0][0],str(time)[17:],__fex(srcFile))
-				#显示正处理的文件
-				print(dstFile)
-				try:
-					os.rename(srcFile,dstFile)
-				except Exception as e:
-					print(e)
-				else:
-					pass
-			else:
-				if(__fex(".{0}{1}{2}{3}".format(SS,toRec,SS,img_path))=="png"):
-					tagPeople("png",toRec,img_path,preds)
-				if(__fex(".{0}{1}{2}{3}".format(SS,toRec,SS,img_path))=="jpg"):
-					tagPeople("jpg",toRec,img_path,preds)
-				if(__fex(".{0}{1}{2}{3}".format(SS,toRec,SS,img_path))=="jpeg"):
-					tagPeople("jpeg",toRec,img_path,preds)
+					if(__fex(".{0}{1}{2}{3}".format(SS,toRec,SS,img_path))=="png"):
+						tagPeople("png",toRec,img_path,preds)
+					if(__fex(".{0}{1}{2}{3}".format(SS,toRec,SS,img_path))=="jpg"):
+						tagPeople("jpg",toRec,img_path,preds)
+					if(__fex(".{0}{1}{2}{3}".format(SS,toRec,SS,img_path))=="jpeg"):
+						tagPeople("jpeg",toRec,img_path,preds)
+			except Exception as e:
+				ERROR_REPORT="{}\n{}{}".format(ERROR_REPORT,e,img_path)
+				#raise e
 
 	else:
 		taskNum = int(len(TASK)/4)
@@ -239,40 +244,49 @@ def tagPeople(fext,toRec,img_path,preds):
 	print("\n")
 
 def doTask(who,toRec,mod):
+	global ERROR_REPORT
 	for img_path in who:#./folder/*
 		NA = ""#Name
 		ext = __fex(join(".{0}{1}".format(SS,toRec), img_path))#get ext
 		#./folder/xxx.jpg  None  ./KNN_MOD/{model}
-		preds = __predict(join(".{0}{1}".format(SS,toRec), img_path) ,None,".{0}KNN_MOD{1}{2}".format(SS,SS,mod))
-		for name, (top, right, bottom, left) in preds:
-			NA=name
-			print("- Found \033[1;32;40m{}\033[0m at ({}, {})".format(name, left, top))
-		#Name  ext  ./{folder}/xxx.jpg  preds
-		__show_prediction_labels_on_image(NA,ext,os.path.join(".{0}{1}".format(SS,toRec), img_path), preds)
-		if len(preds)==0:
-			print("ERROR-None face")
-		if(len(preds)==1):
-			srcFile = ".{0}{1}{2}{3}".format(SS,toRec,SS,img_path)
-			time=datetime.now()#获取当前时间
-			if preds[0][0]=="N/A":
-				dstFile = ".{0}{1}{2}unknown-{1}.{2}".format(SS,toRec,SS,str(time)[17:],__fex(srcFile))
+		try:
+			preds,isCprs = __predict(join(".{0}{1}".format(SS,toRec), img_path) ,None,".{0}KNN_MOD{1}{2}".format(SS,SS,mod))
+			for name, (top, right, bottom, left) in preds:
+				NA=name
+				print("- Found \033[1;32;40m{}\033[0m at ({}, {})".format(name, left, top))
+			#Name  ext  ./{folder}/xxx.jpg  preds
+			#print("Sleep")
+			#time.sleep(0.3)
+			__show_prediction_labels_on_image(NA,ext,os.path.join(".{0}{1}".format(SS,toRec), img_path), preds,isCprs)
+			#time.sleep(0.2)
+			if len(preds)==0:
+				print("ERROR-None face")
+			if(len(preds)==1):
+				srcFile = ".{0}{1}{2}{3}".format(SS,toRec,SS,img_path)
+				time=datetime.now()#获取当前时间
+				if preds[0][0]=="N/A":
+					dstFile = ".{0}{1}{2}unknown-{3}.{4}".format(SS,toRec,SS,str(time)[17:],__fex(srcFile))
+				else:
+					dstFile = ".{0}{1}{2}{3}-{4}.{5}".format(SS,toRec,SS,preds[0][0],str(time)[17:],__fex(srcFile))
+				#显示正处理的文件
+				print(dstFile)
+				try:
+					os.rename(srcFile,dstFile)
+				except Exception as e:
+					print(e)
+				else:
+					pass
 			else:
-				dstFile = ".{0}{1}{2}{3}-{4}.{5}".format(SS,toRec,SS,preds[0][0],str(time)[17:],__fex(srcFile))
-			#显示正处理的文件
-			print(dstFile)
-			try:
-				os.rename(srcFile,dstFile)
-			except Exception as e:
-				print(e)
-			else:
-				pass
-		else:
-			if(__fex(".{0}{1}{2}{3}".format(SS,toRec,SS,img_path))=="png"):
-				tagPeople("png",toRec,img_path,preds)
-			if(__fex(".{0}{1}{2}{3}".format(SS,toRec,SS,img_path))=="jpg"):
-				tagPeople("jpg",toRec,img_path,preds)
-			if(__fex(".{0}{1}{2}{3}".format(SS,toRec,SS,img_path))=="jpeg"):
-				tagPeople("jpeg",toRec,img_path,preds)
+				if(__fex(".{0}{1}{2}{3}".format(SS,toRec,SS,img_path))=="png"):
+					tagPeople("png",toRec,img_path,preds)
+				if(__fex(".{0}{1}{2}{3}".format(SS,toRec,SS,img_path))=="jpg"):
+					tagPeople("jpg",toRec,img_path,preds)
+				if(__fex(".{0}{1}{2}{3}".format(SS,toRec,SS,img_path))=="jpeg"):
+					tagPeople("jpeg",toRec,img_path,preds)
+		except Exception as e:
+			ERROR_REPORT="".format(ERROR_REPORT,e,img_path)
+			#raise e
+
 
 class __TaskSubmit (threading.Thread):
 	def __init__(self,id ,who,toRec,mod):
@@ -303,6 +317,7 @@ def FaceRecognitionKNN(model_name):
 	__faceRec("tempSingle",model_name)
 	print("处理多人面孔：")
 	__faceRec("tempMore",model_name)
+	print("\033[1;32;41m{0}\033[0m".format(ERROR_REPORT))
 	print("\033[5;31;40m--------识别完毕--------\033[0m")
 
 if __name__ == "__main__":
