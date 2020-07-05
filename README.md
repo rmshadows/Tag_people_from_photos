@@ -132,7 +132,7 @@
   
     - (Line153)__rmFiles():注释掉后不会删除文件，可以用来检查，再手动删除不合格图像。
     
-    - (Line219)__killPro(5,"display"):main方法中的killPro方法，5表示图片显示延时5秒后关闭，display表示打开的图片在进程中的名字叫做"display"
+    - (Line219)__killPro(5,"display"):main方法中的killPro方法，5表示图片显示延时5秒后关闭，display表示打开的图片在进程中的名字叫做"display"。Windows记得改这个，去任务管理器寻找你的默认图片打开方式的进程叫什么，填进去。
     
   * **abAddKnownPerson**:添加处理过的训练材料到A-KnownPeople中。并自动平衡每个文件夹中的图片数量。
   
@@ -413,6 +413,8 @@ gbReFaceRecognition.py 重新识别已识别过的人物。
 
 ![Windows02](https://images.gitee.com/uploads/images/2020/0701/182839_2c8af54c_7423713.png "屏幕截图.png")
 
+![ERROR](https://images.gitee.com/uploads/images/2020/0705/154610_32173f10_7423713.png "屏幕截图.png")
+
 
  ### 许可
  
@@ -428,4 +430,3 @@ gbReFaceRecognition.py 重新识别已识别过的人物。
   - da、dc解决的中文乱码问题，更正了压缩图片的脸框位置和文字位置。
   - dc中增加二次识别，第一次识别(仅单人)阀值为0.1(严格)，第一次识别的结果在temp中。第二次为0.6(模糊识别)。
   - 新增ad，用来平衡训练模型中的照片数量。
-
