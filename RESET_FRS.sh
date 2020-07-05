@@ -7,4 +7,5 @@ rm -r ./Prescreen/*
 rm -r ./tempMore/*
 rm -r ./tempNone/*
 rm -r ./tempSingle/*
+rm -r ./temp/*
 rm -r ./tempFaceRecognition/*

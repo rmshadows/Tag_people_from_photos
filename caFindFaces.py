@@ -16,7 +16,7 @@ WINDOWS=os.sep=="\\"
 SS=os.sep
 ERROR_REPORT=""
 
-def getSize(path):
+def __getSize(path):
 	s=os.path.getsize(path)
 	return s
 
@@ -61,7 +61,7 @@ def __checkFaces(file):
 		# Load the jpg file into a numpy array
 		inputPic = ".{0}INPUT_PIC{1}".format(SS,SS)+file
 		#如果图片大于1.5M，压缩。
-		if (getSize(inputPic)>=1500000):
+		if (__getSize(inputPic)>=1500000):
 			img = Image.open(inputPic)
 
 			w,h = img.size

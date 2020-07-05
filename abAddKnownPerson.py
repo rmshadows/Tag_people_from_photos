@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
+import adBalanceTrain
 
 '''
 把处理过的、经过人工审核的已知人物移动到人像库(./FR_DATA/A-KnownPeople/)中
@@ -104,4 +105,5 @@ def addKnowPeople():
 
 if __name__ == "__main__":
 	addKnowPeople()
+	adBalanceTrain.bala()
 	print("\033[5;31;40m训练材料移动工作结束，接下来请进行模型训练。下面如果有报错，请忽略。\033[0m\n")

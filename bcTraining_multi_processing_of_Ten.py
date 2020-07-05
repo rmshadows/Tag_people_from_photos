@@ -196,5 +196,4 @@ def main(train_dir,model_save_path):
 if __name__ == "__main__":
 	#训练的文件夹/输出模型文件名
 	#main("G-WorldWidePeople","WorldWideKnown")
-	#main("KnowTest","KnownTest")
 	main("A-KnownPeople","KnownPeople")

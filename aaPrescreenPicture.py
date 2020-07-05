@@ -211,7 +211,6 @@ def __killPro(second,pro):
 
 if __name__ == "__main__":
 	#True是显示识别出的图像
-	#SEE_ALL_FACES=True
 	filePrescreen()
 	print("\033[2;32;41m{0}\033[0m".format(ERROR_INFO))
 	print("\n\033[5;31;40m训练材料预处理结束，请进行人工复审。下面如果有报错，请忽略。\033[0m\n")

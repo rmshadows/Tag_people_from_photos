@@ -26,24 +26,25 @@ def __returnPersonName(fileName):
 	return str[0]
 
 def __moveSingleFaceData():
-	person=os.listdir(".{0}tempSingle{1}".format(SS,SS))
-	#print(person)
-	for unit in person:
-		if(__findUnknown(unit)):
-			src=".{0}tempSingle{1}".format(SS,SS)+unit
-			dst=".{0}FR_DATA{1}B-Unknown{2}".format(SS,SS,SS)+unit
-			#print(src+" to "+dst)
-			shutil.move(src,dst)
-		else:
-			src=".{0}tempSingle{1}".format(SS,SS)+unit
-			dst=".{0}FR_DATA{1}D-Singleface{2}".format(SS,SS,SS)+__returnPersonName(unit)+SS+unit
-			personDir = ".{0}FR_DATA{1}D-Singleface{2}".format(SS,SS,SS)+__returnPersonName(unit)
-			if not os.path.exists(personDir):
-				print("Mkdir...{0}".format(__returnPersonName(unit)))
-				os.makedirs(personDir)	# 创建目录
+	folder=["tempSingle","temp"]
+	for x in folder:
+		person=os.listdir("./{0}{1}{2}".format(SS,x,SS))
+		for unit in person:
+			if(__findUnknown(unit)):
+				src=".{0}{1}{2}".format(SS,x,SS)+unit
+				dst=".{0}FR_DATA{1}B-Unknown{2}".format(SS,SS,SS)+unit
+				#print(src+" to "+dst)
+				shutil.move(src,dst)
 			else:
-				pass
-			shutil.move(src,dst)
+				src=".{0}{1}{2}".format(SS,x,SS)+unit
+				dst=".{0}FR_DATA{1}D-Singleface{2}".format(SS,SS,SS)+__returnPersonName(unit)+SS+unit
+				personDir = ".{0}FR_DATA{1}D-Singleface{2}".format(SS,SS,SS)+__returnPersonName(unit)
+				if not os.path.exists(personDir):
+					print("Mkdir...{0}".format(__returnPersonName(unit)))
+					os.makedirs(personDir)	# 创建目录
+				else:
+					pass
+				shutil.move(src,dst)
 
 def __moveMultiFacesData():
 	person=os.listdir(".{0}tempMore{1}".format(SS,SS))

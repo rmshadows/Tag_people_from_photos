@@ -1,6 +1,26 @@
 # -*- coding: utf-8 -*-
 '''
 识别temp目录中已经分好类的图片，最后一行的参数是修改识别所用的模型KNN_MOD中是我训练好了的一些人物。
+
+This is an example of using the k-nearest-neighbors (KNN) algorithm for face recognition.
+When should I use this example?
+This example is useful when you wish to recognize a large set of known people,
+and make a prediction for an unknown person in a feasible computation time.
+Algorithm Description:
+The knn classifier is first trained on a set of labeled (known) faces and can then predict the person
+in an unknown image by finding the k most similar faces (images with closet face-features under eucledian distance)
+in its training set, and performing a majority vote (possibly weighted) on their label.
+For example, if k=3, and the three closest face images to the given image in the training set are one image of Biden
+and two images of Obama, The result would be 'Obama'.
+* This implementation uses a weighted vote, such that the votes of closer-neighbors are weighted more heavily.
+Usage:
+1. Prepare a set of images of the known people you want to recognize. Organize the images in a single directory
+   with a sub-directory for each known person.
+2. Then, call the 'train' function with the appropriate parameters. Make sure to pass in the 'model_save_path' if you
+   want to save the model to disk so you can re-use the model without having to re-train it.
+3. Call 'predict' and pass in your trained model to recognize the people in an unknown image.
+NOTE: This example requires scikit-learn to be installed! You can install it with pip:
+$ pip3 install scikit-learn
 '''
 from math import sqrt
 from sklearn import neighbors
@@ -17,18 +37,20 @@ import time
 import psutil
 import threading
 import numpy as np
+import Wait
 
 SEE_ALL_FACES=False
 WINDOWS=os.sep=="\\"
 SS=os.sep
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 ERROR_REPORT=""
+CQUA=0.2
 
-def getSize(path):
+def __getSize(path):
 	s=os.path.getsize(path)
 	return s
 
-def __predict(X_img_path, knn_clf = None, model_save_path ="", DIST_THRESH = .5):
+def __predict(X_img_path, knn_clf = None, model_save_path ="", DIST_THRESH = 0.2):
 	isCprs=False
 	"""
 	recognizes faces in given image, based on a trained knn classifier
@@ -48,10 +70,10 @@ def __predict(X_img_path, knn_clf = None, model_save_path ="", DIST_THRESH = .5)
 		with open(model_save_path, 'rb') as f:
 			knn_clf = pickle.load(f)
 	#如果图片大于1.5M，压缩。
-	if (getSize(X_img_path)>=1500000):
+	if (__getSize(X_img_path)>=1500000):
 		img = Image.open(X_img_path)
 		w,h = img.size
-		qua=0.2
+		qua=CQUA
 		w,h = round(w * qua),round(h * qua)
 		img = img.resize((w,h), Image.ANTIALIAS)
 		X_img = np.array(img)
@@ -87,10 +109,10 @@ def __show_prediction_labels_on_image(name,ext,img_path, predictions,isCprs):
 	for name, (top, right, bottom, left) in predictions:
 		# Draw a box around the face using the Pillow module
 		if isCprs:
-			A=left/0.2
-			B=top/0.2
-			C=right/0.2
-			D=bottom/0.2
+			A=left/CQUA
+			B=top/CQUA
+			C=right/CQUA
+			D=bottom/CQUA
 			draw.rectangle(((A, B), (C, D)), outline=(0, 0, 255))
 		else:
 			draw.rectangle(((left, top), (right, bottom)), outline=(0, 0, 255))
@@ -101,13 +123,13 @@ def __show_prediction_labels_on_image(name,ext,img_path, predictions,isCprs):
 		# Draw a label with a name below the face
 		text_width, text_height = draw.textsize(name)
 		if isCprs:
-			A=left/0.2
-			B=(bottom - text_height+20)/0.2
-			C=right/0.2
-			D=bottom/0.2
+			A=left/CQUA
+			B=(bottom - text_height+20)/CQUA
+			C=right/CQUA
+			D=bottom/CQUA
 			#文字位置
-			E=(left + 6)/0.2
-			F=(bottom - text_height + 13)/0.2
+			E=(left + 6)/CQUA
+			F=(bottom - text_height + 13)/CQUA
 			draw.rectangle(((A, B), (C, D)), fill=(0, 0, 255), outline=(0, 0, 255))
 			#word_css  = ".{0}msyh.ttc".format(SS)
 			word_css  = ".{0}zh.ttf".format(SS)
@@ -132,7 +154,7 @@ def __fex(path):
 	ex=os.path.splitext(path)[1]
 	return ex[1:]
 
-def __faceRec(toRec,mod):
+def __faceRec(toRec,mod,dist):
 	global ERROR_REPORT
 	TASK=listdir(".{0}{1}".format(SS,toRec))#./folder/*
 	if len(TASK)<20 | WINDOWS:
@@ -141,7 +163,7 @@ def __faceRec(toRec,mod):
 			ext = __fex(join(".{0}{1}".format(SS,toRec), img_path))#get ext
 			#./folder/xxx.jpg  None  ./KNN_MOD/{model}
 			try:
-				preds,isCprs = __predict(join(".{0}{1}".format(SS,toRec), img_path) ,None,".{0}KNN_MOD{1}{2}".format(SS,SS,mod))
+				preds,isCprs = __predict(join(".{0}{1}".format(SS,toRec), img_path) ,None,".{0}KNN_MOD{1}{2}".format(SS,SS,mod),dist)
 				for name, (top, right, bottom, left) in preds:
 					NA=name
 					print("- Found \033[1;32;40m{}\033[0m at ({}, {})".format(name, left, top))
@@ -167,11 +189,11 @@ def __faceRec(toRec,mod):
 						pass
 				else:
 					if(__fex(".{0}{1}{2}{3}".format(SS,toRec,SS,img_path))=="png"):
-						tagPeople("png",toRec,img_path,preds)
+						__tagPeople("png",toRec,img_path,preds)
 					if(__fex(".{0}{1}{2}{3}".format(SS,toRec,SS,img_path))=="jpg"):
-						tagPeople("jpg",toRec,img_path,preds)
+						__tagPeople("jpg",toRec,img_path,preds)
 					if(__fex(".{0}{1}{2}{3}".format(SS,toRec,SS,img_path))=="jpeg"):
-						tagPeople("jpeg",toRec,img_path,preds)
+						__tagPeople("jpeg",toRec,img_path,preds)
 			except Exception as e:
 				ERROR_REPORT="{}\n{}{}".format(ERROR_REPORT,e,img_path)
 				#raise e
@@ -180,10 +202,10 @@ def __faceRec(toRec,mod):
 		taskNum = int(len(TASK)/4)
 		taskLef = len(TASK)%4
 		# 创建新线程
-		thread1 = __TaskSubmit("1", TASK[0:taskNum],toRec,mod)
-		thread2 = __TaskSubmit("2", TASK[taskNum:taskNum*2],toRec,mod)
-		thread3 = __TaskSubmit("3", TASK[taskNum*2:taskNum*3],toRec,mod)
-		thread4 = __TaskSubmit("4", TASK[taskNum*3:taskNum*4],toRec,mod)
+		thread1 = __TaskSubmit("1", TASK[0:taskNum],toRec,mod,dist)
+		thread2 = __TaskSubmit("2", TASK[taskNum:taskNum*2],toRec,mod,dist)
+		thread3 = __TaskSubmit("3", TASK[taskNum*2:taskNum*3],toRec,mod,dist)
+		thread4 = __TaskSubmit("4", TASK[taskNum*3:taskNum*4],toRec,mod,dist)
 		if taskLef==0:
 			thread1.start()
 			thread2.start()
@@ -194,7 +216,7 @@ def __faceRec(toRec,mod):
 			thread3.join()
 			thread4.join()
 		else:
-			thread5 = __TaskSubmit("5", TASK[taskNum*4:taskNum*4+taskLef],toRec,mod)
+			thread5 = __TaskSubmit("5", TASK[taskNum*4:taskNum*4+taskLef],toRec,mod,dist)
 			thread1.start()
 			thread2.start()
 			thread3.start()
@@ -206,7 +228,7 @@ def __faceRec(toRec,mod):
 			thread4.join()
 			thread5.join()
 
-def tagPeople(fext,toRec,img_path,preds):
+def __tagPeople(fext,toRec,img_path,preds):
 	n=1
 	tempName=join(toRec,img_path)
 	for x in preds:
@@ -243,20 +265,20 @@ def tagPeople(fext,toRec,img_path,preds):
 		print(e)
 	print("\n")
 
-def doTask(who,toRec,mod):
+def doTask(who,toRec,mod,dist):
 	global ERROR_REPORT
+	ta=0
 	for img_path in who:#./folder/*
+		ta+=1
+		Wait.view(ta,len(who),"31","")
 		NA = ""#Name
 		ext = __fex(join(".{0}{1}".format(SS,toRec), img_path))#get ext
 		#./folder/xxx.jpg  None  ./KNN_MOD/{model}
 		try:
-			preds,isCprs = __predict(join(".{0}{1}".format(SS,toRec), img_path) ,None,".{0}KNN_MOD{1}{2}".format(SS,SS,mod))
+			preds,isCprs = __predict(join(".{0}{1}".format(SS,toRec), img_path) ,None,".{0}KNN_MOD{1}{2}".format(SS,SS,mod),dist)
 			for name, (top, right, bottom, left) in preds:
 				NA=name
 				print("- Found \033[1;32;40m{}\033[0m at ({}, {})".format(name, left, top))
-			#Name  ext  ./{folder}/xxx.jpg  preds
-			#print("Sleep")
-			#time.sleep(0.3)
 			__show_prediction_labels_on_image(NA,ext,os.path.join(".{0}{1}".format(SS,toRec), img_path), preds,isCprs)
 			#time.sleep(0.2)
 			if len(preds)==0:
@@ -278,27 +300,28 @@ def doTask(who,toRec,mod):
 					pass
 			else:
 				if(__fex(".{0}{1}{2}{3}".format(SS,toRec,SS,img_path))=="png"):
-					tagPeople("png",toRec,img_path,preds)
+					__tagPeople("png",toRec,img_path,preds)
 				if(__fex(".{0}{1}{2}{3}".format(SS,toRec,SS,img_path))=="jpg"):
-					tagPeople("jpg",toRec,img_path,preds)
+					__tagPeople("jpg",toRec,img_path,preds)
 				if(__fex(".{0}{1}{2}{3}".format(SS,toRec,SS,img_path))=="jpeg"):
-					tagPeople("jpeg",toRec,img_path,preds)
+					__tagPeople("jpeg",toRec,img_path,preds)
 		except Exception as e:
 			ERROR_REPORT="".format(ERROR_REPORT,e,img_path)
 			#raise e
 
 
 class __TaskSubmit (threading.Thread):
-	def __init__(self,id ,who,toRec,mod):
+	def __init__(self,id ,who,toRec,mod,dist):
 		threading.Thread.__init__(self)
 		self.id = id
 		self.who = who
 		self.toRec = toRec
 		self.mod = mod
+		self.dist = dist
 		self.result="1"
 	def run(self):
 		print ("开始线程：" + self.id + " on stat " + self.result)
-		doTask(self.who,self.toRec,self.mod)
+		doTask(self.who,self.toRec,self.mod,self.dist)
 		self.result="0"
 		print ("退出线程：" + self.id + " on stat " + self.result)
 
@@ -310,13 +333,58 @@ def __killPro(second,pro):
 			proc.kill()  # 关闭该process
 	#SystemExit()
 
+def __move2Firmly():
+	if WINDOWS:
+		try:
+			#move .\Prescreen\{name} .\FR_DATA\A-KnownPeople\
+			commandInput = "move /Y .\\tempSingle\\unknown* .\\temp\\"
+			commandImplementation = os.popen(commandInput)
+			print("Moving file")
+		except Exception as e:
+			raise e
+	else:
+		try:
+			#mv ./Prescreen/{name} ./FR_DATA/A-KnownPeople/
+			commandInput = "mv ./tempSingle/unknown* ./temp/"
+			commandImplementation = os.popen(commandInput)
+			print("Moving file...")
+		except Exception as e:
+			raise e
+
+def __firmly2tempS():
+	if WINDOWS:
+		try:
+			#move .\Prescreen\{name} .\FR_DATA\A-KnownPeople\
+			commandInput = "move /Y .\\temp\\* .\\tempSingle\\"
+			commandImplementation = os.popen(commandInput)
+			print("Moving file")
+		except Exception as e:
+			raise e
+	else:
+		try:
+			#mv ./Prescreen/{name} ./FR_DATA/A-KnownPeople/
+			commandInput = "mv ./temp/* ./tempSingle/"
+			commandImplementation = os.popen(commandInput)
+			print("Moving file...")
+		except Exception as e:
+			raise e
+
 #mainX
 def FaceRecognitionKNN(model_name):
+	print("Check temp...")
+	__firmly2tempS()
+	Wait.waiting(1.5)
 	print("\033[5;33;40m开始识别temp*目录下的分类文件(单线程)....\033[0m\n")
-	print("处理单人面孔：")
-	__faceRec("tempSingle",model_name)
-	print("处理多人面孔：")
-	__faceRec("tempMore",model_name)
+	print("处理单人面孔(dist=0.1)：")
+	__faceRec("tempSingle",model_name ,0.1)
+	Wait.waiting(1)
+	__move2Firmly()
+	Wait.waiting(1)
+	print("处理单人面孔：(dist=0.6)")
+	__faceRec("temp",model_name ,0.6)
+	Wait.waiting(1)
+	print("处理多人面孔：(dist=0.6)")
+	__faceRec("tempMore",model_name,0.6)
 	print("\033[1;32;41m{0}\033[0m".format(ERROR_REPORT))
 	print("\033[5;31;40m--------识别完毕--------\033[0m")
 

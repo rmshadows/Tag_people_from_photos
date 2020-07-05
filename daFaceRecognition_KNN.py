@@ -23,7 +23,7 @@ ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 ERROR_REPORT=""
 
 
-def __predict(X_img_path, knn_clf = None, model_save_path ="", DIST_THRESH = .5):
+def __predict(X_img_path, knn_clf = None, model_save_path ="", DIST_THRESH = 0.5):
 	"""
 	recognizes faces in given image, based on a trained knn classifier
 	:param X_img_path: path to image to be recognized
@@ -130,17 +130,17 @@ def __faceRec(toRec,mod):
 					pass
 			else:
 				if(__fex(".{0}{1}{2}{3}".format(SS,toRec,SS,img_path))=="png"):
-					tagPeople("png",toRec,img_path,preds)
+					__tagPeople("png",toRec,img_path,preds)
 				if(__fex(".{0}{1}{2}{3}".format(SS,toRec,SS,img_path))=="jpg"):
-					tagPeople("jpg",toRec,img_path,preds)
+					__tagPeople("jpg",toRec,img_path,preds)
 				if(__fex(".{0}{1}{2}{3}".format(SS,toRec,SS,img_path))=="jpeg"):
-					tagPeople("jpeg",toRec,img_path,preds)
+					__tagPeople("jpeg",toRec,img_path,preds)
 		except Exception as e:
 			ERROR_REPORT="{}\n{}{}".format(ERROR_REPORT,e,img_path)
 			#raise e
 
 
-def tagPeople(fext,toRec,img_path,preds):
+def __tagPeople(fext,toRec,img_path,preds):
 	n=1
 	tempName=join(toRec,img_path)
 	for x in preds:
