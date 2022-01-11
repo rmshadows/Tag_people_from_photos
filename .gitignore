@@ -1,3 +1,7 @@
+# 项目排除
+FaceRecognitionAuxiliary/
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

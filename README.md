@@ -1,6 +1,6 @@
  ### 简单de离线人脸管理
 
- - 版本：Python 3.6+
+ - 版本：Python 3.9+
 
  - 最新版本：v1.3.3
 
@@ -61,7 +61,7 @@
 
 
  ### Linux从零开始安装：
- 
+
 1. 首先：更新你的python3和pip：`apt-get update` `apt-get upgrade python3` `apt upgrade python3-pip`
 
 1. 然后安装face_recognition模块(需要sudo权限、cmake `sudo apt-get install cmake` 等，dlib要编译)。具体可以参考face_recognition的[中文文档](https://github.com/ageitgey/face_recognition/blob/master/README_Simplified_Chinese.md)：
@@ -70,15 +70,15 @@
 1. 克隆本仓库：`git clone https://gitee.com/rmshadows/Tag_people_from_photos.git`
 
 1. 安装其他依赖：`cd Tag_people_from_photos` `pip3 install -r requirements.txt`
- 
+
  - 关于修改pip(可以忽略不看)：
- 
+
  `type pip`查看pip在哪里
- 
+
  `vi /usr/bin/pip` 假如pip在“/usr/bin/”下，用vi打开，把#!后面的打开pip的python改成3.8版本就是(前提是你装了python3.8)。
- 
+
  `git clone https://github.com/rmshadows/Tag_people_from_photos`
- 
+
  `cd Tag_people_from_photos`
 
  ### Windows从零开始安装（只测试了Win 10系统）：
@@ -113,13 +113,13 @@
 
 
  ### 使用
- 
+
  1. **第一次** 使用，Linux请执行： `sudo chmod +x RESET_FRS.sh` 和 `./RESET_FRS.sh` 。Windows用户当然是运行那个bat文件了好吧。
- 
+
  1. 运行脚本： `python3 xxx.py` xxx是要运行的脚本的名字。 Windows的话一般是`python xxx.py` (只装了一个Python吧？)
- 
+
  **脚本文件分类**（前缀）：
- 
+
  -注：加粗的是我**自己**正在使用的，用作处理的脚本。具体你们可以根据自己的需求选择合适的脚本处理文件。
 
 - a-本地人像识别库处理
@@ -236,7 +236,6 @@
   
     - (Line395)__killPro(5,"display"):main方法中的killPro方法，5表示图片显示延时5秒后关闭，display表示打开的图片在进程中的名字叫做"display"
   
-
 - e-清除工作
   
   * eaCLEAN_UP_TEMP:清除tempXXX中的数据。
@@ -274,9 +273,9 @@
     - (Line30)waiting(sec):供外部调用的设置等待时间的方法。sec是时间，单位是秒。
   
  ### 标准使用流程(一步一步来)：
- 
+
  注:标记“「￥」”的是要人工参与重复审核的步骤，保证数据正确性。
- 
+
  **一、添加已知人像：** 这是离线人脸识别，所以首先你得有已知姓名的人的人像库为训练材料，训练出模型后才能进行人脸识别。不用担心，这很简单的，让我一步一步跟你慢慢道来：
 
 1.将人像文件夹放入Prescreen中：用aaPrescreenPicture.py 过滤掉不合适的图像。比如照片中没有面孔、照片中有多张面孔、照片中模糊面孔，这些可不是好的训练材料，所以要预筛选出合适的训练材料，这样训练出的模型才有意义。
@@ -417,13 +416,13 @@ gbReFaceRecognition.py 重新识别已识别过的人物。
 
 
  ### 许可
- 
+
 [LICENSE](https://github.com/rmshadows/Tag_people_from_photos/blob/master/LICENSE)
 
  ### 感谢
- 
+
  再次感谢face_recognition项目 > https://github.com/ageitgey/face_recognition
- 
+
  1.3.3 更新：
   - 添加了aa、ac的错误反馈，扩增了面部剪辑图。
   - ca新增大图片压缩，加速分类。
