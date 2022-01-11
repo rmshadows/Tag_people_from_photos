@@ -2,7 +2,7 @@
 # 用于生成可用的发行版
 
 # 生成文件夹名
-RELEASE='FaceRecognitionAuxiliary'
+RELEASE='0-release'
 
 mkdir $RELEASE
 # 复制脚本
