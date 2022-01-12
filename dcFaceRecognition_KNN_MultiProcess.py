@@ -388,6 +388,7 @@ def FaceRecognitionKNN(model_name):
 	print("\033[1;32;41m{0}\033[0m".format(ERROR_REPORT))
 	print("\033[5;31;40m--------识别完毕--------\033[0m")
 
+
 if __name__ == "__main__":
 	FaceRecognitionKNN("KnownPeople")
 	if SEE_ALL_FACES:

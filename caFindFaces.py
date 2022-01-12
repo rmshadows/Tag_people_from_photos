@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
-'''
-将需要识别的人物图片分类成无面孔、单人、多人并分配到临时目录。
-'''
+
 from PIL import Image
 import face_recognition
 import os
@@ -11,12 +9,20 @@ import time
 import numpy as np
 import Wait
 
+"""
+将需要识别的人物图片分类成无面孔、单人、多人并分配到temp开头的临时目录。
+"""
+
+# 是否找到脸部信息
 SEE_ALL_FACES = False
+# 是否是Windows
 WINDOWS = os.sep == "\\"
+# 文价分隔符
 SS = os.sep
+# 错误信息
 ERROR_REPORT = ""
 
-
+# 获取文件大小
 def __getSize(path):
     s = os.path.getsize(path)
     return s
@@ -34,7 +40,9 @@ def __renameFile():
     pic = (os.listdir(dir))  # ./INPUT_PIC/*
     for file in pic:
         time = datetime.now()
-        srcFile = dir + SS + file  # ./INPUT_PIC/xxx.jpg
+        # ./INPUT_PIC/xxx.jpg
+        # srcFile = dir + SS + file
+        srcFile = os.path.join(dir, file)
         # ./INPUT_PIC/{time}.{ext}
         TI = str(time).replace(" ", "")
         dstFile = dir + SS + "{0}.{1}".format(TI.replace(":", ""), __fex(srcFile))
