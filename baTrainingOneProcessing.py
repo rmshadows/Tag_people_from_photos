@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 # -*- coding: utf-8 -*-
 '''
 训练模型-单线程
@@ -84,4 +85,4 @@ def main(train_dir,model_save_path):
 
 if __name__ == "__main__":
 	#训练的文件夹/输出模型文件名
-	main("A-KnownPeople","KnownPeople")
+	main("A-KnownPeople", "KnownPeople")

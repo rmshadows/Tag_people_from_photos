@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 # -*- coding: utf-8 -*-
 '''
 演示前的工作：
@@ -26,7 +27,7 @@ if __name__ == "__main__":
 	aaPrescreenPicture.filePrescreen()
 	Wait.waiting(2.5)
 	print("添加训练素材。")
-	abAddKnownPerson.addTrainLib()
+	abAddKnownPerson.addKnowPeople()
 	Wait.waiting(2.5)
 	print("开始训练。")
 	#训练文件夹（FR_DATA中）和训练模型名称（在KNN_MOD中）

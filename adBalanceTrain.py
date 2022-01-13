@@ -1,5 +1,8 @@
+#!/usr/bin/python3
 # -*- coding: utf-8 -*-
-
+"""
+用于均衡训练文件夹中的图片
+"""
 import os
 from datetime import datetime
 
@@ -23,15 +26,17 @@ def __copyFiles(path0,path1):
 				print(e)
 	else:
 		try:
-			commandInput = "cp -r {} {}".format(path0,path1)
+			commandInput = "cp -r {} {}".format(path0, path1)
 			commandImplementation = os.popen(commandInput)
 		except Exception as e:
 			print(e)
+
 
 #获取扩展名
 def __fex(path): 
 	ex=os.path.splitext(path)[1]
 	return ex[1:]
+
 
 #mainX
 def bala():

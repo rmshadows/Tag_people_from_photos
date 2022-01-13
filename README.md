@@ -322,7 +322,7 @@
 
 不管是单线程还是多线程训练，都要记得修改：main方法中的参数（模型材料地址和导出模型的名称），一般情况下，main("G-WorldWidePeople","WorldWidePeople")中，前者填的是`A-KnownPeople`，后者是你希望导出的模型名称，比如`my_fr_mod`
 
-导出的模型会储存在KNN_MOD文件夹中，记得把后面的时间去掉，为了区别，导出的模型后默认带有训练时间。
+导出的模型会储存在KNN_MOD文件夹中，记得把后面的时间去掉，为了区别，导出的模型后默认**带有训练时间**。
 
 ![train](https://images.gitee.com/uploads/images/2020/0629/232434_ff411fcb_7423713.png "屏幕截图.png")
 

@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 # -*- coding: utf-8 -*-
 '''
 识别temp目录中已经分好类的图片，最后一行的参数是修改识别所用的模型KNN_MOD中是我训练好了的一些人物。
@@ -159,45 +160,48 @@ def __faceRec(toRec,mod,dist):
 	TASK=listdir(".{0}{1}".format(SS,toRec))#./folder/*
 	if len(TASK)<20 | WINDOWS:
 		for img_path in TASK:#./folder/*
-			NA = ""#Name
-			ext = __fex(join(".{0}{1}".format(SS,toRec), img_path))#get ext
-			#./folder/xxx.jpg  None  ./KNN_MOD/{model}
-			try:
-				preds,isCprs = __predict(join(".{0}{1}".format(SS,toRec), img_path) ,None,".{0}KNN_MOD{1}{2}".format(SS,SS,mod),dist)
-				for name, (top, right, bottom, left) in preds:
-					NA=name
-					print("- Found \033[1;32;40m{}\033[0m at ({}, {})".format(name, left, top))
-				#Name  ext  ./{folder}/xxx.jpg  preds
-				__show_prediction_labels_on_image(NA,ext,os.path.join(".{0}{1}".format(SS,toRec), img_path), preds,isCprs)
-
-				if len(preds)==0:
-					print("ERROR-None face")
-				if(len(preds)==1):
-					srcFile = ".{0}{1}{2}{3}".format(SS,toRec,SS,img_path)
-					time=datetime.now()#获取当前时间
-					if preds[0][0]=="N/A":
-						dstFile = ".{0}{1}{2}unknown-{3}.{4}".format(SS,toRec,SS,str(time)[17:],__fex(srcFile))
+			if img_path != ".keep":
+				NA = ""  # Name
+				ext = __fex(join(".{0}{1}".format(SS, toRec), img_path))  # get ext
+				# ./folder/xxx.jpg  None  ./KNN_MOD/{model}
+				try:
+					preds, isCprs = __predict(join(".{0}{1}".format(SS, toRec), img_path), None,
+											  ".{0}KNN_MOD{1}{2}".format(SS, SS, mod), dist)
+					for name, (top, right, bottom, left) in preds:
+						NA = name
+						print("- Found \033[1;32;40m{}\033[0m at ({}, {})".format(name, left, top))
+					# Name  ext  ./{folder}/xxx.jpg  preds
+					__show_prediction_labels_on_image(NA, ext, os.path.join(".{0}{1}".format(SS, toRec), img_path),
+													  preds, isCprs)
+					
+					if len(preds) == 0:
+						print("ERROR-None face")
+					if (len(preds) == 1):
+						srcFile = ".{0}{1}{2}{3}".format(SS, toRec, SS, img_path)
+						time = datetime.now()  # 获取当前时间
+						if preds[0][0] == "N/A":
+							dstFile = ".{0}{1}{2}unknown-{3}.{4}".format(SS, toRec, SS, str(time)[17:], __fex(srcFile))
+						else:
+							dstFile = ".{0}{1}{2}{3}-{4}.{5}".format(SS, toRec, SS, preds[0][0], str(time)[17:],
+																	 __fex(srcFile))
+						# 显示正处理的文件
+						print(dstFile)
+						try:
+							os.rename(srcFile, dstFile)
+						except Exception as e:
+							print(e)
+						else:
+							pass
 					else:
-						dstFile = ".{0}{1}{2}{3}-{4}.{5}".format(SS,toRec,SS,preds[0][0],str(time)[17:],__fex(srcFile))
-					#显示正处理的文件
-					print(dstFile)
-					try:
-						os.rename(srcFile,dstFile)
-					except Exception as e:
-						print(e)
-					else:
-						pass
-				else:
-					if(__fex(".{0}{1}{2}{3}".format(SS,toRec,SS,img_path))=="png"):
-						__tagPeople("png",toRec,img_path,preds)
-					if(__fex(".{0}{1}{2}{3}".format(SS,toRec,SS,img_path))=="jpg"):
-						__tagPeople("jpg",toRec,img_path,preds)
-					if(__fex(".{0}{1}{2}{3}".format(SS,toRec,SS,img_path))=="jpeg"):
-						__tagPeople("jpeg",toRec,img_path,preds)
-			except Exception as e:
-				ERROR_REPORT="{}\n{}{}".format(ERROR_REPORT,e,img_path)
-				#raise e
-
+						if (__fex(".{0}{1}{2}{3}".format(SS, toRec, SS, img_path)) == "png"):
+							__tagPeople("png", toRec, img_path, preds)
+						if (__fex(".{0}{1}{2}{3}".format(SS, toRec, SS, img_path)) == "jpg"):
+							__tagPeople("jpg", toRec, img_path, preds)
+						if (__fex(".{0}{1}{2}{3}".format(SS, toRec, SS, img_path)) == "jpeg"):
+							__tagPeople("jpeg", toRec, img_path, preds)
+				except Exception as e:
+					ERROR_REPORT = "{}\n{}{}".format(ERROR_REPORT, e, img_path)
+			# raise e
 	else:
 		taskNum = int(len(TASK)/4)
 		taskLef = len(TASK)%4
@@ -268,46 +272,50 @@ def __tagPeople(fext,toRec,img_path,preds):
 def doTask(who,toRec,mod,dist):
 	global ERROR_REPORT
 	ta=0
-	for img_path in who:#./folder/*
-		ta+=1
-		Wait.view(ta,len(who),"31","")
-		NA = ""#Name
-		ext = __fex(join(".{0}{1}".format(SS,toRec), img_path))#get ext
-		#./folder/xxx.jpg  None  ./KNN_MOD/{model}
-		try:
-			preds,isCprs = __predict(join(".{0}{1}".format(SS,toRec), img_path) ,None,".{0}KNN_MOD{1}{2}".format(SS,SS,mod),dist)
-			for name, (top, right, bottom, left) in preds:
-				NA=name
-				print("- Found \033[1;32;40m{}\033[0m at ({}, {})".format(name, left, top))
-			__show_prediction_labels_on_image(NA,ext,os.path.join(".{0}{1}".format(SS,toRec), img_path), preds,isCprs)
-			#time.sleep(0.2)
-			if len(preds)==0:
-				print("ERROR-None face")
-			if(len(preds)==1):
-				srcFile = ".{0}{1}{2}{3}".format(SS,toRec,SS,img_path)
-				time=datetime.now()#获取当前时间
-				if preds[0][0]=="N/A":
-					dstFile = ".{0}{1}{2}unknown-{3}.{4}".format(SS,toRec,SS,str(time)[17:],__fex(srcFile))
+	for img_path in who: #./folder/*
+		if img_path != ".keep":
+			ta += 1
+			Wait.view(ta, len(who), "31", "")
+			NA = ""  # Name
+			ext = __fex(join(".{0}{1}".format(SS, toRec), img_path))  # get ext
+			# ./folder/xxx.jpg  None  ./KNN_MOD/{model}
+			try:
+				preds, isCprs = __predict(join(".{0}{1}".format(SS, toRec), img_path), None,
+										  ".{0}KNN_MOD{1}{2}".format(SS, SS, mod), dist)
+				for name, (top, right, bottom, left) in preds:
+					NA = name
+					print("- Found \033[1;32;40m{}\033[0m at ({}, {})".format(name, left, top))
+				__show_prediction_labels_on_image(NA, ext, os.path.join(".{0}{1}".format(SS, toRec), img_path), preds,
+												  isCprs)
+				# time.sleep(0.2)
+				if len(preds) == 0:
+					print("ERROR-None face")
+				if (len(preds) == 1):
+					srcFile = ".{0}{1}{2}{3}".format(SS, toRec, SS, img_path)
+					time = datetime.now()  # 获取当前时间
+					if preds[0][0] == "N/A":
+						dstFile = ".{0}{1}{2}unknown-{3}.{4}".format(SS, toRec, SS, str(time)[17:], __fex(srcFile))
+					else:
+						dstFile = ".{0}{1}{2}{3}-{4}.{5}".format(SS, toRec, SS, preds[0][0], str(time)[17:],
+																 __fex(srcFile))
+					# 显示正处理的文件
+					print(dstFile)
+					try:
+						os.rename(srcFile, dstFile)
+					except Exception as e:
+						print(e)
+					else:
+						pass
 				else:
-					dstFile = ".{0}{1}{2}{3}-{4}.{5}".format(SS,toRec,SS,preds[0][0],str(time)[17:],__fex(srcFile))
-				#显示正处理的文件
-				print(dstFile)
-				try:
-					os.rename(srcFile,dstFile)
-				except Exception as e:
-					print(e)
-				else:
-					pass
-			else:
-				if(__fex(".{0}{1}{2}{3}".format(SS,toRec,SS,img_path))=="png"):
-					__tagPeople("png",toRec,img_path,preds)
-				if(__fex(".{0}{1}{2}{3}".format(SS,toRec,SS,img_path))=="jpg"):
-					__tagPeople("jpg",toRec,img_path,preds)
-				if(__fex(".{0}{1}{2}{3}".format(SS,toRec,SS,img_path))=="jpeg"):
-					__tagPeople("jpeg",toRec,img_path,preds)
-		except Exception as e:
-			ERROR_REPORT="".format(ERROR_REPORT,e,img_path)
-			#raise e
+					if (__fex(".{0}{1}{2}{3}".format(SS, toRec, SS, img_path)) == "png"):
+						__tagPeople("png", toRec, img_path, preds)
+					if (__fex(".{0}{1}{2}{3}".format(SS, toRec, SS, img_path)) == "jpg"):
+						__tagPeople("jpg", toRec, img_path, preds)
+					if (__fex(".{0}{1}{2}{3}".format(SS, toRec, SS, img_path)) == "jpeg"):
+						__tagPeople("jpeg", toRec, img_path, preds)
+			except Exception as e:
+				ERROR_REPORT = "".format(ERROR_REPORT, e, img_path)
+				# raise e
 
 
 class __TaskSubmit (threading.Thread):
@@ -351,7 +359,12 @@ def __move2Firmly():
 		except Exception as e:
 			raise e
 
+
 def __firmly2tempS():
+	"""
+	temp到tempSingle
+	:return:
+	"""
 	if WINDOWS:
 		try:
 			#move .\Prescreen\{name} .\FR_DATA\A-KnownPeople\
@@ -378,6 +391,7 @@ def FaceRecognitionKNN(model_name):
 	print("处理单人面孔(dist=0.1)：")
 	__faceRec("tempSingle",model_name ,0.1)
 	Wait.waiting(1)
+	# 比较确定的放在temp文件夹
 	__move2Firmly()
 	Wait.waiting(1)
 	print("处理单人面孔：(dist=0.6)")
