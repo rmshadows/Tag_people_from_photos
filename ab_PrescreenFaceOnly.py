@@ -18,15 +18,17 @@
                +-...
 '''
 
-from PIL import Image
-import psutil
-import face_recognition
 import os
-from os.path import join
-from datetime import datetime
 import threading
 import time
+from datetime import datetime
+from os.path import join
 
+import face_recognition
+import psutil
+from PIL import Image
+
+# 是否显示识别到的人脸
 SEE_ALL_FACES = False
 WINDOWS = os.sep == "\\"
 SS = os.sep
@@ -37,8 +39,12 @@ def tsleep(n):
     time.sleep(n)
 
 
-# 获取扩展名
 def __fex(path):
+    """
+    获取扩展名
+    :param path:
+    :return:
+    """
     ex = os.path.splitext(path)[1]
     return ex[1:]
 
@@ -53,7 +59,7 @@ def __renameFile():
     prescreen_path = join("Prescreen")
     # person_name : Prescreen/person_name
     for person_name in os.listdir(prescreen_path):
-        if person_name != ".keep": # 排除.keep文件
+        if person_name != ".keep":  # 排除.keep文件
             person_path = join("Prescreen", person_name)
             person_pics = os.listdir(person_path)  # ./Prescreen/person_name/*
             # 首先将文件全部随机重命名
@@ -85,8 +91,15 @@ def __renameFile():
                 n += 1
 
 
-# Find faces in pictures
 def __checkFaces(file, person):
+    """
+    # Find faces in pictures
+    并裁剪人脸
+    FRS开头是裁剪后的文件
+    :param file: 文件路径裁剪的文件路径
+    :param person: 裁剪后要保存到的人名文件夹
+    :return:
+    """
     global ERROR_INFO
     try:
         # Load the jpg file into a numpy array
@@ -97,6 +110,7 @@ def __checkFaces(file, person):
         # See also: find_faces_in_picture_cnn.py
         # CNN:
         # face_locations = face_recognition.face_locations(image, number_of_times_to_upsample=0, model="cnn")
+        # 这里使用HOG模型
         face_locations = face_recognition.face_locations(image)
         faceNum = len(face_locations)
         print("Found \033[1;33;40m{0}\033[0m: face(s) in \033[1;35;40m{1}\033[0m: photograph.".format(faceNum, file),
@@ -104,9 +118,8 @@ def __checkFaces(file, person):
         for face_location in face_locations:
             # Print the location of each face in this image
             top, right, bottom, left = face_location
-            print(
-                "A face is located at pixel location Top: {}, Left: {}, Bottom: {}, Right: {}".format(top, left, bottom,
-                                                                                                      right))
+            print("A face is located at pixel location Top: "
+                  "{}, Left: {}, Bottom: {}, Right: {}".format(top, left, bottom,right))
             if (top - 200 < 0):
                 if (top - 150 < 0):
                     if (top - 100 < 0):
@@ -129,9 +142,9 @@ def __checkFaces(file, person):
             pil_image = Image.fromarray(face_image)
             if (SEE_ALL_FACES):
                 pil_image.show()
-            time = str(datetime.now())[17:]
+            get_time = str(datetime.now())[17:]
             # .{/}Prescreen{/}{person}{/}FRS{time}
-            pil_image.save(".{0}Prescreen{1}{2}{3}FRS{4}.{5}".format(SS, SS, person, SS, time, __fex(file)))
+            pil_image.save(join("Prescreen", person, "FRS{0}.{1}".format(get_time, __fex(file))))
     except Exception as e:
         ERROR_INFO = "{0}\n{1}".format(ERROR_INFO, e)
         print("\033[1;32;41m{0}\033[0m".format(e))
@@ -139,24 +152,28 @@ def __checkFaces(file, person):
     return faceNum
 
 
-# MainX
 def filePrescreen():
+    """
+    供外界调用的方法
+    :return:
+    """
     print("Prescreen Start......\n")
     __renameFile()
-    dir = ".{0}Prescreen".format(SS)
-    folder = (os.listdir(dir))  # ./Prescreen/*
-    for person in folder:  # ./Prescreen/person/
+    prescreen_path = join("Prescreen")
+    # ./Prescreen/*
+    for person in os.listdir(prescreen_path):  # ./Prescreen/person/
         if person != ".keep":
-            personDir = ".{0}Prescreen{1}".format(SS, SS) + person  # ./Prescreen/person/
-            pic = (os.listdir(personDir))  # ./Prescreen/person/*
-            if (len(pic) >= 20) & (not WINDOWS):  # ./Prescreen/person/下的图片20张以上
-                taskNum = int(len(pic) / 4)
-                taskLef = len(pic) % 4
+            person_path = join(prescreen_path, person)
+            # ./Prescreen/person/
+            pics = (os.listdir(person_path))  # ./Prescreen/person/*
+            if (len(pics) >= 20) & (not WINDOWS):  # ./Prescreen/person/下的图片20张以上
+                taskNum = int(len(pics) / 4)
+                taskLef = len(pics) % 4
                 # 创建新线程
-                thread1 = __TaskSubmit("1", pic[0:taskNum], person)
-                thread2 = __TaskSubmit("2", pic[taskNum:taskNum * 2], person)
-                thread3 = __TaskSubmit("3", pic[taskNum * 2:taskNum * 3], person)
-                thread4 = __TaskSubmit("4", pic[taskNum * 3:taskNum * 4], person)
+                thread1 = __TaskSubmit("1", pics[0:taskNum], person)
+                thread2 = __TaskSubmit("2", pics[taskNum:taskNum * 2], person)
+                thread3 = __TaskSubmit("3", pics[taskNum * 2:taskNum * 3], person)
+                thread4 = __TaskSubmit("4", pics[taskNum * 3:taskNum * 4], person)
                 if taskLef == 0:
                     thread1.start()
                     thread2.start()
@@ -167,7 +184,7 @@ def filePrescreen():
                     thread3.join()
                     thread4.join()
                 else:
-                    thread5 = __TaskSubmit("5", pic[taskNum * 4:taskNum * 4 + taskLef], person)
+                    thread5 = __TaskSubmit("5", pics[taskNum * 4:taskNum * 4 + taskLef], person)
                     thread1.start()
                     thread2.start()
                     thread3.start()
@@ -179,17 +196,18 @@ def filePrescreen():
                     thread4.join()
                     thread5.join()
             else:
-                for file in pic:  # ./Prescreen/person/xxx.jpg
+                for picture in pics:  # ./Prescreen/person/xxx.jpg
                     time = datetime.now()  # 获取当前时间
-                    srcFile = personDir + SS + file  # "./Prescreen/"+person+ "/" +file
-                    if __checkFaces(srcFile, person) == 0:
+                    # "./Prescreen/"+person+ "/" +picture
+                    src_file = join(person_path, picture)
+                    if __checkFaces(src_file, person) == 0:
                         # ./Prescreen/person/rm{time}
-                        dstFile = personDir + SS + "rm{0}".format(str(time)[17:].replace(" ", ""))
+                        dst_file = join(person_path, "rm{0}".format(str(time)[17:].replace(" ", "")))
                     else:
                         # ./Prescreen/person/1F{时间}.{扩展名}
-                        dstFile = personDir + SS + "1F{0}.{1}".format(str(time)[17:].replace(" ", ""), __fex(srcFile))
+                        dst_file = join(person_path, "1F{0}.{1}".format(str(time)[17:].replace(" ", ""), __fex(src_file)))
                     try:
-                        os.rename(srcFile, dstFile)
+                        os.rename(src_file, dst_file)
                     except Exception as e:
                         print(e)
                     else:
@@ -200,14 +218,14 @@ def filePrescreen():
 def doTask(who, person):
     for f in who:  # f=(xxx.jpg)
         time = datetime.now()  # 获取当前时间
-        srcFile = "./Prescreen/{0}/{1}".format(person, f)  # ./Prescreen/{person}/{xxx.jpg}
-        if __checkFaces(srcFile, person) == 0:
+        src_file = "./Prescreen/{0}/{1}".format(person, f)  # ./Prescreen/{person}/{xxx.jpg}
+        if __checkFaces(src_file, person) == 0:
             # ./Prescreen/person/rm{}{}
-            dstFile = "./Prescreen/{0}/rm{1}.{2}".format(person, str(time)[17:].replace(" ", ""), __fex(srcFile))
+            dst_file = "./Prescreen/{0}/rm{1}.{2}".format(person, str(time)[17:].replace(" ", ""), __fex(src_file))
         else:
-            dstFile = "./Prescreen/{0}/1F{1}.{2}".format(person, str(time)[17:].replace(" ", ""), __fex(srcFile))
+            dst_file = "./Prescreen/{0}/1F{1}.{2}".format(person, str(time)[17:].replace(" ", ""), __fex(src_file))
         try:
-            os.rename(srcFile, dstFile)
+            os.rename(src_file, dst_file)
         except Exception as e:
             print(e)
         else:
@@ -230,10 +248,14 @@ class __TaskSubmit(threading.Thread):
 
 
 def __rmFiles():
+    """
+    删除无法识别人脸的文件
+    :return:
+    """
     print("\nDelete files...")
-    dir = ".{0}Prescreen".format(SS)
-    folder = (os.listdir(dir))  # 显示预筛选文件夹下的人物文件夹#./Prescreen/*
-    for person in folder:  # ./Prescreen/person
+    prescreen_path = join("Prescreen")
+    # 显示预筛选文件夹下的人物文件夹#./Prescreen/*
+    for person in os.listdir(prescreen_path):  # ./Prescreen/person
         if person != ".keep":
             if WINDOWS:
                 try:
@@ -245,7 +267,7 @@ def __rmFiles():
                     print(e)
                 try:
                     # del .\Prescreen\{person}\rm*
-                    commandInput = 'del /S /Q .\\Prescreen\\' + person + "\\1F*"
+                    commandInput = 'del /S /Q .\\Prescreen\\' + person + "\\MF*"
                     commandImplementation = os.popen(commandInput)
                     print("Del...")
                 except Exception as e:
@@ -259,13 +281,19 @@ def __rmFiles():
                     print("REMOVE FILE ERROR.")
                 try:
                     # rm ./Prescreen/{person}/rm*
-                    commandInput = 'rm ./Prescreen/' + person + "/1F*"
+                    commandInput = 'rm ./Prescreen/' + person + "/MF*"
                     commandImplementation = os.popen(commandInput)
                 except Exception as e:
                     print("REMOVE FILE ERROR.")
 
 
 def __killPro(second, pro):
+    """
+    延时杀死进程
+    :param second:
+    :param pro: 进程名
+    :return:
+    """
     time.sleep(second)
     print("展示时间：" + str(second) + "秒")
     for proc in psutil.process_iter():  # 遍历当前process

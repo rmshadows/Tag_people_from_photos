@@ -38,7 +38,7 @@ import time
 import psutil
 import threading
 import numpy as np
-import Wait
+import m_Wait
 
 SEE_ALL_FACES=False
 WINDOWS=os.sep=="\\"
@@ -275,7 +275,7 @@ def doTask(who,toRec,mod,dist):
 	for img_path in who: #./folder/*
 		if img_path != ".keep":
 			ta += 1
-			Wait.view(ta, len(who), "31", "")
+			m_Wait.view(ta, len(who), "31", "")
 			NA = ""  # Name
 			ext = __fex(join(".{0}{1}".format(SS, toRec), img_path))  # get ext
 			# ./folder/xxx.jpg  None  ./KNN_MOD/{model}
@@ -386,17 +386,17 @@ def __firmly2tempS():
 def FaceRecognitionKNN(model_name):
 	print("Check temp...")
 	__firmly2tempS()
-	Wait.waiting(1.5)
+	m_Wait.m_Waiting(1.5)
 	print("\033[5;33;40m开始识别temp*目录下的分类文件(单线程)....\033[0m\n")
 	print("处理单人面孔(dist=0.1)：")
 	__faceRec("tempSingle",model_name ,0.1)
-	Wait.waiting(1)
+	m_Wait.m_Waiting(1)
 	# 比较确定的放在temp文件夹
 	__move2Firmly()
-	Wait.waiting(1)
+	m_Wait.m_Waiting(1)
 	print("处理单人面孔：(dist=0.6)")
 	__faceRec("temp",model_name ,0.6)
-	Wait.waiting(1)
+	m_Wait.m_Waiting(1)
 	print("处理多人面孔：(dist=0.6)")
 	__faceRec("tempMore",model_name,0.6)
 	print("\033[1;32;41m{0}\033[0m".format(ERROR_REPORT))

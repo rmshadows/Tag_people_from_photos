@@ -17,7 +17,7 @@ from face_recognition import face_locations
 from face_recognition.face_recognition_cli import image_files_in_folder
 from sklearn import neighbors
 
-import Wait
+import m_Wait
 
 WINDOWS = os.sep == "\\"
 SS = os.sep
@@ -25,6 +25,15 @@ verbose = True
 
 
 def __train(train_dir, model_save_path="", verbose=False, n_neighbors=None, knn_algo='ball_tree'):
+    """
+    训练模型的方法
+    :param train_dir: 训练材料文件夹
+    :param model_save_path:  模型保存路径
+    :param verbose:  是否可视化
+    :param n_neighbors:
+    :param knn_algo:
+    :return:
+    """
     X = []
     y = []
     T1 = []
@@ -75,14 +84,16 @@ def __train(train_dir, model_save_path="", verbose=False, n_neighbors=None, knn_
                 if verbose:
                     print("\033[1;34;40m添加第({0}/{1})个文件 \033[0m:\033[1;38;40m".format(num, TASK) + img_path + "\033[0m")
                 if not WINDOWS:
-                    Wait.view(num, TASK, "31", "")
+                    m_Wait.view(num, TASK, "31", "")
                 num += 1
                 faces_bboxes = face_locations(image)
                 if len(faces_bboxes) != 1:
                     if verbose:
-                        print("\033[1;31;40mWARN：\033[0m image {} not fit for __training: {}".format(img_path,
-                                                                                                     "didn't find a face" if len(
-                                                                                                         faces_bboxes) < 1 else "found more than one face"))
+                        print("\033[1;31;40mWARN："
+                              "\033[0m image {} not fit "
+                              "for __training: {}".format(img_path,
+                                                          "didn't find a face" if len(
+                                                              faces_bboxes) < 1 else "found more than one face"))
                     continue
                 X.append(face_recognition.face_encodings(image, known_face_locations=faces_bboxes)[0])
                 y.append(class_dir)
@@ -102,11 +113,16 @@ def __train(train_dir, model_save_path="", verbose=False, n_neighbors=None, knn_
 
 
 def __calcTask(path):
-    dir = listdir(path)
+    """
+    计算任务量
+    :param path:
+    :return:
+    """
+    dirs = listdir(path)
     task = 0
-    for person in dir:
-        subDir = path + SS + person
-        num = len(listdir(subDir))
+    for person in dirs:
+        sub_dir = join(path, person)
+        num = len(listdir(sub_dir))
         task = task + num
     return task
 
@@ -127,7 +143,7 @@ def doTask(train_dir, listIn, Temp, id, color):
             # print("\033[1;33;40m-"+id+"-进度:\033[0m\033[1;36;40m({0}/{1})\033[0m".format(n,T))
             if (not verbose):
                 if not WINDOWS:
-                    Wait.view(n, T, color, " ")
+                    m_Wait.view(n, T, color, " ")
             n += 1
             image = face_recognition.load_image_file(img_path)
             faces_bboxes = face_locations(image)
@@ -172,17 +188,24 @@ class TaskSubmit(threading.Thread):
         self.X = X
         self.y = y
 
-
-# mainX
+        
 def main(train_dir, model_save_path):
+    """
+    # mainX
+    :param train_dir:
+    :param model_save_path:
+    :return:
+    """
     print("\033[5;33;40m开始训练模型(4线程)....\033[0m\n")
-    time = datetime.now()
+    get_time = str(datetime.now()).replace(":", "").replace(" ", "")
     if WINDOWS:
-        TI = str(time).replace(":", "")
-        knn_clf = __train(".{0}FR_DATA{1}".format(SS, SS) + train_dir + SS,
-                          ".{0}KNN_MOD{1}".format(SS, SS) + model_save_path + TI.replace(" ", ""), verbose)
+        # ./F/T/
+        knn_clf = __train(join("FR_DATA", "{0}{1}".format(train_dir, get_time)),
+                          join("KNN_MOD", model_save_path),
+                          verbose)
     else:
-        knn_clf = __train("./FR_DATA/" + train_dir + "/", "./KNN_MOD/" + model_save_path + str(time).replace(" ", ""),
+        knn_clf = __train(join("FR_DATA", train_dir),
+                          join("KNN_MOD", "{0}{1}".format(model_save_path, get_time)),
                           verbose)
     print("\n\033[5;31;40m模型训练结束，已经导出到KNN_MOD文件夹下。\033[0m\n")
 

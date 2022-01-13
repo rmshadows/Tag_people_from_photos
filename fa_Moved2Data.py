@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 import os
 import shutil
-import eaCLEAN_UP_TEMP
+import m_CLEAN_UP_TEMP
 '''
 将temp中识别后的文件（记得人工审核一下再运行此脚本）移动到相应的目录。
 单人面孔将创建单独的文件夹。
@@ -66,7 +66,7 @@ def Moving():
 	except Exception as e:
 		raise e
 	finally:
-		eaCLEAN_UP_TEMP.cleanUpTemp()
+		m_CLEAN_UP_TEMP.cleanUpTemp()
 	print("\n\033[5;31;40m文件已经添加到数据库，下面如有报错，请忽略。\033[0m\n")
 
 
