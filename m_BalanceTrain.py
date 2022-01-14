@@ -100,6 +100,6 @@ def delCopy():
 
 
 if __name__ == '__main__':
-    # __delCopy()
-    # bala()
-    copyFiles(join("FR_DATA", "A-KnownPeople"), join("FR_DATA", "A-KnownPeople_bak"))
+    delCopy()
+    bala()
+    # copyFiles(join("FR_DATA", "A-KnownPeople"), join("FR_DATA", "A-KnownPeople_bak"))
