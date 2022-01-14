@@ -73,7 +73,7 @@ def __show_prediction_labels_on_image(name, ext, img_path, predictions):
         
         # Draw a label with a name below the face
         text_width, text_height = draw.textsize(name)
-        word_css = ".{0}zh.ttf".format(SS)
+        word_css = join("zh.ttf")
         font = ImageFont.truetype(word_css, 20)
         draw.rectangle(((left, bottom - text_height - 10), (right, bottom)), fill=(0, 0, 255), outline=(0, 0, 255))
         draw.text((left + 6, bottom - text_height - 5), name, font=font, fill=(255, 255, 255, 255))
@@ -84,9 +84,9 @@ def __show_prediction_labels_on_image(name, ext, img_path, predictions):
     # Display the resulting image
     if (SEE_ALL_FACES):
         pil_image.show()
-    time = datetime.now()
+    get_time = str(datetime.now())[17:]
     # 保存识别的图片
-    pa = ".{0}tempFaceRecognition{1}{2}{3}.{4}".format(SS, SS, name, str(time)[17:], ext)
+    pa = join("tempFaceRecognition", "{0}{1}.{2}".format(name, get_time, ext))
     pil_image.save(pa.replace("N/A", ""))
 
 
@@ -98,47 +98,47 @@ def __fex(path):
 
 def __faceRec(toRec, mod):
     global ERROR_REPORT
-    for img_path in listdir(".{0}{1}".format(SS, toRec)):  # ./toRec/*
+    # ./toRec/*
+    for img_path in listdir(join(toRec)):
         if img_path != ".keep":
             NA = ""  # Name
-            ext = __fex(join(".{0}{1}".format(SS, toRec), img_path))  # get ext
+            ext = __fex(join(toRec, img_path))  # get ext
             # ./folder/xxx.jpg  None  ./KNN_MOD/{model}
             try:
-                preds = __predict(join(".{0}{1}".format(SS, toRec), img_path), None,
-                                  ".{0}KNN_MOD{1}{2}".format(SS, SS, mod))
+                preds = __predict(join(toRec, img_path), None,
+                                  join("KNN_MOD", mod))
                 for name, (top, right, bottom, left) in preds:
                     NA = name
                     print("- Found \033[1;32;40m{}\033[0m at ({}, {})".format(name, left, top))
                 # Name  ext  ./{folder}/xxx.jpg  preds
                 # print("NA="+NA)
                 # print("pathA="+os.path.join(".{0}{1}".format(SS,toRec), img_path))
-                __show_prediction_labels_on_image(NA, ext, os.path.join(".{0}{1}".format(SS, toRec), img_path), preds)
-        
+                __show_prediction_labels_on_image(NA, ext, os.path.join(toRec, img_path), preds)
+                
                 if len(preds) == 0:
                     print("ERROR-None face")
-                if (len(preds) == 1):
-                    srcFile = ".{0}{1}{2}{3}".format(SS, toRec, SS, img_path)
-                    time = datetime.now()  # 获取当前时间
+                if len(preds) == 1:
+                    src_file = join(toRec, img_path)
+                    get_time = str(datetime.now())[17:]
                     if preds[0][0] == "N/A":
                         # ./toRec/unknow-
-                        dstFile = ".{0}{1}{2}unknown-{3}.{4}".format(SS, toRec, SS, str(time)[17:], __fex(srcFile))
+                        dst_file = join(toRec, "unknown-{0}.{1}".format(get_time, __fex(src_file)))
                     else:
-                        dstFile = ".{0}{1}{2}{3}-{4}.{5}".format(SS, toRec, SS, preds[0][0], str(time)[17:],
-                                                                 __fex(srcFile))
+                        dst_file = join(toRec, "{0}-{1}.{2}".format(preds[0][0], get_time, __fex(src_file)))
                     # 显示正处理的文件
-                    print(dstFile)
+                    print(dst_file)
                     try:
-                        os.rename(srcFile, dstFile)
+                        os.rename(src_file, dst_file)
                     except Exception as e:
                         print(e)
                     else:
                         pass
                 else:
-                    if (__fex(".{0}{1}{2}{3}".format(SS, toRec, SS, img_path)) == "png"):
+                    if __fex(join(toRec, img_path)) == "png":
                         __tagPeople("png", toRec, img_path, preds)
-                    if (__fex(".{0}{1}{2}{3}".format(SS, toRec, SS, img_path)) == "jpg"):
+                    if __fex(join(toRec, img_path)) == "jpg":
                         __tagPeople("jpg", toRec, img_path, preds)
-                    if (__fex(".{0}{1}{2}{3}".format(SS, toRec, SS, img_path)) == "jpeg"):
+                    if __fex(join(toRec, img_path)) == "jpeg":
                         __tagPeople("jpeg", toRec, img_path, preds)
             except Exception as e:
                 ERROR_REPORT = "{}\n{}{}".format(ERROR_REPORT, e, img_path)
@@ -146,37 +146,38 @@ def __faceRec(toRec, mod):
 
 def __tagPeople(fext, toRec, img_path, preds):
     n = 1
+    # ./Rec/img
     tempName = join(toRec, img_path)
     for x in preds:
-        srcFile = tempName
+        src_file = tempName
         print("文件{0}:".format(img_path), end="")
         print("发现:" + x[0], end="  ")
         if x[0] == "N/A":
             if n == 1:
-                time = datetime.now()
-                dstFile = ".{0}{1}{2}{3}{4}".format(SS, toRec, SS, "unknown", str(time)[17:])
+                get_time = str(datetime.now())[17:]
+                dst_file = join(toRec, "unknown{0}".format(get_time))
             else:
-                time = datetime.now()
-                dstFile = "{0}-{1}{2}".format(tempName[:-9], "unknown", str(time)[17:])
+                get_time = str(datetime.now())[17:]
+                dst_file = "{0}-{1}{2}".format(tempName[:-9], "unknown", get_time)
             n += 1
         else:
             if n == 1:
-                time = datetime.now()
-                dstFile = ".{0}{1}{2}{3}{4}".format(SS, toRec, SS, x[0], str(time)[17:])
+                get_time = str(datetime.now())[17:]
+                dst_file = join(toRec, "{0}{1}".format(x[0], get_time))
             else:
-                time = datetime.now()
-                dstFile = "{0}-{1}{2}".format(tempName[:-9], x[0], str(time)[17:])
+                get_time = str(datetime.now())[17:]
+                dst_file = "{0}-{1}{2}".format(tempName[:-9], x[0], get_time)
             n += 1
         try:
-            tempName = dstFile
-            os.rename(srcFile, dstFile)
+            tempName = dst_file
+            os.rename(src_file, dst_file)
         except Exception as e:
             print(e)
-    srcFile = tempName
-    time = datetime.now()
-    dstFile = "{0}-{1}.{2}".format(tempName[:-9], str(time)[17:], fext)
+    src_file = tempName
+    get_time = str(datetime.now())[17:]
+    dst_file = "{0}-{1}.{2}".format(tempName[:-9], get_time, fext)
     try:
-        os.rename(srcFile, dstFile)
+        os.rename(src_file, dst_file)
     except Exception as e:
         print(e)
     print("\n")

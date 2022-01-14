@@ -145,45 +145,45 @@
 - d-待识别图片预处理、人脸检测
 
   * **da-FindFaces**:将待识别的图片分类到各个tmep目录下。
-    - (Line14)SEE_ALL_FACES:True则显示识别出的面部信息图片。
+    - (Line20)SEE_ALL_FACES:True则显示识别出的面部信息图片。
 
-    - (Line81-82)face_locations...:模型切换，默认82行的HOG模型。81行的CNN模型识别准，但速度慢（有条件的修改源码，使用显卡加速）。
+    - (Line112-113)face_locations...:模型切换，默认82行的HOG模型。81行的CNN模型识别准，但速度慢（有条件的修改源码，使用显卡加速）。
 
-    - (Line237)FindFaces():供外部调用的方法。
+    - (Line281)FindFaces():供外部调用的方法。
 
 - e、f-人脸识别
 
   * ea-FaceRecognition_KNN:单线程识别。
 
-    - (Line19)SEE_ALL_FACES:True则显示识别结果，带方框。
+    - (Line18)SEE_ALL_FACES:True则显示识别结果，带方框。
 
-    - (Line26)DIST_THRESH:调整识别阀值，默认0.5.越小越精确，但识别出的人可能越少。
+    - (Line25)DIST_THRESH:调整识别阀值，默认0.5 **越小越精确**，但识别出的人可能越少。
 
-    - (Line77)font = ImageFont.truetype(word_css,20):设置字体。word_css是76行的字体文件，20是字号。
+    - (Line76-77)font = ImageFont.truetype(word_css,20):设置字体。word_css是76行的字体文件，20是字号。
 
     - (Line78-79)draw.rectangle...:调整脸部方框和标签大小。
 
     - (Line189)FaceRecognitionKNN(model_name):供外部调用的方法。model_name是要使用的KNN_MOD文件夹中的模型文件。
 
-    - (Line200)FaceRecognitionKNN("KnownPeople"):单独运行请注意FaceRecognitionKNN("KnownPeople")中的参数。默认使用“KnownPeople”模型识别。
+    - (Line210)FaceRecognitionKNN("KnownPeople"):单独运行请注意FaceRecognitionKNN("KnownPeople")中的参数。默认使用“KnownPeople”模型识别。
 
-    - (Line203)__killPro(5,"display"):main方法中的killPro方法，5表示图片显示延时5秒后关闭，display表示打开的图片在进程中的名字叫做"display"
+    - (Line186)__killPro(5,"display"):main方法中的killPro方法，5表示图片显示延时5秒后关闭，display表示打开的图片在进程中的名字叫做"display"
   * **eb-FaceRecognition_KNN_MultiProcess**:四线程识别脚本，遇到大图片会进行压缩。分两次识别，第一次识别的DIST_THRESH阀值是0.1。第二次阀值是0.6。识别后的tempSingle中是比较准确的结果。其他tempXXX中的结果可能不是很准。
     - (Line42)SEE_ALL_FACES:True则显示识别结果，带方框。
     - (Line47)CQUA:遇到大图片时，要压缩的比例。0.2的意思就是保留原图20%的大小。
-    - (Line73)if (__getSize(X_img_path)>=1500000):图片超过多大需要进行压缩，默认1.5Mib，即1500000。
-    - (Line107)font = ImageFont.truetype(word_css,20):设置字体。word_css是106行的字体文件，20是字号。
-    - (Line109-118)for name, (top, right, bottom, left) in predictions...:调整脸部方框大小。
-    - (Line125-141)if isCprs...:调整姓名标签大小。
-    - (Line149)pa = "...:保持到tempFaceRecognition文件夹的图片名字。
-    - (Line373)FaceRecognitionKNN(model_name):供外部调用的方法。model_name是要使用的KNN_MOD文件夹中的模型文件。
-    - (Line379,384,387)__faceRec("tempSingle",model_name ,0.1)...:用来调整阀值。前面那个是识别的文件夹名。后面是DIST_THRESH（调整识别阀值，一次识别默认0.1.越小越精确，但识别出的人可能越少。二次识别是0.6）
-    - (Line392)FaceRecognitionKNN("KnownPeople"):单独运行请注意FaceRecognitionKNN("KnownPeople")中的参数。默认使用“KnownPeople”模型识别。
-    - (Line395)__killPro(5,"display"):main方法中的killPro方法，5表示图片显示延时5秒后关闭，display表示打开的图片在进程中的名字叫做"display"
+    - (Line75)if (__getSize(X_img_path)>=1500000):图片超过多大需要进行压缩，默认1.5Mib，即1500000。
+    - (Line109-110)font = ImageFont.truetype(word_css,20):设置字体。word_css是106行的字体文件，20是字号。
+    - (Line112-124)for name, (top, right, bottom, left) in predictions...:调整脸部方框大小。
+    - (Line127-145)if isCprs...:调整姓名标签大小。
+    - (Line152)pa = "...:保持到tempFaceRecognition文件夹的图片名字。
+    - (Line394)FaceRecognitionKNN(model_name):供外部调用的方法。model_name是要使用的KNN_MOD文件夹中的模型文件。
+    - (Line400,405,409)__faceRec("tempSingle",model_name ,0.1)...:用来调整阀值。前面那个是识别的文件夹名。后面是DIST_THRESH（调整识别阀值，一次识别默认0.1.越小越精确，但识别出的人可能越少。二次识别是0.6）
+    - (Line414)FaceRecognitionKNN("KnownPeople"):单独运行请注意FaceRecognitionKNN("KnownPeople")中的参数。默认使用“KnownPeople”模型识别。
+    - (Line341)__killPro(5,"display"):main方法中的killPro方法，5表示图片显示延时5秒后关闭，display表示打开的图片在进程中的名字叫做"display"
   * **fa-Moved2Data**:移动识别完的数据到FR_DATA数据库中，并清除tempXXX文件夹中的图片，INPUT_PIC要手动清除。
     - (Line59)Moving():供外部调用的方法。
 
-- 其他
+- 其他 - 未同步更新
 
   - ga-FindSomebody:从已识别的人物中搜索某人。
     - (Line64)FindSomebody(name):供外部调用的方法。name是检索词。
@@ -258,7 +258,20 @@
 
  ### 使用说明
 
- 注:标记“「￥」”的是要人工参与重复审核的步骤，保证数据正确性。
+ 注:**标记“「￥」”的是要人工参与重复审核的步骤，保证数据正确性。**
+
+#### 没耐心的看这里
+
+##### 训练模型
+
+1. 预筛选：将人物图片分类放于`Prescreen`文件夹，运行`ab_PrescreenFaceOnly`裁剪出人脸。检查没问题后运行`ba_AddKnownPerson`添加训练材料。
+2. 训练模型：直接运行`ca_TrainingOneProcessing`(单线程)或者`cb_Four_processing_training`(多线程)，在`KNN_MOD`文件夹中生成识别模型，记得重命名，去掉后面时间戳，默认模型名称是`KnownPeople`
+
+##### 人脸识别
+
+1. 检测人脸：将要识别的图片放置于`INPUT_PIC`文件夹。运行`da_FindFaces`检测人脸。检测完的人脸分类在temp开头的目录中。
+2. 识别人脸：默认识别模型名称是`KnownPeople`。运行`ea_FaceRecognition_KNN`或者`eb_FaceRecognition_KNN_MultiProcess`识别人脸。前者是单线程一次识别，后者是多线程分两次识别(后者第一次精确识别，第二次为模糊识别。`temp`文件夹中是模糊识别的结果，记得检查)。
+3. 识别结果检查、修改完成后，运行`fa_Moved2Data`添加数据到目标文件夹储存。
 
 #### 训练人脸识别模型
 
@@ -296,7 +309,7 @@
 
 3.确认完毕后，请运行AddKnownPerson.py ，这将会把Prescreen文件夹下的子文件夹添加到已知人像库（FR_DATA/A-KnownPeople/）中，咱们训练用的材料就是存在A-KnownPeople中。随后还会在FR_DATA/的D-Singleface文件夹中新建人物专属文件夹，以后识别出某个人的单人照片会储存在D-Singleface中的。
 
-二、训练人脸模型————建立已知人像库模型到KNN_MOD：
+**二、训练人脸模型————建立已知人像库模型到KNN_MOD**
 
 单线程：TrainingOneProcessing.py
 
@@ -312,7 +325,9 @@
 
 ![train](https://images.gitee.com/uploads/images/2020/0629/232434_ff411fcb_7423713.png "屏幕截图.png")
 
-三、待识别文件处理：既然模型训练好了，咱们就可以用来识别人脸了。
+#### 开始人脸识别
+
+**一、待识别文件处理：既然模型训练好了，咱们就可以用来识别人脸了**
 
 首先，把你要识别的照片扔进INPUT_PIC文件夹中，然后运行FindFace.py，这个脚本会帮你归类图片，分成单张面孔、多面孔和没有面孔三类图片。
 
@@ -326,7 +341,7 @@
 
 (2)去除你觉得多余的，不想识别的图片。
 
-四、开始识别：
+**二、开始识别**
 
 检查完毕，咱们就可以开始识别了！识别后你会发现，照片被重命名为识别出的人物的姓名。
 
@@ -348,7 +363,13 @@
 
 3.检查完毕后，运行Moved2Data.py添加识别后的文件到数据库中（在FR_DATA中）。
 
- ### 其他：
+```
+关于使用eb_FaceRecognition_KNN_MultiProcess.py
+多次识别，第一次较精准会将识别不出的图片放到temp文件夹。
+第二次识别才会对temp文件夹进行识别。
+```
+
+ #### 其他
 
 一、有演示用的Demo：
 
@@ -409,9 +430,13 @@ gbReFaceRecognition.py 重新识别已识别过的人物。
 
  再次感谢face_recognition项目 > https://github.com/ageitgey/face_recognition
 
- 1.3.3 更新：
-  - 添加了aa、ac的错误反馈，扩增了面部剪辑图。
-  - ca新增大图片压缩，加速分类。
-  - da、dc解决的中文乱码问题，更正了压缩图片的脸框位置和文字位置。
-  - dc中增加二次识别，第一次识别(仅单人)阀值为0.1(严格)，第一次识别的结果在temp中。第二次为0.6(模糊识别)。
-  - 新增ad，用来平衡训练模型中的照片数量。
+### 更新日志
+
+- 1.3.4——2022-01-14
+  - 优化了代码结构，并不打算再维护了，emmmm(偷懒，该打)
+- 1.3.3——2020-10
+    - 添加了aa、ac的错误反馈，扩增了面部剪辑图。
+    - ca新增大图片压缩，加速分类。
+    - da、dc解决的中文乱码问题，更正了压缩图片的脸框位置和文字位置。
+    - dc中增加二次识别，第一次识别(仅单人)阀值为0.1(严格)，第一次无法识别的结果放在temp中。第二次为0.6(模糊识别)，重新识别temp中的图片。
+    - 新增ad，用来平衡训练模型中的照片数量。
