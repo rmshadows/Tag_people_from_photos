@@ -15,7 +15,7 @@ from face_recognition.face_recognition_cli import image_files_in_folder
 import threading
 from datetime import datetime
 import os
-import Wait
+import m_Wait
 
 WINDOWS = os.sep == "\\"
 SS = os.sep
@@ -101,7 +101,7 @@ def __train(train_dir, model_save_path="", verbose=False, n_neighbors=None, knn_
                 if verbose:
                     print("\033[1;34;40m添加第({0}/{1})个文件 \033[0m:\033[1;38;40m".format(
                         num, TASK) + img_path + "\033[0m")
-                Wait.view(num, TASK, "31", " ")
+                m_Wait.view(num, TASK, "31", " ")
 
                 num += 1
                 faces_bboxes = face_locations(image)
@@ -156,7 +156,7 @@ def doTask(train_dir, listIn, id, color):
         for img_path in image_files_in_folder(join(train_dir, class_dir)):
             if verbose:
                 print("-"+id+"-进度:({0}/{1})".format(n, T))
-            Wait.view(n, T, color, " ")
+            m_Wait.view(n, T, color, " ")
             n += 1
             image = face_recognition.load_image_file(img_path)
             faces_bboxes = face_locations(image)
