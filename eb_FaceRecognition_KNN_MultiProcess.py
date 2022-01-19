@@ -406,11 +406,11 @@ def FaceRecognitionKNN(model_name):
     # 不确定的放在temp文件夹
     __move2temp()
     m_Wait.waiting(1)
-    print("处理单人面孔：(dist=0.6)")
-    __faceRec("temp", model_name, 0.6)
+    print("处理单人面孔：(dist=0.5)")
+    __faceRec("temp", model_name, 0.5)
     m_Wait.waiting(1)
-    print("处理多人面孔：(dist=0.6)")
-    __faceRec("tempMore", model_name, 0.6)
+    print("处理多人面孔：(dist=0.5)")
+    __faceRec("tempMore", model_name, 0.5)
     print("\033[1;32;41m{0}\033[0m".format(ERROR_REPORT))
     print("\033[5;31;40m--------识别完毕--------\033[0m")
 

@@ -63,11 +63,21 @@ def __moveMultiFacesData():
             shutil.move(src, dst)
 
 
+def __moveNoneFacesData():
+    for unit in os.listdir(join("tempNone")):
+        if unit != ".keep":
+            src = join("tempNone", unit)
+            dst = join("FR_DATA", "C-Noneface", unit)
+            # print(src+"  to  "+dst)
+            shutil.move(src, dst)
+
+
 # mainX
 def Moving():
     try:
         __moveSingleFaceData()
         __moveMultiFacesData()
+        __moveNoneFacesData()
     except Exception as e:
         raise e
     finally:
