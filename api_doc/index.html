@@ -1,0 +1,5438 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="description" content="None" />
+      <link rel="shortcut icon" href="img/favicon.ico" />
+    <title>项目文档</title>
+    <link rel="stylesheet" href="css/theme.css" />
+    <link rel="stylesheet" href="css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+        <link href="assets/_mkdocstrings.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Tag_people_from_photos";
+        var mkdocs_page_input_path = "index.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="." class="icon icon-home"> 项目文档
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href=".">Tag_people_from_photos</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#facerecognitionauxiliary">FaceRecognitionAuxiliary</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#aa_prescreenpicturepy">aa_PrescreenPicture.py</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#Tag_people_from_photos.FaceRecognitionAuxiliary.aa_PrescreenPicture">Tag_people_from_photos.FaceRecognitionAuxiliary.aa_PrescreenPicture</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#Tag_people_from_photos.FaceRecognitionAuxiliary.aa_PrescreenPicture.__checkFaces">__checkFaces()</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#Tag_people_from_photos.FaceRecognitionAuxiliary.aa_PrescreenPicture.__fex">__fex()</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#Tag_people_from_photos.FaceRecognitionAuxiliary.aa_PrescreenPicture.__killPro">__killPro()</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#Tag_people_from_photos.FaceRecognitionAuxiliary.aa_PrescreenPicture.__renameFile">__renameFile()</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#Tag_people_from_photos.FaceRecognitionAuxiliary.aa_PrescreenPicture.__rmFiles">__rmFiles()</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#Tag_people_from_photos.FaceRecognitionAuxiliary.aa_PrescreenPicture.filePrescreen">filePrescreen()</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#ab_prescreenfaceonlypy">ab_PrescreenFaceOnly.py</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#Tag_people_from_photos.FaceRecognitionAuxiliary.ab_PrescreenFaceOnly">Tag_people_from_photos.FaceRecognitionAuxiliary.ab_PrescreenFaceOnly</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#Tag_people_from_photos.FaceRecognitionAuxiliary.ab_PrescreenFaceOnly.__checkFaces">__checkFaces()</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#Tag_people_from_photos.FaceRecognitionAuxiliary.ab_PrescreenFaceOnly.__fex">__fex()</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#Tag_people_from_photos.FaceRecognitionAuxiliary.ab_PrescreenFaceOnly.__killPro">__killPro()</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#Tag_people_from_photos.FaceRecognitionAuxiliary.ab_PrescreenFaceOnly.__renameFile">__renameFile()</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#Tag_people_from_photos.FaceRecognitionAuxiliary.ab_PrescreenFaceOnly.__rmFiles">__rmFiles()</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#Tag_people_from_photos.FaceRecognitionAuxiliary.ab_PrescreenFaceOnly.filePrescreen">filePrescreen()</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#ba_addknownpersonpy">ba_AddKnownPerson.py</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#Tag_people_from_photos.FaceRecognitionAuxiliary.ba_AddKnownPerson">Tag_people_from_photos.FaceRecognitionAuxiliary.ba_AddKnownPerson</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#Tag_people_from_photos.FaceRecognitionAuxiliary.ba_AddKnownPerson.__addPerson">__addPerson()</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#Tag_people_from_photos.FaceRecognitionAuxiliary.ba_AddKnownPerson.__addPicture">__addPicture()</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#Tag_people_from_photos.FaceRecognitionAuxiliary.ba_AddKnownPerson.__addSingleDir">__addSingleDir()</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#Tag_people_from_photos.FaceRecognitionAuxiliary.ba_AddKnownPerson.addKnowPeople">addKnowPeople()</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#ca_trainingoneprocessingpy">ca_TrainingOneProcessing.py</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#Tag_people_from_photos.FaceRecognitionAuxiliary.ca_TrainingOneProcessing">Tag_people_from_photos.FaceRecognitionAuxiliary.ca_TrainingOneProcessing</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#Tag_people_from_photos.FaceRecognitionAuxiliary.ca_TrainingOneProcessing.__calcTask">__calcTask()</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#Tag_people_from_photos.FaceRecognitionAuxiliary.ca_TrainingOneProcessing.__train">__train()</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#Tag_people_from_photos.FaceRecognitionAuxiliary.ca_TrainingOneProcessing.main">main()</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#cb_four_processing_trainingpy">cb_Four_processing_training.py</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#Tag_people_from_photos.FaceRecognitionAuxiliary.cb_Four_processing_training">Tag_people_from_photos.FaceRecognitionAuxiliary.cb_Four_processing_training</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#Tag_people_from_photos.FaceRecognitionAuxiliary.cb_Four_processing_training.__calcTask">__calcTask()</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#Tag_people_from_photos.FaceRecognitionAuxiliary.cb_Four_processing_training.__train">__train()</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#Tag_people_from_photos.FaceRecognitionAuxiliary.cb_Four_processing_training.main">main()</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#cctraining_multi_processing_of_tenpy">ccTraining_multi_processing_of_Ten.py</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#Tag_people_from_photos.FaceRecognitionAuxiliary.ccTraining_multi_processing_of_Ten">Tag_people_from_photos.FaceRecognitionAuxiliary.ccTraining_multi_processing_of_Ten</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#da_findfacespy">da_FindFaces.py</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#Tag_people_from_photos.FaceRecognitionAuxiliary.da_FindFaces">Tag_people_from_photos.FaceRecognitionAuxiliary.da_FindFaces</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#Tag_people_from_photos.FaceRecognitionAuxiliary.da_FindFaces.FindFaces">FindFaces()</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#Tag_people_from_photos.FaceRecognitionAuxiliary.da_FindFaces.__checkFaces">__checkFaces()</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#Tag_people_from_photos.FaceRecognitionAuxiliary.da_FindFaces.__copyFiles">__copyFiles()</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#Tag_people_from_photos.FaceRecognitionAuxiliary.da_FindFaces.__fex">__fex()</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#Tag_people_from_photos.FaceRecognitionAuxiliary.da_FindFaces.__fileCtrl">__fileCtrl()</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#Tag_people_from_photos.FaceRecognitionAuxiliary.da_FindFaces.__getSize">__getSize()</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#Tag_people_from_photos.FaceRecognitionAuxiliary.da_FindFaces.__renameFile">__renameFile()</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#ea_facerecognition_knnpy">ea_FaceRecognition_KNN.py</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#Tag_people_from_photos.FaceRecognitionAuxiliary.ea_FaceRecognition_KNN">Tag_people_from_photos.FaceRecognitionAuxiliary.ea_FaceRecognition_KNN</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#Tag_people_from_photos.FaceRecognitionAuxiliary.ea_FaceRecognition_KNN.__predict">__predict()</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#Tag_people_from_photos.FaceRecognitionAuxiliary.ea_FaceRecognition_KNN.__show_prediction_labels_on_image">__show_prediction_labels_on_image()</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#eb_facerecognition_knn_multiprocesspy">eb_FaceRecognition_KNN_MultiProcess.py</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#Tag_people_from_photos.FaceRecognitionAuxiliary.eb_FaceRecognition_KNN_MultiProcess">Tag_people_from_photos.FaceRecognitionAuxiliary.eb_FaceRecognition_KNN_MultiProcess</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#Tag_people_from_photos.FaceRecognitionAuxiliary.eb_FaceRecognition_KNN_MultiProcess.__firmly2tempS">__firmly2tempS()</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#Tag_people_from_photos.FaceRecognitionAuxiliary.eb_FaceRecognition_KNN_MultiProcess.__move2temp">__move2temp()</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#Tag_people_from_photos.FaceRecognitionAuxiliary.eb_FaceRecognition_KNN_MultiProcess.__show_prediction_labels_on_image">__show_prediction_labels_on_image()</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#fa_moved2datapy">fa_Moved2Data.py</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#Tag_people_from_photos.FaceRecognitionAuxiliary.fa_Moved2Data">Tag_people_from_photos.FaceRecognitionAuxiliary.fa_Moved2Data</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#ga_findsomebodypy">ga_FindSomebody.py</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#Tag_people_from_photos.FaceRecognitionAuxiliary.ga_FindSomebody">Tag_people_from_photos.FaceRecognitionAuxiliary.ga_FindSomebody</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#m_balancetrainpy">m_BalanceTrain.py</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#Tag_people_from_photos.FaceRecognitionAuxiliary.m_BalanceTrain">Tag_people_from_photos.FaceRecognitionAuxiliary.m_BalanceTrain</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#m_clean_up_fredpy">m_CLEAN_UP_FRed.py</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#Tag_people_from_photos.FaceRecognitionAuxiliary.m_CLEAN_UP_FRed">Tag_people_from_photos.FaceRecognitionAuxiliary.m_CLEAN_UP_FRed</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#m_clean_up_temppy">m_CLEAN_UP_TEMP.py</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#Tag_people_from_photos.FaceRecognitionAuxiliary.m_CLEAN_UP_TEMP">Tag_people_from_photos.FaceRecognitionAuxiliary.m_CLEAN_UP_TEMP</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#m_killpy">m_Kill.py</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#Tag_people_from_photos.FaceRecognitionAuxiliary.m_Kill">Tag_people_from_photos.FaceRecognitionAuxiliary.m_Kill</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#m_waitpy">m_Wait.py</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#Tag_people_from_photos.FaceRecognitionAuxiliary.m_Wait">Tag_people_from_photos.FaceRecognitionAuxiliary.m_Wait</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#for_testing">for_testing</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#t-facerecognitiondemopy">t-FaceRecognitionDemo.py</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#Tag_people_from_photos.for_testing.t-FaceRecognitionDemo">Tag_people_from_photos.for_testing.t-FaceRecognitionDemo</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#t-gbrefacerecognitionpy">t-gbReFaceRecognition.py</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#Tag_people_from_photos.for_testing.t-gbReFaceRecognition">Tag_people_from_photos.for_testing.t-gbReFaceRecognition</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#t-trainingdemopy">t-TrainingDemo.py</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#Tag_people_from_photos.for_testing.t-TrainingDemo">Tag_people_from_photos.for_testing.t-TrainingDemo</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#aa_prescreenpicturepy_1">aa_PrescreenPicture.py</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#Tag_people_from_photos.aa_PrescreenPicture">Tag_people_from_photos.aa_PrescreenPicture</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#Tag_people_from_photos.aa_PrescreenPicture.__checkFaces">__checkFaces()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#Tag_people_from_photos.aa_PrescreenPicture.__fex">__fex()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#Tag_people_from_photos.aa_PrescreenPicture.__killPro">__killPro()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#Tag_people_from_photos.aa_PrescreenPicture.__renameFile">__renameFile()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#Tag_people_from_photos.aa_PrescreenPicture.__rmFiles">__rmFiles()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#Tag_people_from_photos.aa_PrescreenPicture.filePrescreen">filePrescreen()</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#ab_prescreenfaceonlypy_1">ab_PrescreenFaceOnly.py</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#Tag_people_from_photos.ab_PrescreenFaceOnly">Tag_people_from_photos.ab_PrescreenFaceOnly</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#Tag_people_from_photos.ab_PrescreenFaceOnly.__checkFaces">__checkFaces()</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#Tag_people_from_photos.ab_PrescreenFaceOnly.__checkFaces--find-faces-in-pictures">Find faces in pictures</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#Tag_people_from_photos.ab_PrescreenFaceOnly.__fex">__fex()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#Tag_people_from_photos.ab_PrescreenFaceOnly.__killPro">__killPro()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#Tag_people_from_photos.ab_PrescreenFaceOnly.__renameFile">__renameFile()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#Tag_people_from_photos.ab_PrescreenFaceOnly.__rmFiles">__rmFiles()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#Tag_people_from_photos.ab_PrescreenFaceOnly.filePrescreen">filePrescreen()</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#ba_addknownpersonpy_1">ba_AddKnownPerson.py</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#Tag_people_from_photos.ba_AddKnownPerson">Tag_people_from_photos.ba_AddKnownPerson</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#Tag_people_from_photos.ba_AddKnownPerson.__addPerson">__addPerson()</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#Tag_people_from_photos.ba_AddKnownPerson.__addPerson--_1">新建人物</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#Tag_people_from_photos.ba_AddKnownPerson.__addPicture">__addPicture()</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#Tag_people_from_photos.ba_AddKnownPerson.__addPicture--_1">添加到已有</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#Tag_people_from_photos.ba_AddKnownPerson.__addSingleDir">__addSingleDir()</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#Tag_people_from_photos.ba_AddKnownPerson.__addSingleDir--_1">单人目录添加</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#Tag_people_from_photos.ba_AddKnownPerson.addKnowPeople">addKnowPeople()</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#Tag_people_from_photos.ba_AddKnownPerson.addKnowPeople--x">主要方法X</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#ca_trainingoneprocessingpy_1">ca_TrainingOneProcessing.py</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#Tag_people_from_photos.ca_TrainingOneProcessing">Tag_people_from_photos.ca_TrainingOneProcessing</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#Tag_people_from_photos.ca_TrainingOneProcessing.__calcTask">__calcTask()</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#Tag_people_from_photos.ca_TrainingOneProcessing.__calcTask--_1">计算任务总量</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#Tag_people_from_photos.ca_TrainingOneProcessing.__train">__train()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#Tag_people_from_photos.ca_TrainingOneProcessing.main">main()</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#Tag_people_from_photos.ca_TrainingOneProcessing.main--mainx">mainX</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#cb_four_processing_trainingpy_1">cb_Four_processing_training.py</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#Tag_people_from_photos.cb_Four_processing_training">Tag_people_from_photos.cb_Four_processing_training</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#Tag_people_from_photos.cb_Four_processing_training.__calcTask">__calcTask()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#Tag_people_from_photos.cb_Four_processing_training.__train">__train()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#Tag_people_from_photos.cb_Four_processing_training.main">main()</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#Tag_people_from_photos.cb_Four_processing_training.main--mainx">mainX</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#cctraining_multi_processing_of_tenpy_1">ccTraining_multi_processing_of_Ten.py</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#Tag_people_from_photos.ccTraining_multi_processing_of_Ten">Tag_people_from_photos.ccTraining_multi_processing_of_Ten</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#da_findfacespy_1">da_FindFaces.py</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#Tag_people_from_photos.da_FindFaces">Tag_people_from_photos.da_FindFaces</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#Tag_people_from_photos.da_FindFaces.FindFaces">FindFaces()</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#Tag_people_from_photos.da_FindFaces.FindFaces--mainx">mainX</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#Tag_people_from_photos.da_FindFaces.__checkFaces">__checkFaces()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#Tag_people_from_photos.da_FindFaces.__copyFiles">__copyFiles()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#Tag_people_from_photos.da_FindFaces.__fex">__fex()</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#Tag_people_from_photos.da_FindFaces.__fex--_1">返回扩展名</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#Tag_people_from_photos.da_FindFaces.__fileCtrl">__fileCtrl()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#Tag_people_from_photos.da_FindFaces.__getSize">__getSize()</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#Tag_people_from_photos.da_FindFaces.__getSize--_1">获取文件大小</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#Tag_people_from_photos.da_FindFaces.__renameFile">__renameFile()</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#Tag_people_from_photos.da_FindFaces.__renameFile--_1">重命名</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#ea_facerecognition_knnpy_1">ea_FaceRecognition_KNN.py</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#Tag_people_from_photos.ea_FaceRecognition_KNN">Tag_people_from_photos.ea_FaceRecognition_KNN</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#Tag_people_from_photos.ea_FaceRecognition_KNN.__predict">__predict()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#Tag_people_from_photos.ea_FaceRecognition_KNN.__show_prediction_labels_on_image">__show_prediction_labels_on_image()</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#eb_facerecognition_knn_multiprocesspy_1">eb_FaceRecognition_KNN_MultiProcess.py</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#Tag_people_from_photos.eb_FaceRecognition_KNN_MultiProcess">Tag_people_from_photos.eb_FaceRecognition_KNN_MultiProcess</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#Tag_people_from_photos.eb_FaceRecognition_KNN_MultiProcess.__firmly2tempS">__firmly2tempS()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#Tag_people_from_photos.eb_FaceRecognition_KNN_MultiProcess.__move2temp">__move2temp()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#Tag_people_from_photos.eb_FaceRecognition_KNN_MultiProcess.__show_prediction_labels_on_image">__show_prediction_labels_on_image()</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#fa_moved2datapy_1">fa_Moved2Data.py</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#Tag_people_from_photos.fa_Moved2Data">Tag_people_from_photos.fa_Moved2Data</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#ga_findsomebodypy_1">ga_FindSomebody.py</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#Tag_people_from_photos.ga_FindSomebody">Tag_people_from_photos.ga_FindSomebody</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#m_balancetrainpy_1">m_BalanceTrain.py</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#Tag_people_from_photos.m_BalanceTrain">Tag_people_from_photos.m_BalanceTrain</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#m_clean_up_fredpy_1">m_CLEAN_UP_FRed.py</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#Tag_people_from_photos.m_CLEAN_UP_FRed">Tag_people_from_photos.m_CLEAN_UP_FRed</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#m_clean_up_temppy_1">m_CLEAN_UP_TEMP.py</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#Tag_people_from_photos.m_CLEAN_UP_TEMP">Tag_people_from_photos.m_CLEAN_UP_TEMP</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#m_killpy_1">m_Kill.py</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#Tag_people_from_photos.m_Kill">Tag_people_from_photos.m_Kill</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#m_waitpy_1">m_Wait.py</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#Tag_people_from_photos.m_Wait">Tag_people_from_photos.m_Wait</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href=".">项目文档</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="." class="icon icon-home" alt="Docs"></a> &raquo;</li><li>Tag_people_from_photos</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="tag_people_from_photos">Tag_people_from_photos</h1>
+<h2 id="facerecognitionauxiliary">FaceRecognitionAuxiliary</h2>
+<h3 id="aa_prescreenpicturepy">aa_PrescreenPicture.py</h3>
+
+
+<div class="doc doc-object doc-module">
+
+
+<a id="Tag_people_from_photos.FaceRecognitionAuxiliary.aa_PrescreenPicture"></a>
+  <div class="doc doc-contents first">
+  
+      <p>训练材料预处理，过滤掉多面孔、无面孔图片。
+请将训练材料放在Prescreen文件夹中。
+结构要求：
+    -+-PersonA-+-1.jpg
+     |         +-2.jpg
+     |         +-...
+     |
+     +-PersonB-+-1.jpg
+     |         +-2.jpg
+     |         +-...
+     |
+     +-PersonC-+-1.jpg
+               +-2.jpg
+               +-...</p>
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h4 id="Tag_people_from_photos.FaceRecognitionAuxiliary.aa_PrescreenPicture.__checkFaces" class="doc doc-heading">
+<code class="highlight language-python">__checkFaces(file)</code>
+
+</h4>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Find faces in pictures
+:param file: 图片路径
+:return:</p>
+
+      <details class="quote">
+        <summary>Source code in <code>Tag_people_from_photos/FaceRecognitionAuxiliary/aa_PrescreenPicture.py</code></summary>
+        <pre class="highlight"><code class="language-python">def __checkFaces(file):
+    """
+    Find faces in pictures
+    :param file: 图片路径
+    :return:
+    """
+    global ERROR_INFO
+    try:
+        # Load the jpg file into a numpy array
+        inputPic = file
+        image = face_recognition.load_image_file(inputPic)
+        # Find all the faces in the image using the default HOG-based model.
+        # This method is fairly accurate, but not as accurate as the CNN model and not GPU accelerated.
+        # See also: find_faces_in_picture_cnn.py
+        face_locations = face_recognition.face_locations(image)
+        faceNum = len(face_locations)
+        print("Found \033[1;33;40m{0}\033[0m: face(s) in \033[1;35;40m{1}\033[0m: photograph.".format(faceNum, file),
+              end=" ==&gt; ")
+        for face_location in face_locations:
+            # Print the location of each face in this image
+            top, right, bottom, left = face_location
+            print(
+                "A face is located at pixel location Top: {}, Left: {}, Bottom: {}, Right: {}".format(top, left, bottom,
+                                                                                                      right))
+            # You can access the actual face itself like this:
+            face_image = image[top:bottom, left:right]
+            pil_image = Image.fromarray(face_image)
+            if (SEE_ALL_FACES):
+                pil_image.show()
+        # pil_image.save(file)
+    except Exception as e:
+        ERROR_INFO = "{0}\n{1}".format(ERROR_INFO, e)
+        print("\033[1;32;41m{0}\033[0m".format(e))
+        raise e
+    return faceNum</code></pre>
+      </details>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h4 id="Tag_people_from_photos.FaceRecognitionAuxiliary.aa_PrescreenPicture.__fex" class="doc doc-heading">
+<code class="highlight language-python">__fex(path)</code>
+
+</h4>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>获取扩展名
+:param path: 文件路径
+:return: 扩展名</p>
+
+      <details class="quote">
+        <summary>Source code in <code>Tag_people_from_photos/FaceRecognitionAuxiliary/aa_PrescreenPicture.py</code></summary>
+        <pre class="highlight"><code class="language-python">def __fex(path):
+    """
+    获取扩展名
+    :param path: 文件路径
+    :return: 扩展名
+    """
+    ex = os.path.splitext(path)[1]
+    # print("__fex(path)返回扩展名:{}".format(ex[1:]))
+    return ex[1:]</code></pre>
+      </details>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h4 id="Tag_people_from_photos.FaceRecognitionAuxiliary.aa_PrescreenPicture.__killPro" class="doc doc-heading">
+<code class="highlight language-python">__killPro(second, pro)</code>
+
+</h4>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>延时杀死某进程
+:param second:
+:param pro: 进程名
+:return:</p>
+
+      <details class="quote">
+        <summary>Source code in <code>Tag_people_from_photos/FaceRecognitionAuxiliary/aa_PrescreenPicture.py</code></summary>
+        <pre class="highlight"><code class="language-python">def __killPro(second, pro):
+    """
+    延时杀死某进程
+    :param second:
+    :param pro: 进程名
+    :return:
+    """
+    time.sleep(second)
+    print("展示时间：" + str(second) + "秒")
+    for proc in psutil.process_iter():  # 遍历当前process
+        if proc.name() == pro:  # 如果process的name是display
+            proc.kill()  # 关闭该process</code></pre>
+      </details>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h4 id="Tag_people_from_photos.FaceRecognitionAuxiliary.aa_PrescreenPicture.__renameFile" class="doc doc-heading">
+<code class="highlight language-python">__renameFile()</code>
+
+</h4>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>重命名文件
+将Prescreen中的文件重命名为 {序号}.{扩展名}
+:return:</p>
+
+      <details class="quote">
+        <summary>Source code in <code>Tag_people_from_photos/FaceRecognitionAuxiliary/aa_PrescreenPicture.py</code></summary>
+        <pre class="highlight"><code class="language-python">def __renameFile():
+    """
+    重命名文件
+    将Prescreen中的文件重命名为 {序号}.{扩展名}
+    :return:
+    """
+    # ./Prescreen目录
+    prescreen_path = join("Prescreen")
+    # person_name : Prescreen/person_name
+    for person_name in os.listdir(prescreen_path):
+        if person_name != ".keep":  # 排除.keep文件
+            person_path = join("Prescreen", person_name)
+            person_pics = os.listdir(person_path)  # ./Prescreen/person_name/*
+            # 首先将文件全部随机重命名
+            for picture in person_pics:  # ./Prescreen/person_name/xxx.jpg
+                get_time = datetime.now()
+                # ./Prescreen/person_name/xxx.jpg
+                src_file = join(prescreen_path, person_name, picture)
+                # dst=./Prescreen/{人名}/{时间后面的秒数}.{扩展名}
+                sec_str = str(get_time)[17:]
+                dst_file = join(prescreen_path, person_name,
+                                "{0}.{1}".format(sec_str.replace(" ", ""), __fex(src_file)))
+                try:
+                    # 重命名
+                    os.rename(src_file, dst_file)
+                except Exception as e:
+                    print(e)
+            person_pics = os.listdir(person_path)
+            n = 1
+            # 接下来按序号命名
+            # picture :Prescreen/person_name/xxx
+            for picture in person_pics:
+                # Prescreen/person_name/xxx.jpg
+                src_file = join(person_path, picture)
+                # dst=Prescreen/person_name/{n}.{ext}
+                dst_file = join(person_path, "{0}.{1}".format(n, __fex(src_file)))
+                try:
+                    os.rename(src_file, dst_file)
+                except Exception as e:
+                    print(e)
+                n += 1</code></pre>
+      </details>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h4 id="Tag_people_from_photos.FaceRecognitionAuxiliary.aa_PrescreenPicture.__rmFiles" class="doc doc-heading">
+<code class="highlight language-python">__rmFiles()</code>
+
+</h4>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>删除Prescreen中无法识别的内容
+:return:</p>
+
+      <details class="quote">
+        <summary>Source code in <code>Tag_people_from_photos/FaceRecognitionAuxiliary/aa_PrescreenPicture.py</code></summary>
+        <pre class="highlight"><code class="language-python">def __rmFiles():
+    """
+    删除Prescreen中无法识别的内容
+    :return:
+    """
+    print("\nDelete files...")
+    prescreen_path = join("Prescreen")
+    # 显示预筛选文件夹下的人物文件夹#./Prescreen/*
+    for person in os.listdir(prescreen_path):  # ./Prescreen/person
+        if person != ".keep":
+            if WINDOWS:
+                try:
+                    # del .\Prescreen\{person}\rm*
+                    commandInput = 'del /S /Q .\\Prescreen\\' + person + "\\rm*"
+                    commandImplementation = os.popen(commandInput)
+                    print("Del...")
+                except Exception as e:
+                    print(e)
+                try:
+                    # del .\Prescreen\{person}\rm*
+                    commandInput = 'del /S /Q .\\Prescreen\\' + person + "\\MF*"
+                    commandImplementation = os.popen(commandInput)
+                    print("Del...")
+                except Exception as e:
+                    print(e)
+            else:
+                try:
+                    # rm ./Prescreen/{person}/rm*
+                    commandInput = 'rm ./Prescreen/' + person + "/rm*"
+                    commandImplementation = os.popen(commandInput)
+                except Exception as e:
+                    print("REMOVE FILE ERROR.")
+                try:
+                    # rm ./Prescreen/{person}/rm*
+                    commandInput = 'rm ./Prescreen/' + person + "/MF*"
+                    commandImplementation = os.popen(commandInput)
+                except Exception as e:
+                    print("REMOVE FILE ERROR.")</code></pre>
+      </details>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h4 id="Tag_people_from_photos.FaceRecognitionAuxiliary.aa_PrescreenPicture.filePrescreen" class="doc doc-heading">
+<code class="highlight language-python">filePrescreen()</code>
+
+</h4>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>供外部调用的方法
+:return:</p>
+
+      <details class="quote">
+        <summary>Source code in <code>Tag_people_from_photos/FaceRecognitionAuxiliary/aa_PrescreenPicture.py</code></summary>
+        <pre class="highlight"><code class="language-python">def filePrescreen():
+    """
+    供外部调用的方法
+    :return:
+    """
+    print("Prescreen Start......\n")
+    __renameFile()
+    prescreen_path = join("Prescreen")
+    # ./Prescreen/*
+    for person_name in os.listdir(prescreen_path):  # ./Prescreen/person_name/
+        if person_name != ".keep":
+            # ./Prescreen/person_name/
+            person_path = join(prescreen_path, person_name)
+            # ./Prescreen/person_name/*
+            pics = os.listdir(person_path)
+            if (len(pics) &gt;= 20) and (not WINDOWS):  # ./Prescreen/person_name/下的图片20张以上
+                taskNum = int(len(pics) / 4)
+                taskLef = len(pics) % 4
+                # 创建新线程
+                thread1 = __TaskSubmit("1", pics[0:taskNum], person_name)
+                thread2 = __TaskSubmit("2", pics[taskNum:taskNum * 2], person_name)
+                thread3 = __TaskSubmit("3", pics[taskNum * 2:taskNum * 3], person_name)
+                thread4 = __TaskSubmit("4", pics[taskNum * 3:taskNum * 4], person_name)
+                if taskLef == 0:
+                    thread1.start()
+                    thread2.start()
+                    thread3.start()
+                    thread4.start()
+                    thread1.join()
+                    thread2.join()
+                    thread3.join()
+                    thread4.join()
+                else:
+                    thread5 = __TaskSubmit("5", pics[taskNum * 4:taskNum * 4 + taskLef], person_name)
+                    thread1.start()
+                    thread2.start()
+                    thread3.start()
+                    thread4.start()
+                    thread5.start()
+                    thread1.join()
+                    thread2.join()
+                    thread3.join()
+                    thread4.join()
+                    thread5.join()
+            else:
+                for picture in pics:  # ./Prescreen/person_name/xxx.jpg
+                    get_time = datetime.now()  # 获取当前时间
+                    # "./Prescreen/"+person_name+ "/" +picture
+                    src_file = join(person_path, picture)
+                    if __checkFaces(src_file) != 1:  # 如果脸的数量不是一的不要
+                        # ./Prescreen/person_name/rm{get_time}
+                        dst_file = join(person_path, "rm{0}".format(str(get_time)[17:].replace(" ", "")))
+                    else:
+                        # ./Prescreen/person_name/1F{时间}.{扩展名}
+                        dst_file = join(person_path,
+                                        "1F{0}.{1}".format(str(get_time)[17:].replace(" ", ""), __fex(src_file)))
+                    try:
+                        os.rename(src_file, dst_file)
+                    except Exception as e:
+                        print(e)
+    __rmFiles()</code></pre>
+      </details>
+  </div>
+
+</div>
+
+
+
+  </div>
+
+  </div>
+
+</div><h3 id="ab_prescreenfaceonlypy">ab_PrescreenFaceOnly.py</h3>
+
+
+<div class="doc doc-object doc-module">
+
+
+<a id="Tag_people_from_photos.FaceRecognitionAuxiliary.ab_PrescreenFaceOnly"></a>
+  <div class="doc doc-contents first">
+  
+      <p>训练材料预处理，保存成单个脸部图片
+只有当你的训练材料中有很多多人照片才这么做
+请将训练材料放在Prescreen文件夹中。
+结构要求：
+    -+-PersonA-+-1.jpg
+     |         +-2.jpg
+     |         +-...
+     |
+     +-PersonB-+-1.jpg
+     |         +-2.jpg
+     |         +-...
+     |
+     +-PersonC-+-1.jpg
+               +-2.jpg
+               +-...</p>
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h4 id="Tag_people_from_photos.FaceRecognitionAuxiliary.ab_PrescreenFaceOnly.__checkFaces" class="doc doc-heading">
+<code class="highlight language-python">__checkFaces(file, person)</code>
+
+</h4>
+
+
+  <div class="doc doc-contents ">
+  
+      <h5 id="Tag_people_from_photos.FaceRecognitionAuxiliary.ab_PrescreenFaceOnly.__checkFaces--find-faces-in-pictures">Find faces in pictures</h5>
+<p>并裁剪人脸
+FRS开头是裁剪后的文件
+:param file: 文件路径裁剪的文件路径
+:param person: 裁剪后要保存到的人名文件夹
+:return:</p>
+
+      <details class="quote">
+        <summary>Source code in <code>Tag_people_from_photos/FaceRecognitionAuxiliary/ab_PrescreenFaceOnly.py</code></summary>
+        <pre class="highlight"><code class="language-python">def __checkFaces(file, person):
+    """
+    # Find faces in pictures
+    并裁剪人脸
+    FRS开头是裁剪后的文件
+    :param file: 文件路径裁剪的文件路径
+    :param person: 裁剪后要保存到的人名文件夹
+    :return:
+    """
+    global ERROR_INFO
+    try:
+        # Load the jpg file into a numpy array
+        inputPic = file
+        image = face_recognition.load_image_file(inputPic)
+        # Find all the faces in the image using the default HOG-based model.
+        # This method is fairly accurate, but not as accurate as the CNN model and not GPU accelerated.
+        # See also: find_faces_in_picture_cnn.py
+        # CNN:
+        # face_locations = face_recognition.face_locations(image, number_of_times_to_upsample=0, model="cnn")
+        # 这里使用HOG模型
+        face_locations = face_recognition.face_locations(image)
+        faceNum = len(face_locations)
+        print("Found \033[1;33;40m{0}\033[0m: face(s) in \033[1;35;40m{1}\033[0m: photograph.".format(faceNum, file),
+              end=" ==&gt; ")
+        for face_location in face_locations:
+            # Print the location of each face in this image
+            top, right, bottom, left = face_location
+            print("A face is located at pixel location Top: "
+                  "{}, Left: {}, Bottom: {}, Right: {}".format(top, left, bottom,right))
+            if (top - 200 &lt; 0):
+                if (top - 150 &lt; 0):
+                    if (top - 100 &lt; 0):
+                        T = top
+                    else:
+                        T = top - 100
+                else:
+                    T = top - 150
+            else:
+                T = top - 200
+            B = bottom + 100
+            if (left - 100 &lt; 0):
+                L = left
+            else:
+                L = left - 100
+            R = right + 100
+            tsleep(0.2)
+            print(T, B, L, R)
+            face_image = image[T:B, L:R]
+            pil_image = Image.fromarray(face_image)
+            if (SEE_ALL_FACES):
+                pil_image.show()
+            get_time = str(datetime.now())[17:]
+            # .{/}Prescreen{/}{person}{/}FRS{time}
+            pil_image.save(join("Prescreen", person, "FRS{0}.{1}".format(get_time, __fex(file))))
+    except Exception as e:
+        ERROR_INFO = "{0}\n{1}".format(ERROR_INFO, e)
+        print("\033[1;32;41m{0}\033[0m".format(e))
+        raise e
+    return faceNum</code></pre>
+      </details>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h4 id="Tag_people_from_photos.FaceRecognitionAuxiliary.ab_PrescreenFaceOnly.__fex" class="doc doc-heading">
+<code class="highlight language-python">__fex(path)</code>
+
+</h4>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>获取扩展名
+:param path:
+:return:</p>
+
+      <details class="quote">
+        <summary>Source code in <code>Tag_people_from_photos/FaceRecognitionAuxiliary/ab_PrescreenFaceOnly.py</code></summary>
+        <pre class="highlight"><code class="language-python">def __fex(path):
+    """
+    获取扩展名
+    :param path:
+    :return:
+    """
+    ex = os.path.splitext(path)[1]
+    return ex[1:]</code></pre>
+      </details>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h4 id="Tag_people_from_photos.FaceRecognitionAuxiliary.ab_PrescreenFaceOnly.__killPro" class="doc doc-heading">
+<code class="highlight language-python">__killPro(second, pro)</code>
+
+</h4>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>延时杀死进程
+:param second:
+:param pro: 进程名
+:return:</p>
+
+      <details class="quote">
+        <summary>Source code in <code>Tag_people_from_photos/FaceRecognitionAuxiliary/ab_PrescreenFaceOnly.py</code></summary>
+        <pre class="highlight"><code class="language-python">def __killPro(second, pro):
+    """
+    延时杀死进程
+    :param second:
+    :param pro: 进程名
+    :return:
+    """
+    time.sleep(second)
+    print("展示时间：" + str(second) + "秒")
+    for proc in psutil.process_iter():  # 遍历当前process
+        if proc.name() == pro:  # 如果process的name是display
+            proc.kill()  # 关闭该process</code></pre>
+      </details>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h4 id="Tag_people_from_photos.FaceRecognitionAuxiliary.ab_PrescreenFaceOnly.__renameFile" class="doc doc-heading">
+<code class="highlight language-python">__renameFile()</code>
+
+</h4>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>重命名文件
+将Prescreen中的文件重命名为 {序号}.{扩展名}
+:return:</p>
+
+      <details class="quote">
+        <summary>Source code in <code>Tag_people_from_photos/FaceRecognitionAuxiliary/ab_PrescreenFaceOnly.py</code></summary>
+        <pre class="highlight"><code class="language-python">def __renameFile():
+    """
+    重命名文件
+    将Prescreen中的文件重命名为 {序号}.{扩展名}
+    :return:
+    """
+    # ./Prescreen目录
+    prescreen_path = join("Prescreen")
+    # person_name : Prescreen/person_name
+    for person_name in os.listdir(prescreen_path):
+        if person_name != ".keep":  # 排除.keep文件
+            person_path = join("Prescreen", person_name)
+            person_pics = os.listdir(person_path)  # ./Prescreen/person_name/*
+            # 首先将文件全部随机重命名
+            for picture in person_pics:  # ./Prescreen/person_name/xxx.jpg
+                get_time = datetime.now()
+                # ./Prescreen/person_name/xxx.jpg
+                src_file = join(prescreen_path, person_name, picture)
+                # dst=./Prescreen/{人名}/{时间后面的秒数}.{扩展名}
+                sec_str = str(get_time)[17:]
+                dst_file = join(prescreen_path, person_name, "{0}.{1}".format(sec_str.replace(" ", ""), __fex(src_file)))
+                try:
+                    # 重命名
+                    os.rename(src_file, dst_file)
+                except Exception as e:
+                    print(e)
+            person_pics = os.listdir(person_path)
+            n = 1
+            # 接下来按序号命名
+            # picture :Prescreen/person_name/xxx
+            for picture in person_pics:
+                # Prescreen/person_name/xxx.jpg
+                src_file = join(person_path, picture)
+                # dst=Prescreen/person_name/{n}.{ext}
+                dst_file = join(person_path, "{0}.{1}".format(n, __fex(src_file)))
+                try:
+                    os.rename(src_file, dst_file)
+                except Exception as e:
+                    print(e)
+                n += 1</code></pre>
+      </details>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h4 id="Tag_people_from_photos.FaceRecognitionAuxiliary.ab_PrescreenFaceOnly.__rmFiles" class="doc doc-heading">
+<code class="highlight language-python">__rmFiles()</code>
+
+</h4>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>删除无法识别人脸的文件
+:return:</p>
+
+      <details class="quote">
+        <summary>Source code in <code>Tag_people_from_photos/FaceRecognitionAuxiliary/ab_PrescreenFaceOnly.py</code></summary>
+        <pre class="highlight"><code class="language-python">def __rmFiles():
+    """
+    删除无法识别人脸的文件
+    :return:
+    """
+    print("\nDelete files...")
+    prescreen_path = join("Prescreen")
+    # 显示预筛选文件夹下的人物文件夹#./Prescreen/*
+    for person in os.listdir(prescreen_path):  # ./Prescreen/person
+        if person != ".keep":
+            if WINDOWS:
+                try:
+                    # del .\Prescreen\{person}\rm*
+                    commandInput = 'del /S /Q .\\Prescreen\\' + person + "\\rm*"
+                    commandImplementation = os.popen(commandInput)
+                    print("Del...")
+                except Exception as e:
+                    print(e)
+                try:
+                    # del .\Prescreen\{person}\rm*
+                    commandInput = 'del /S /Q .\\Prescreen\\' + person + "\\MF*"
+                    commandImplementation = os.popen(commandInput)
+                    print("Del...")
+                except Exception as e:
+                    print(e)
+            else:
+                try:
+                    # rm ./Prescreen/{person}/rm*
+                    commandInput = 'rm ./Prescreen/' + person + "/rm*"
+                    commandImplementation = os.popen(commandInput)
+                except Exception as e:
+                    print("REMOVE FILE ERROR.")
+                try:
+                    # rm ./Prescreen/{person}/rm*
+                    commandInput = 'rm ./Prescreen/' + person + "/MF*"
+                    commandImplementation = os.popen(commandInput)
+                except Exception as e:
+                    print("REMOVE FILE ERROR.")</code></pre>
+      </details>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h4 id="Tag_people_from_photos.FaceRecognitionAuxiliary.ab_PrescreenFaceOnly.filePrescreen" class="doc doc-heading">
+<code class="highlight language-python">filePrescreen()</code>
+
+</h4>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>供外界调用的方法
+:return:</p>
+
+      <details class="quote">
+        <summary>Source code in <code>Tag_people_from_photos/FaceRecognitionAuxiliary/ab_PrescreenFaceOnly.py</code></summary>
+        <pre class="highlight"><code class="language-python">def filePrescreen():
+    """
+    供外界调用的方法
+    :return:
+    """
+    print("Prescreen Start......\n")
+    __renameFile()
+    prescreen_path = join("Prescreen")
+    # ./Prescreen/*
+    for person in os.listdir(prescreen_path):  # ./Prescreen/person/
+        if person != ".keep":
+            person_path = join(prescreen_path, person)
+            # ./Prescreen/person/
+            pics = (os.listdir(person_path))  # ./Prescreen/person/*
+            if (len(pics) &gt;= 20) &amp; (not WINDOWS):  # ./Prescreen/person/下的图片20张以上
+                taskNum = int(len(pics) / 4)
+                taskLef = len(pics) % 4
+                # 创建新线程
+                thread1 = __TaskSubmit("1", pics[0:taskNum], person)
+                thread2 = __TaskSubmit("2", pics[taskNum:taskNum * 2], person)
+                thread3 = __TaskSubmit("3", pics[taskNum * 2:taskNum * 3], person)
+                thread4 = __TaskSubmit("4", pics[taskNum * 3:taskNum * 4], person)
+                if taskLef == 0:
+                    thread1.start()
+                    thread2.start()
+                    thread3.start()
+                    thread4.start()
+                    thread1.join()
+                    thread2.join()
+                    thread3.join()
+                    thread4.join()
+                else:
+                    thread5 = __TaskSubmit("5", pics[taskNum * 4:taskNum * 4 + taskLef], person)
+                    thread1.start()
+                    thread2.start()
+                    thread3.start()
+                    thread4.start()
+                    thread5.start()
+                    thread1.join()
+                    thread2.join()
+                    thread3.join()
+                    thread4.join()
+                    thread5.join()
+            else:
+                for picture in pics:  # ./Prescreen/person/xxx.jpg
+                    time = datetime.now()  # 获取当前时间
+                    # "./Prescreen/"+person+ "/" +picture
+                    src_file = join(person_path, picture)
+                    if __checkFaces(src_file, person) == 0:
+                        # ./Prescreen/person/rm{time}
+                        dst_file = join(person_path, "rm{0}".format(str(time)[17:].replace(" ", "")))
+                    else:
+                        # ./Prescreen/person/1F{时间}.{扩展名}
+                        dst_file = join(person_path, "1F{0}.{1}".format(str(time)[17:].replace(" ", ""), __fex(src_file)))
+                    try:
+                        os.rename(src_file, dst_file)
+                    except Exception as e:
+                        print(e)
+                    else:
+                        pass
+    __rmFiles()</code></pre>
+      </details>
+  </div>
+
+</div>
+
+
+
+  </div>
+
+  </div>
+
+</div><h3 id="ba_addknownpersonpy">ba_AddKnownPerson.py</h3>
+
+
+<div class="doc doc-object doc-module">
+
+
+<a id="Tag_people_from_photos.FaceRecognitionAuxiliary.ba_AddKnownPerson"></a>
+  <div class="doc doc-contents first">
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h4 id="Tag_people_from_photos.FaceRecognitionAuxiliary.ba_AddKnownPerson.__addPerson" class="doc doc-heading">
+<code class="highlight language-python">__addPerson(name)</code>
+
+</h4>
+
+
+  <div class="doc doc-contents ">
+  
+      <h5 id="Tag_people_from_photos.FaceRecognitionAuxiliary.ba_AddKnownPerson.__addPerson--_1">新建人物</h5>
+<p>:param name:
+:return:</p>
+
+      <details class="quote">
+        <summary>Source code in <code>Tag_people_from_photos/FaceRecognitionAuxiliary/ba_AddKnownPerson.py</code></summary>
+        <pre class="highlight"><code class="language-python">def __addPerson(name):
+    """
+    # 新建人物
+    :param name:
+    :return:
+    """
+    if WINDOWS:
+        try:
+            # move .\Prescreen\{name} .\FR_DATA\A-KnownPeople\
+            commandInput = "move /Y .\\Prescreen\\{0} .\\FR_DATA\\A-KnownPeople\\".format(name)
+            commandImplementation = os.popen(commandInput)
+            print("Windows - Person created.")
+        except Exception as e:
+            raise e
+    else:
+        try:
+            # mv ./Prescreen/{name} ./FR_DATA/A-KnownPeople/
+            commandInput = "mv ./Prescreen/{0} ./FR_DATA/A-KnownPeople/".format(name)
+            commandImplementation = os.popen(commandInput)
+            print("Person created.")
+        except Exception as e:
+            raise e</code></pre>
+      </details>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h4 id="Tag_people_from_photos.FaceRecognitionAuxiliary.ba_AddKnownPerson.__addPicture" class="doc doc-heading">
+<code class="highlight language-python">__addPicture(name)</code>
+
+</h4>
+
+
+  <div class="doc doc-contents ">
+  
+      <h5 id="Tag_people_from_photos.FaceRecognitionAuxiliary.ba_AddKnownPerson.__addPicture--_1">添加到已有</h5>
+<p>:param name:
+:return:</p>
+
+      <details class="quote">
+        <summary>Source code in <code>Tag_people_from_photos/FaceRecognitionAuxiliary/ba_AddKnownPerson.py</code></summary>
+        <pre class="highlight"><code class="language-python">def __addPicture(name):
+    """
+    # 添加到已有
+    :param name:
+    :return:
+    """
+    if WINDOWS:
+        try:
+            # move .\Prescreen\{name}\* .\FR_DATA\A-KnownPeople\{name}\
+            commandInput = "move /Y .\\Prescreen\\{0}\\* .\\FR_DATA\\A-KnownPeople\\{1}\\".format(name, name)
+            commandImplementation = os.popen(commandInput)
+            print("Windows - Person existed,adding....")
+        except Exception as e:
+            raise e
+    else:
+        try:
+            # mv ./Prescreen/{name}/* ./FR_DATA/A-KnownPeople/{name}/
+            commandInput = "mv ./Prescreen/{0}/* ./FR_DATA/A-KnownPeople/{1}/".format(name, name)
+            commandImplementation = os.popen(commandInput)
+            print("Person existed,adding....")
+        except Exception as e:
+            raise e</code></pre>
+      </details>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h4 id="Tag_people_from_photos.FaceRecognitionAuxiliary.ba_AddKnownPerson.__addSingleDir" class="doc doc-heading">
+<code class="highlight language-python">__addSingleDir(name)</code>
+
+</h4>
+
+
+  <div class="doc doc-contents ">
+  
+      <h5 id="Tag_people_from_photos.FaceRecognitionAuxiliary.ba_AddKnownPerson.__addSingleDir--_1">单人目录添加</h5>
+<p>:param name:
+:return:</p>
+
+      <details class="quote">
+        <summary>Source code in <code>Tag_people_from_photos/FaceRecognitionAuxiliary/ba_AddKnownPerson.py</code></summary>
+        <pre class="highlight"><code class="language-python">def __addSingleDir(name):
+    """
+    # 单人目录添加
+    :param name:
+    :return:
+    """
+    if WINDOWS:
+        try:
+            # mkdir .\FR_DATA\D-Singleface\{name}
+            com = "mkdir .\\FR_DATA\\D-Singleface\\{0}".format(name)
+            mkdir = os.popen(com)
+            print("Windows - mkdir...")
+        except Exception as e:
+            raise e
+    else:
+        try:
+            # mkdir ./FR_DATA/D-Singleface/{name}
+            com = "mkdir ./FR_DATA/D-Singleface/{0}".format(name)
+            mkdir = os.popen(com)
+        except Exception as e:
+            raise e</code></pre>
+      </details>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h4 id="Tag_people_from_photos.FaceRecognitionAuxiliary.ba_AddKnownPerson.addKnowPeople" class="doc doc-heading">
+<code class="highlight language-python">addKnowPeople()</code>
+
+</h4>
+
+
+  <div class="doc doc-contents ">
+  
+      <h5 id="Tag_people_from_photos.FaceRecognitionAuxiliary.ba_AddKnownPerson.addKnowPeople--x">主要方法X</h5>
+<p>:return:</p>
+
+      <details class="quote">
+        <summary>Source code in <code>Tag_people_from_photos/FaceRecognitionAuxiliary/ba_AddKnownPerson.py</code></summary>
+        <pre class="highlight"><code class="language-python">def addKnowPeople():
+    """
+    # 主要方法X
+    :return:
+    """
+    # 先删除拷贝
+    m_BalanceTrain.delCopy()
+    get_time = str(datetime.now()).replace(":", "-").replace(" ", "")
+    # 复制原始文件夹
+    m_BalanceTrain.copyFiles(join("FR_DATA", "A-KnownPeople"), join("FR_DATA", "A-KnownPeople_bak_{0}".format(get_time)))
+    # 开始移动文件
+    people_to_add = os.listdir(join("Prescreen"))  # ./Prescreen/*
+    for name in people_to_add:
+        if name != ".keep":
+            # ./FR_DATA/A-KnownPeople/{name}
+            if not os.path.exists(join("FR_DATA", "A-KnownPeople", name)):
+                __addPerson(name)
+            else:
+                __addPicture(name)
+            # ./FR_DATA/D-Singleface/{name}
+            if not os.path.exists(join("FR_DATA", "D-Singleface", name)):
+                __addSingleDir(name)
+    print("人物添加完毕。")
+    if WINDOWS:
+        try:
+            # del -r ./Prescreen/*
+            commandInput = "rd /S /Q .\\Prescreen\\"
+            commandImplementation = os.popen(commandInput)
+            print("Remove Prescreen....")
+        except Exception as e:
+            raise e
+        try:
+            commandInput = "mkdir .\\Prescreen"
+            commandImplementation = os.popen(commandInput)
+            commandImplementation = os.popen('echo 1 &gt; ".\\Prescreen\\.keep"')
+            print("Windows - mkdir...")
+        except Exception as e:
+            raise e
+    else:
+        try:
+            # rm -r ./Prescreen/*
+            commandInput = "rm -r ./Prescreen/*"
+            commandImplementation = os.popen(commandInput)
+            commandImplementation = os.popen("echo 0 &gt; ./Prescreen/.keep")
+            print("Remove Prescreen....")
+        except Exception as e:
+            raise e</code></pre>
+      </details>
+  </div>
+
+</div>
+
+
+
+  </div>
+
+  </div>
+
+</div><h3 id="ca_trainingoneprocessingpy">ca_TrainingOneProcessing.py</h3>
+
+
+<div class="doc doc-object doc-module">
+
+
+<a id="Tag_people_from_photos.FaceRecognitionAuxiliary.ca_TrainingOneProcessing"></a>
+  <div class="doc doc-contents first">
+  
+      <p>训练模型-单线程
+模型文件夹：./FR_DATA/
+单独运行请修改最后一行参数
+因为上次调试的训练素材是G-WorldWidePeople，一直没改</p>
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h4 id="Tag_people_from_photos.FaceRecognitionAuxiliary.ca_TrainingOneProcessing.__calcTask" class="doc doc-heading">
+<code class="highlight language-python">__calcTask(path)</code>
+
+</h4>
+
+
+  <div class="doc doc-contents ">
+  
+      <h5 id="Tag_people_from_photos.FaceRecognitionAuxiliary.ca_TrainingOneProcessing.__calcTask--_1">计算任务总量</h5>
+<p>:param path:
+:return:</p>
+
+      <details class="quote">
+        <summary>Source code in <code>Tag_people_from_photos/FaceRecognitionAuxiliary/ca_TrainingOneProcessing.py</code></summary>
+        <pre class="highlight"><code class="language-python">def __calcTask(path):
+    """
+    # 计算任务总量
+    :param path:
+    :return:
+    """
+    dirs = listdir(path)
+    task = 0
+    for person in dirs:
+        sub_dir = join(path, person)
+        num = len(listdir(sub_dir))
+        task = task + num
+    return task</code></pre>
+      </details>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h4 id="Tag_people_from_photos.FaceRecognitionAuxiliary.ca_TrainingOneProcessing.__train" class="doc doc-heading">
+<code class="highlight language-python">__train(train_dir, model_save_path='', n_neighbors=None, knn_algo='ball_tree', verbose=False)</code>
+
+</h4>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>训练模型的方法
+:param train_dir: 训练材料
+:param model_save_path: 模型保存路径
+:param n_neighbors:
+:param knn_algo:
+:param verbose: 是否显示详情
+:return:</p>
+
+      <details class="quote">
+        <summary>Source code in <code>Tag_people_from_photos/FaceRecognitionAuxiliary/ca_TrainingOneProcessing.py</code></summary>
+        <pre class="highlight"><code class="language-python">def __train(train_dir, model_save_path="", n_neighbors=None, knn_algo='ball_tree', verbose=False):
+    """
+    训练模型的方法
+    :param train_dir: 训练材料
+    :param model_save_path: 模型保存路径
+    :param n_neighbors:
+    :param knn_algo:
+    :param verbose: 是否显示详情
+    :return:
+    """
+    TASK = __calcTask(train_dir)
+    X = []
+    y = []
+    n = 0
+    num = 1
+    for class_dir in listdir(train_dir):
+        n += 1
+        if verbose:
+            print("\033[1;33;40m添加第{}个训练对象 \033[0m:\033[1;36;40m".format(n) + class_dir + "\033[0m")
+        if not isdir(join(train_dir, class_dir)):
+            continue
+        for img_path in image_files_in_folder(join(train_dir, class_dir)):
+            image = face_recognition.load_image_file(img_path)
+            if verbose:
+                print("\033[1;34;40m添加第({0}/{1})个文件 \033[0m:\033[1;38;40m".format(num, TASK) + img_path + "\033[0m")
+            m_Wait.view(num, TASK, "32", "")
+            num += 1
+            faces_bboxes = face_locations(image)
+            if len(faces_bboxes) != 1:
+                if verbose:
+                    print("\033[1;31;40mWARN："
+                          "\033[0m image {} not fit "
+                          "for __training: {}".format(img_path,
+                                                      "didn't find a face" if len(
+                                                          faces_bboxes) &lt; 1 else "found more than one face"))
+                continue
+            X.append(face_recognition.face_encodings(image, known_face_locations=faces_bboxes)[0])
+            y.append(class_dir)
+
+    if n_neighbors is None:
+        n_neighbors = int(round(sqrt(len(X))))
+        if verbose:
+            print("Chose n_neighbors automatically as:", n_neighbors)
+
+    knn_clf = neighbors.KNeighborsClassifier(n_neighbors=n_neighbors, algorithm=knn_algo, weights='distance')
+    knn_clf.fit(X, y)
+
+    if model_save_path != "":
+        with open(model_save_path, 'wb') as f:
+            pickle.dump(knn_clf, f)
+    return knn_clf</code></pre>
+      </details>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h4 id="Tag_people_from_photos.FaceRecognitionAuxiliary.ca_TrainingOneProcessing.main" class="doc doc-heading">
+<code class="highlight language-python">main(train_dir, model_save_path)</code>
+
+</h4>
+
+
+  <div class="doc doc-contents ">
+  
+      <h5 id="Tag_people_from_photos.FaceRecognitionAuxiliary.ca_TrainingOneProcessing.main--mainx">mainX</h5>
+<p>:param train_dir:
+:param model_save_path:
+:return:</p>
+
+      <details class="quote">
+        <summary>Source code in <code>Tag_people_from_photos/FaceRecognitionAuxiliary/ca_TrainingOneProcessing.py</code></summary>
+        <pre class="highlight"><code class="language-python">def main(train_dir, model_save_path):
+    """
+    # mainX
+    :param train_dir:
+    :param model_save_path:
+    :return:
+    """
+    print("\033[5;33;40m开始训练模型(单线程)....\033[0m\n")
+    get_time = str(datetime.now()).replace(":", "").replace(" ", "")
+    # ./FR_DATA/"{train_dir}/		./KNN_MOD/{name}
+    if WINDOWS:
+        knn_clf = __train(join("FR_DATA", train_dir),
+                          join("KNN_MOD", "{0}{1}".format(model_save_path, get_time)),
+                          None, "ball_tree",
+                          verbose)
+    else:
+        knn_clf = __train(join("FR_DATA", train_dir),
+                          join("KNN_MOD", "{0}{1}".format(model_save_path, get_time)),
+                          None,
+                          "ball_tree",
+                          verbose)
+    print("\n\033[5;31;40m模型训练结束，已经导出到KNN_MOD文件夹下。\033[0m\n")</code></pre>
+      </details>
+  </div>
+
+</div>
+
+
+
+  </div>
+
+  </div>
+
+</div><h3 id="cb_four_processing_trainingpy">cb_Four_processing_training.py</h3>
+
+
+<div class="doc doc-object doc-module">
+
+
+<a id="Tag_people_from_photos.FaceRecognitionAuxiliary.cb_Four_processing_training"></a>
+  <div class="doc doc-contents first">
+  
+      <p>同训练脚本，只不过是四线程
+记得修改最后一行main方法中的参数，因为KnownTest是调试程序用的训练数据</p>
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h4 id="Tag_people_from_photos.FaceRecognitionAuxiliary.cb_Four_processing_training.__calcTask" class="doc doc-heading">
+<code class="highlight language-python">__calcTask(path)</code>
+
+</h4>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>计算任务量
+:param path:
+:return:</p>
+
+      <details class="quote">
+        <summary>Source code in <code>Tag_people_from_photos/FaceRecognitionAuxiliary/cb_Four_processing_training.py</code></summary>
+        <pre class="highlight"><code class="language-python">def __calcTask(path):
+    """
+    计算任务量
+    :param path:
+    :return:
+    """
+    dirs = listdir(path)
+    task = 0
+    for person in dirs:
+        sub_dir = join(path, person)
+        num = len(listdir(sub_dir))
+        task = task + num
+    return task</code></pre>
+      </details>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h4 id="Tag_people_from_photos.FaceRecognitionAuxiliary.cb_Four_processing_training.__train" class="doc doc-heading">
+<code class="highlight language-python">__train(train_dir, model_save_path='', verbose=False, n_neighbors=None, knn_algo='ball_tree')</code>
+
+</h4>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>训练模型的方法
+:param train_dir: 训练材料文件夹
+:param model_save_path:  模型保存路径
+:param verbose:  是否可视化
+:param n_neighbors:
+:param knn_algo:
+:return:</p>
+
+      <details class="quote">
+        <summary>Source code in <code>Tag_people_from_photos/FaceRecognitionAuxiliary/cb_Four_processing_training.py</code></summary>
+        <pre class="highlight"><code class="language-python">def __train(train_dir, model_save_path="", verbose=False, n_neighbors=None, knn_algo='ball_tree'):
+    """
+    训练模型的方法
+    :param train_dir: 训练材料文件夹
+    :param model_save_path:  模型保存路径
+    :param verbose:  是否可视化
+    :param n_neighbors:
+    :param knn_algo:
+    :return:
+    """
+    X = []
+    y = []
+    T1 = []
+    T2 = []
+    T3 = []
+    T4 = []
+    person = listdir(train_dir)
+    if (len(person) &gt; 10) &amp; (not WINDOWS):
+        group = (int)(len(person) / 4)
+        left = len(person) % 4
+        # print(group)
+        gbn = group * 2
+        gcn = group * 3
+        gdn = group * 4
+        ga = person[0:group]
+        gb = person[group:gbn]
+        gc = person[gbn:gcn]
+        gd = person[gcn:gdn]
+        if left == 0:
+            pass
+        else:
+            gd = gd + person[gdn:gdn + left]
+        thread1 = TaskSubmit("1", train_dir, ga, T1, 31)
+        thread2 = TaskSubmit("2", train_dir, gb, T2, 34)
+        thread3 = TaskSubmit("3", train_dir, gc, T3, 32)
+        thread4 = TaskSubmit("4", train_dir, gd, T4, 36)
+        thread1.start()
+        thread2.start()
+        thread3.start()
+        thread4.start()
+        thread1.join()
+        thread2.join()
+        thread3.join()
+        thread4.join()
+        X = thread1.returnX() + thread2.returnX() + thread3.returnX() + thread4.returnX()
+        y = thread1.returnY() + thread2.returnY() + thread3.returnY() + thread4.returnY()
+    else:
+        TASK = __calcTask(train_dir)
+        n = 0
+        num = 1
+        for class_dir in listdir(train_dir):
+            n += 1
+            print("\n\033[1;33;40m添加第{}个训练对象 \033[0m:\033[1;36;40m".format(n) + class_dir + "\033[0m")
+            if not isdir(join(train_dir, class_dir)):
+                continue
+            for img_path in image_files_in_folder(join(train_dir, class_dir)):
+                image = face_recognition.load_image_file(img_path)
+                if verbose:
+                    print("\033[1;34;40m添加第({0}/{1})个文件 \033[0m:\033[1;38;40m".format(num, TASK) + img_path + "\033[0m")
+                if not WINDOWS:
+                    m_Wait.view(num, TASK, "31", "")
+                num += 1
+                faces_bboxes = face_locations(image)
+                if len(faces_bboxes) != 1:
+                    if verbose:
+                        print("\033[1;31;40mWARN："
+                              "\033[0m image {} not fit "
+                              "for __training: {}".format(img_path,
+                                                          "didn't find a face" if len(
+                                                              faces_bboxes) &lt; 1 else "found more than one face"))
+                    continue
+                X.append(face_recognition.face_encodings(image, known_face_locations=faces_bboxes)[0])
+                y.append(class_dir)
+
+    if n_neighbors is None:
+        n_neighbors = int(round(sqrt(len(X))))
+        if verbose:
+            print("Chose n_neighbors automatically as:", n_neighbors)
+
+    knn_clf = neighbors.KNeighborsClassifier(n_neighbors=n_neighbors, algorithm=knn_algo, weights='distance')
+    knn_clf.fit(X, y)
+    print("Generating...")
+    if model_save_path != "":
+        with open(model_save_path, 'wb') as f:
+            pickle.dump(knn_clf, f)
+    return knn_clf</code></pre>
+      </details>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h4 id="Tag_people_from_photos.FaceRecognitionAuxiliary.cb_Four_processing_training.main" class="doc doc-heading">
+<code class="highlight language-python">main(train_dir, model_save_path)</code>
+
+</h4>
+
+
+  <div class="doc doc-contents ">
+  
+      <h5 id="Tag_people_from_photos.FaceRecognitionAuxiliary.cb_Four_processing_training.main--mainx">mainX</h5>
+<p>:param train_dir:
+:param model_save_path:
+:return:</p>
+
+      <details class="quote">
+        <summary>Source code in <code>Tag_people_from_photos/FaceRecognitionAuxiliary/cb_Four_processing_training.py</code></summary>
+        <pre class="highlight"><code class="language-python">def main(train_dir, model_save_path):
+    """
+    # mainX
+    :param train_dir:
+    :param model_save_path:
+    :return:
+    """
+    print("\033[5;33;40m开始训练模型(4线程)....\033[0m\n")
+    get_time = str(datetime.now()).replace(":", "").replace(" ", "")
+    if WINDOWS:
+        # ./F/T/
+        knn_clf = __train(join("FR_DATA", "{0}{1}".format(train_dir, get_time)),
+                          join("KNN_MOD", model_save_path),
+                          verbose)
+    else:
+        knn_clf = __train(join("FR_DATA", train_dir),
+                          join("KNN_MOD", "{0}{1}".format(model_save_path, get_time)),
+                          verbose)
+    print("\n\033[5;31;40m模型训练结束，已经导出到KNN_MOD文件夹下。\033[0m\n")</code></pre>
+      </details>
+  </div>
+
+</div>
+
+
+
+  </div>
+
+  </div>
+
+</div><h3 id="cctraining_multi_processing_of_tenpy">ccTraining_multi_processing_of_Ten.py</h3>
+
+
+<div class="doc doc-object doc-module">
+
+
+<a id="Tag_people_from_photos.FaceRecognitionAuxiliary.ccTraining_multi_processing_of_Ten"></a>
+  <div class="doc doc-contents first">
+  
+      <p>虽然是10线程，但好像没四线程的快。
+这个是我测试用的，本来下用for循环，循环定义参数，但是。。。没成功……放弃了。</p>
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div><h3 id="da_findfacespy">da_FindFaces.py</h3>
+
+
+<div class="doc doc-object doc-module">
+
+
+<a id="Tag_people_from_photos.FaceRecognitionAuxiliary.da_FindFaces"></a>
+  <div class="doc doc-contents first">
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h4 id="Tag_people_from_photos.FaceRecognitionAuxiliary.da_FindFaces.FindFaces" class="doc doc-heading">
+<code class="highlight language-python">FindFaces()</code>
+
+</h4>
+
+
+  <div class="doc doc-contents ">
+  
+      <h5 id="Tag_people_from_photos.FaceRecognitionAuxiliary.da_FindFaces.FindFaces--mainx">mainX</h5>
+<p>:return:</p>
+
+      <details class="quote">
+        <summary>Source code in <code>Tag_people_from_photos/FaceRecognitionAuxiliary/da_FindFaces.py</code></summary>
+        <pre class="highlight"><code class="language-python">def FindFaces():
+    """
+    # mainX
+    :return:
+    """
+    print("\033[5;33;40m开始分类待识别的照片....\033[0m\n")
+    __renameFile()
+    __fileCtrl()
+    __copyFiles()
+    print("\033[1;32;41m{0}\033[0m".format(ERROR_REPORT))</code></pre>
+      </details>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h4 id="Tag_people_from_photos.FaceRecognitionAuxiliary.da_FindFaces.__checkFaces" class="doc doc-heading">
+<code class="highlight language-python">__checkFaces(file)</code>
+
+</h4>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>查找人脸
+:param file:
+:return:</p>
+
+      <details class="quote">
+        <summary>Source code in <code>Tag_people_from_photos/FaceRecognitionAuxiliary/da_FindFaces.py</code></summary>
+        <pre class="highlight"><code class="language-python">def __checkFaces(file):
+    """
+    查找人脸
+    :param file:
+    :return:
+    """
+    global ERROR_REPORT
+    try:
+        # Load the jpg file into a numpy array
+        input_picture = join("INPUT_PIC", file)
+        # 如果图片大于1.5M，压缩。
+        if __getSize(input_picture) &gt;= 1500000:
+            img = Image.open(input_picture)
+            w, h = img.size
+            qua = 0.2
+            w, h = round(w * qua), round(h * qua)
+            img = img.resize((w, h), Image.ANTIALIAS)
+            image = np.array(img)
+            print("压缩图片...")
+        else:
+            image = face_recognition.load_image_file(input_picture)
+        # print("加载完成	")
+
+        # Find all the faces in the image using the default HOG-based model.
+        # This method is fairly accurate, but not as accurate as the CNN model and not GPU accelerated.
+        # See also: find_faces_in_picture_cnn.py
+
+        # face_locations = face_recognition.face_locations(image, number_of_times_to_upsample=0, model="cnn")
+        face_locations = face_recognition.face_locations(image)
+        # print("定位完成")
+        face_num = len(face_locations)
+        print("Found \033[1;33;40m{0} face(s)\033[0m: in \033[1;35;40m{1} photograph.\033[0m:".format(face_num, file),
+              end=" ==&gt; ")
+
+        for face_location in face_locations:
+            # Print the location of each face in this image
+            top, right, bottom, left = face_location
+            print(
+                "A face is located at pixel location Top: {}, Left: {}, Bottom: {}, Right: {}".format(top, left, bottom,
+                                                                                                      right))
+
+            if SEE_ALL_FACES:
+                # You can access the actual face itself like this:
+                face_image = image[top:bottom, left:right]
+                pil_image = Image.fromarray(face_image)
+                pil_image.show()
+        # print("Next")
+        return face_num
+    except Exception as e:
+        # raise e
+        ERROR_REPORT = "{0}\n{1}{2}".format(ERROR_REPORT, e, file)
+        print(e)</code></pre>
+      </details>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h4 id="Tag_people_from_photos.FaceRecognitionAuxiliary.da_FindFaces.__copyFiles" class="doc doc-heading">
+<code class="highlight language-python">__copyFiles()</code>
+
+</h4>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>复制文识别结果到temp
+:return:</p>
+
+      <details class="quote">
+        <summary>Source code in <code>Tag_people_from_photos/FaceRecognitionAuxiliary/da_FindFaces.py</code></summary>
+        <pre class="highlight"><code class="language-python">def __copyFiles():
+    """
+    复制文识别结果到temp
+    :return:
+    """
+    if WINDOWS:
+        try:
+            # copy ./INPUT_PIC/0* ./tempNone
+            commandInput = 'copy /Y .\\INPUT_PIC\\0* .\\tempNone'
+            commandImplementation = os.popen(commandInput)
+        except Exception as e:
+            print(e)
+        try:
+            # cp ./INPUT_PIC/1* ./tempSingle
+            commandInput = 'copy /Y .\\INPUT_PIC\\1* .\\tempSingle'
+            commandImplementation = os.popen(commandInput)
+        except Exception as e:
+            print("No Singleface")
+        try:
+            # cp ./INPUT_PIC/MF* ./tempMore
+            commandInput = 'copy /Y .\\INPUT_PIC\\MF* .\\tempMore'
+            commandImplementation = os.popen(commandInput)
+        except Exception as e:
+            print(e)
+    else:
+        try:
+            # cp ./INPUT_PIC/0* ./tempNone
+            commandInput = 'cp ./INPUT_PIC/0* ./tempNone'
+            commandImplementation = os.popen(commandInput)
+        except Exception as e:
+            print("No None fece")
+        try:
+            # cp ./INPUT_PIC/1* ./tempSingle
+            commandInput = 'cp ./INPUT_PIC/1* ./tempSingle'
+            commandImplementation = os.popen(commandInput)
+        except Exception as e:
+            print("No Singleface")
+        try:
+            # cp ./INPUT_PIC/MF* ./tempMore
+            commandInput = 'cp ./INPUT_PIC/MF* ./tempMore'
+            commandImplementation = os.popen(commandInput)
+        except Exception as e:
+            print(e)</code></pre>
+      </details>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h4 id="Tag_people_from_photos.FaceRecognitionAuxiliary.da_FindFaces.__fex" class="doc doc-heading">
+<code class="highlight language-python">__fex(path)</code>
+
+</h4>
+
+
+  <div class="doc doc-contents ">
+  
+      <h5 id="Tag_people_from_photos.FaceRecognitionAuxiliary.da_FindFaces.__fex--_1">返回扩展名</h5>
+<p>:param path:
+:return:</p>
+
+      <details class="quote">
+        <summary>Source code in <code>Tag_people_from_photos/FaceRecognitionAuxiliary/da_FindFaces.py</code></summary>
+        <pre class="highlight"><code class="language-python">def __fex(path):
+    """
+    # 返回扩展名
+    :param path:
+    :return:
+    """
+    ex = os.path.splitext(path)[1]
+    return ex[1:]</code></pre>
+      </details>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h4 id="Tag_people_from_photos.FaceRecognitionAuxiliary.da_FindFaces.__fileCtrl" class="doc doc-heading">
+<code class="highlight language-python">__fileCtrl()</code>
+
+</h4>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>INPUT_PIC文价处理
+:return:</p>
+
+      <details class="quote">
+        <summary>Source code in <code>Tag_people_from_photos/FaceRecognitionAuxiliary/da_FindFaces.py</code></summary>
+        <pre class="highlight"><code class="language-python">def __fileCtrl():
+    """
+    INPUT_PIC文价处理
+    :return:
+    """
+    # print("File Control Start")
+    input_path = join("INPUT_PIC")
+    pics = (os.listdir(input_path))  # ./INPUT_PIC/*
+
+    # if (len(pics)&gt;=8)|(not WINDOWS):
+    if (len(pics) &gt;= 8) &amp; (not WINDOWS):
+        taskNum = int(len(pics) / 4)
+        taskLef = len(pics) % 4
+        ga = pics[0:taskNum]
+        gb = pics[taskNum:taskNum * 2]
+        gc = pics[taskNum * 2:taskNum * 3]
+        gd = pics[taskNum * 3:taskNum * 4]
+
+        thread1 = TaskSubmit("1", ga)
+        thread2 = TaskSubmit("2", gb)
+        thread3 = TaskSubmit("3", gc)
+        thread4 = TaskSubmit("4", gd)
+        if taskLef == 0:
+            thread1.start()
+            thread2.start()
+            thread3.start()
+            thread4.start()
+            thread1.join()
+            thread2.join()
+            thread3.join()
+            thread4.join()
+        else:
+            gf = pics[taskNum * 4:taskNum * 4 + taskLef]
+            thread5 = TaskSubmit("5", gf)
+            thread1.start()
+            thread2.start()
+            thread3.start()
+            thread4.start()
+            thread5.start()
+            thread1.join()
+            thread2.join()
+            thread3.join()
+            thread4.join()
+            thread5.join()
+    else:
+        n = 1
+        for picture in pics:  # ./INPUT_PIC/xxx.jpg
+            get_time = str(datetime.now()).replace(" ", "").replace(":", "")  # 获取当前时间
+            # ./INPUT_PIC/xxx.jpg
+            src_file = join(input_path, picture)
+            if __checkFaces(picture) &gt;= 2:
+                print(__fex(src_file))
+                # ./INPUT_PIC/MF{time}{ext}
+                dst_file = join(input_path, "MF{0}.{1}".format(get_time, __fex(src_file)))
+            else:
+                dst_file = join(input_path, "{0}F{1}.{2}".format(__checkFaces(picture), get_time, __fex(src_file)))
+            try:
+                os.rename(src_file, dst_file)
+            except Exception as e:
+                print(e)
+            else:
+                pass
+            n += 1
+            print("\033[1;36;40m{} of {}\033[0m".format(n, len(pics)))</code></pre>
+      </details>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h4 id="Tag_people_from_photos.FaceRecognitionAuxiliary.da_FindFaces.__getSize" class="doc doc-heading">
+<code class="highlight language-python">__getSize(path)</code>
+
+</h4>
+
+
+  <div class="doc doc-contents ">
+  
+      <h5 id="Tag_people_from_photos.FaceRecognitionAuxiliary.da_FindFaces.__getSize--_1">获取文件大小</h5>
+<p>:param path:
+:return:</p>
+
+      <details class="quote">
+        <summary>Source code in <code>Tag_people_from_photos/FaceRecognitionAuxiliary/da_FindFaces.py</code></summary>
+        <pre class="highlight"><code class="language-python">def __getSize(path):
+    """
+    # 获取文件大小
+    :param path:
+    :return:
+    """
+    s = os.path.getsize(path)
+    return s</code></pre>
+      </details>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h4 id="Tag_people_from_photos.FaceRecognitionAuxiliary.da_FindFaces.__renameFile" class="doc doc-heading">
+<code class="highlight language-python">__renameFile()</code>
+
+</h4>
+
+
+  <div class="doc doc-contents ">
+  
+      <h5 id="Tag_people_from_photos.FaceRecognitionAuxiliary.da_FindFaces.__renameFile--_1">重命名</h5>
+<p>:return:</p>
+
+      <details class="quote">
+        <summary>Source code in <code>Tag_people_from_photos/FaceRecognitionAuxiliary/da_FindFaces.py</code></summary>
+        <pre class="highlight"><code class="language-python">def __renameFile():
+    """
+    # 重命名
+    :return:
+    """
+    # ./INPUT_PIC
+    input_path = join("INPUT_PIC")
+    # ./INPUT_PIC/*
+    for picture in os.listdir(input_path):
+        get_time = str(datetime.now()).replace(" ", "").replace(":", "")
+        # ./INPUT_PIC/xxx.jpg
+        src_file = os.path.join(input_path, picture)
+        # ./INPUT_PIC/{time}.{ext}
+        dst_file = join(input_path, "{0}.{1}".format(get_time, __fex(src_file)))
+        try:
+            os.rename(src_file, dst_file)
+        except Exception as e:
+            print(e)
+        else:
+            pass
+    pics = (os.listdir(input_path))  # ./INPUT_PIC/*
+    n = 1
+    for picture in pics:
+        # ./INPUT_PIC/xxx.jpg
+        src_file = join(input_path, picture)
+        # ./INPUT_PIC/{n}.{ext}
+        dst_file = join(input_path, "{0}.{1}".format(n, __fex(src_file)))
+        try:
+            os.rename(src_file, dst_file)
+        except Exception as e:
+            print(e)
+        else:
+            pass
+        n += 1</code></pre>
+      </details>
+  </div>
+
+</div>
+
+
+
+  </div>
+
+  </div>
+
+</div><h3 id="ea_facerecognition_knnpy">ea_FaceRecognition_KNN.py</h3>
+
+
+<div class="doc doc-object doc-module">
+
+
+<a id="Tag_people_from_photos.FaceRecognitionAuxiliary.ea_FaceRecognition_KNN"></a>
+  <div class="doc doc-contents first">
+  
+      <p>识别temp目录中已经分好类的图片，最后一行的参数是修改识别所用的模型KNN_MOD中是我训练好了的一些人物。</p>
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h4 id="Tag_people_from_photos.FaceRecognitionAuxiliary.ea_FaceRecognition_KNN.__predict" class="doc doc-heading">
+<code class="highlight language-python">__predict(X_img_path, knn_clf=None, model_save_path='', DIST_THRESH=0.5)</code>
+
+</h4>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>recognizes faces in given image, based on a trained knn classifier
+:param X_img_path: path to image to be recognized
+:param knn_clf: (optional) a knn classifier object. if not specified, model_save_path must be specified.
+:param model_save_path: (optional) path to a pickled knn classifier. if not specified, model_save_path must be knn_clf.
+:param DIST_THRESH: (optional) distance threshold in knn classification. the larger it is, the more chance of misclassifying an unknown person to a known one.
+:return: a list of names and face locations for the recognized faces in the image: [(name, bounding box), ...].
+    For faces of unrecognized persons, the name 'N/A' will be passed.</p>
+
+      <details class="quote">
+        <summary>Source code in <code>Tag_people_from_photos/FaceRecognitionAuxiliary/ea_FaceRecognition_KNN.py</code></summary>
+        <pre class="highlight"><code class="language-python">def __predict(X_img_path, knn_clf=None, model_save_path="", DIST_THRESH=0.5):
+    """
+    recognizes faces in given image, based on a trained knn classifier
+    :param X_img_path: path to image to be recognized
+    :param knn_clf: (optional) a knn classifier object. if not specified, model_save_path must be specified.
+    :param model_save_path: (optional) path to a pickled knn classifier. if not specified, model_save_path must be knn_clf.
+    :param DIST_THRESH: (optional) distance threshold in knn classification. the larger it is, the more chance of misclassifying an unknown person to a known one.
+    :return: a list of names and face locations for the recognized faces in the image: [(name, bounding box), ...].
+        For faces of unrecognized persons, the name 'N/A' will be passed.
+    """
+    if not isfile(X_img_path) or splitext(X_img_path)[1][1:] not in ALLOWED_EXTENSIONS:
+        raise Exception("invalid image path: {}".format(X_img_path))
+
+    if knn_clf is None and model_save_path == "":
+        raise Exception("must supply knn classifier either thourgh knn_clf or model_save_path")
+    if knn_clf is None:
+        with open(model_save_path, 'rb') as f:
+            knn_clf = pickle.load(f)
+    X_img = face_recognition.load_image_file(X_img_path)
+    X_faces_loc = face_locations(X_img)
+    if len(X_faces_loc) == 0:
+        return []
+    faces_encodings = face_recognition.face_encodings(X_img, known_face_locations=X_faces_loc)
+    closest_distances = knn_clf.kneighbors(faces_encodings, n_neighbors=1)
+    is_recognized = [closest_distances[0][i][0] &lt;= DIST_THRESH for i in range(len(X_faces_loc))]
+    # predict classes and cull classifications that are not with high confidence
+    return [(pred, loc) if rec else ("N/A", loc) for pred, loc, rec in
+            zip(knn_clf.predict(faces_encodings), X_faces_loc, is_recognized)]</code></pre>
+      </details>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h4 id="Tag_people_from_photos.FaceRecognitionAuxiliary.ea_FaceRecognition_KNN.__show_prediction_labels_on_image" class="doc doc-heading">
+<code class="highlight language-python">__show_prediction_labels_on_image(name, ext, img_path, predictions)</code>
+
+</h4>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Shows the face recognition results visually.</p>
+<p>:param img_path: path to image to be recognized
+:param predictions: results of the predict function
+:return:</p>
+
+      <details class="quote">
+        <summary>Source code in <code>Tag_people_from_photos/FaceRecognitionAuxiliary/ea_FaceRecognition_KNN.py</code></summary>
+        <pre class="highlight"><code class="language-python">def __show_prediction_labels_on_image(name, ext, img_path, predictions):
+    """
+    Shows the face recognition results visually.
+
+    :param img_path: path to image to be recognized
+    :param predictions: results of the predict function
+    :return:
+    """
+    pil_image = Image.open(img_path).convert("RGB")
+    draw = ImageDraw.Draw(pil_image)
+
+    for name, (top, right, bottom, left) in predictions:
+        # Draw a box around the face using the Pillow module
+        draw.rectangle(((left, top), (right, bottom)), outline=(0, 0, 255))
+
+        # There's a bug in Pillow where it blows up with non-UTF-8 text
+        # when using the default bitmap font
+        # name = name.encode("UTF-8")
+
+        # Draw a label with a name below the face
+        text_width, text_height = draw.textsize(name)
+        word_css = join("zh.ttf")
+        font = ImageFont.truetype(word_css, 20)
+        draw.rectangle(((left, bottom - text_height - 10), (right, bottom)), fill=(0, 0, 255), outline=(0, 0, 255))
+        draw.text((left + 6, bottom - text_height - 5), name, font=font, fill=(255, 255, 255, 255))
+
+    # Remove the drawing library from memory as per the Pillow docs
+    del draw
+
+    # Display the resulting image
+    if (SEE_ALL_FACES):
+        pil_image.show()
+    get_time = str(datetime.now())[17:]
+    # 保存识别的图片
+    pa = join("tempFaceRecognition", "{0}{1}.{2}".format(name, get_time, ext))
+    pil_image.save(pa.replace("N/A", ""))</code></pre>
+      </details>
+  </div>
+
+</div>
+
+
+
+  </div>
+
+  </div>
+
+</div><h3 id="eb_facerecognition_knn_multiprocesspy">eb_FaceRecognition_KNN_MultiProcess.py</h3>
+
+
+<div class="doc doc-object doc-module">
+
+
+<a id="Tag_people_from_photos.FaceRecognitionAuxiliary.eb_FaceRecognition_KNN_MultiProcess"></a>
+  <div class="doc doc-contents first">
+  
+      <p>识别temp目录中已经分好类的图片，最后一行的参数是修改识别所用的模型KNN_MOD中是我训练好了的一些人物。</p>
+<p>This is an example of using the k-nearest-neighbors (KNN) algorithm for face recognition.
+When should I use this example?
+This example is useful when you wish to recognize a large set of known people,
+and make a prediction for an unknown person in a feasible computation time.
+Algorithm Description:
+The knn classifier is first trained on a set of labeled (known) faces and can then predict the person
+in an unknown image by finding the k most similar faces (images with closet face-features under eucledian distance)
+in its training set, and performing a majority vote (possibly weighted) on their label.
+For example, if k=3, and the three closest face images to the given image in the training set are one image of Biden
+and two images of Obama, The result would be 'Obama'.
+* This implementation uses a weighted vote, such that the votes of closer-neighbors are weighted more heavily.
+Usage:
+1. Prepare a set of images of the known people you want to recognize. Organize the images in a single directory
+   with a sub-directory for each known person.
+2. Then, call the 'train' function with the appropriate parameters. Make sure to pass in the 'model_save_path' if you
+   want to save the model to disk so you can re-use the model without having to re-train it.
+3. Call 'predict' and pass in your trained model to recognize the people in an unknown image.
+NOTE: This example requires scikit-learn to be installed! You can install it with pip:
+$ pip3 install scikit-learn</p>
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h4 id="Tag_people_from_photos.FaceRecognitionAuxiliary.eb_FaceRecognition_KNN_MultiProcess.__firmly2tempS" class="doc doc-heading">
+<code class="highlight language-python">__firmly2tempS()</code>
+
+</h4>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>temp到tempSingle
+:return:</p>
+
+      <details class="quote">
+        <summary>Source code in <code>Tag_people_from_photos/FaceRecognitionAuxiliary/eb_FaceRecognition_KNN_MultiProcess.py</code></summary>
+        <pre class="highlight"><code class="language-python">def __firmly2tempS():
+    """
+    temp到tempSingle
+    :return:
+    """
+    if WINDOWS:
+        try:
+            # move .\Prescreen\{name} .\FR_DATA\A-KnownPeople\
+            commandInput = "move /Y .\\temp\\* .\\tempSingle\\"
+            commandImplementation = os.popen(commandInput)
+            print("Moving file")
+        except Exception as e:
+            raise e
+    else:
+        try:
+            # mv ./Prescreen/{name} ./FR_DATA/A-KnownPeople/
+            commandInput = "mv ./temp/* ./tempSingle/"
+            commandImplementation = os.popen(commandInput)
+            print("Moving file...")
+        except Exception as e:
+            raise e</code></pre>
+      </details>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h4 id="Tag_people_from_photos.FaceRecognitionAuxiliary.eb_FaceRecognition_KNN_MultiProcess.__move2temp" class="doc doc-heading">
+<code class="highlight language-python">__move2temp()</code>
+
+</h4>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>把无法精确识别的图片移动到temp
+:return:</p>
+
+      <details class="quote">
+        <summary>Source code in <code>Tag_people_from_photos/FaceRecognitionAuxiliary/eb_FaceRecognition_KNN_MultiProcess.py</code></summary>
+        <pre class="highlight"><code class="language-python">def __move2temp():
+    """
+    把无法精确识别的图片移动到temp
+    :return:
+    """
+    if WINDOWS:
+        try:
+            # move .\Prescreen\{name} .\FR_DATA\A-KnownPeople\
+            commandInput = "move /Y .\\tempSingle\\unknown* .\\temp\\"
+            commandImplementation = os.popen(commandInput)
+            print("Moving file")
+        except Exception as e:
+            raise e
+    else:
+        try:
+            # mv ./Prescreen/{name} ./FR_DATA/A-KnownPeople/
+            commandInput = "mv ./tempSingle/unknown* ./temp/"
+            commandImplementation = os.popen(commandInput)
+            print("Moving file...")
+        except Exception as e:
+            raise e</code></pre>
+      </details>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h4 id="Tag_people_from_photos.FaceRecognitionAuxiliary.eb_FaceRecognition_KNN_MultiProcess.__show_prediction_labels_on_image" class="doc doc-heading">
+<code class="highlight language-python">__show_prediction_labels_on_image(name, ext, img_path, predictions, isCprs)</code>
+
+</h4>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Shows the face recognition results visually.</p>
+<p>:param img_path: path to image to be recognized
+:param predictions: results of the predict function
+:return:</p>
+
+      <details class="quote">
+        <summary>Source code in <code>Tag_people_from_photos/FaceRecognitionAuxiliary/eb_FaceRecognition_KNN_MultiProcess.py</code></summary>
+        <pre class="highlight"><code class="language-python">def __show_prediction_labels_on_image(name, ext, img_path, predictions, isCprs):
+    """
+    Shows the face recognition results visually.
+
+    :param img_path: path to image to be recognized
+    :param predictions: results of the predict function
+    :return:
+    """
+    pil_image = Image.open(img_path).convert("RGB")
+    draw = ImageDraw.Draw(pil_image)
+
+    word_css = join("zh.ttf")
+    font = ImageFont.truetype(word_css, 20)
+
+    for name, (top, right, bottom, left) in predictions:
+        # Draw a box around the face using the Pillow module
+        if isCprs:
+            A = left / CQUA
+            B = top / CQUA
+            C = right / CQUA
+            D = bottom / CQUA
+            draw.rectangle(((A, B), (C, D)), outline=(0, 0, 255))
+        else:
+            draw.rectangle(((left, top), (right, bottom)), outline=(0, 0, 255))
+
+        print("Drawing" + name)
+        # name = name.encode("UTF-8")
+
+        # Draw a label with a name below the face
+        text_width, text_height = draw.textsize(name)
+        if isCprs:
+            A = left / CQUA
+            B = (bottom - text_height + 20) / CQUA
+            C = right / CQUA
+            D = bottom / CQUA
+            # 文字位置
+            E = (left + 6) / CQUA
+            F = (bottom - text_height + 13) / CQUA
+            draw.rectangle(((A, B), (C, D)), fill=(0, 0, 255), outline=(0, 0, 255))
+            # word_css  = ".{0}msyh.ttc".format(SS)
+            word_css = join("zh.ttf")
+            font = ImageFont.truetype(word_css, 20)
+
+            draw.text((E, F), name, font=font, fill=(255, 255, 255, 255))
+        else:
+            draw.rectangle(((left, bottom - text_height - 10), (right, bottom)), fill=(0, 0, 255), outline=(0, 0, 255))
+            draw.text((left + 6, bottom - text_height - 5), name, font=font, fill=(255, 255, 255, 255))
+    del draw
+
+    # Display the resulting image
+    if (SEE_ALL_FACES):
+        pil_image.show()
+    get_time = str(datetime.now())[17:]
+    # 保存识别的图片
+    pa = join("tempFaceRecognition", "{0}{1}.{2}".format(name, get_time, ext))
+    pil_image.save(pa.replace("N/A", ""))</code></pre>
+      </details>
+  </div>
+
+</div>
+
+
+
+  </div>
+
+  </div>
+
+</div><h3 id="fa_moved2datapy">fa_Moved2Data.py</h3>
+
+
+<div class="doc doc-object doc-module">
+
+
+<a id="Tag_people_from_photos.FaceRecognitionAuxiliary.fa_Moved2Data"></a>
+  <div class="doc doc-contents first">
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div><h3 id="ga_findsomebodypy">ga_FindSomebody.py</h3>
+
+
+<div class="doc doc-object doc-module">
+
+
+<a id="Tag_people_from_photos.FaceRecognitionAuxiliary.ga_FindSomebody"></a>
+  <div class="doc doc-contents first">
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div><h3 id="m_balancetrainpy">m_BalanceTrain.py</h3>
+
+
+<div class="doc doc-object doc-module">
+
+
+<a id="Tag_people_from_photos.FaceRecognitionAuxiliary.m_BalanceTrain"></a>
+  <div class="doc doc-contents first">
+  
+      <p>用于均衡训练文件夹中的图片</p>
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div><h3 id="m_clean_up_fredpy">m_CLEAN_UP_FRed.py</h3>
+
+
+<div class="doc doc-object doc-module">
+
+
+<a id="Tag_people_from_photos.FaceRecognitionAuxiliary.m_CLEAN_UP_FRed"></a>
+  <div class="doc doc-contents first">
+  
+      <p>删除已识别的数据</p>
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div><h3 id="m_clean_up_temppy">m_CLEAN_UP_TEMP.py</h3>
+
+
+<div class="doc doc-object doc-module">
+
+
+<a id="Tag_people_from_photos.FaceRecognitionAuxiliary.m_CLEAN_UP_TEMP"></a>
+  <div class="doc doc-contents first">
+  
+      <p>删除临时目录中的未知人物识别</p>
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div><h3 id="m_killpy">m_Kill.py</h3>
+
+
+<div class="doc doc-object doc-module">
+
+
+<a id="Tag_people_from_photos.FaceRecognitionAuxiliary.m_Kill"></a>
+  <div class="doc doc-contents first">
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div><h3 id="m_waitpy">m_Wait.py</h3>
+
+
+<div class="doc doc-object doc-module">
+
+
+<a id="Tag_people_from_photos.FaceRecognitionAuxiliary.m_Wait"></a>
+  <div class="doc doc-contents first">
+  
+      <p>来源：https://blog.csdn.net/Lingdongtianxia/article/details/76359555</p>
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div><h2 id="for_testing">for_testing</h2>
+<h3 id="t-facerecognitiondemopy">t-FaceRecognitionDemo.py</h3>
+
+
+<div class="doc doc-object doc-module">
+
+
+<a id="Tag_people_from_photos.for_testing.t-FaceRecognitionDemo"></a>
+  <div class="doc doc-contents first">
+  
+      <p>演示须知：
+添加待识别的人脸图片到INPUT_PIC文件夹中。
+在下方标记处修改成你自己训练的模型。</p>
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div><h3 id="t-gbrefacerecognitionpy">t-gbReFaceRecognition.py</h3>
+
+
+<div class="doc doc-object doc-module">
+
+
+<a id="Tag_people_from_photos.for_testing.t-gbReFaceRecognition"></a>
+  <div class="doc doc-contents first">
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div><h3 id="t-trainingdemopy">t-TrainingDemo.py</h3>
+
+
+<div class="doc doc-object doc-module">
+
+
+<a id="Tag_people_from_photos.for_testing.t-TrainingDemo"></a>
+  <div class="doc doc-contents first">
+  
+      <p>演示前的工作：
+添加要训练的材料到 Prescreen文件夹中：
+结构：
+        -+-PersonA-+-1.jpg
+         |               +-2.jpg
+         |               +-...
+         |
+         +-PersonB-+-1.jpg
+         |               +-2.jpg
+         |               +-...
+         |
+         +-PersonC-+-1.jpg
+                           +-2.jpg
+                           +-...</p>
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div><h2 id="aa_prescreenpicturepy_1">aa_PrescreenPicture.py</h2>
+
+
+<div class="doc doc-object doc-module">
+
+
+<a id="Tag_people_from_photos.aa_PrescreenPicture"></a>
+  <div class="doc doc-contents first">
+  
+      <p>训练材料预处理，过滤掉多面孔、无面孔图片。
+请将训练材料放在Prescreen文件夹中。
+结构要求：
+    -+-PersonA-+-1.jpg
+     |         +-2.jpg
+     |         +-...
+     |
+     +-PersonB-+-1.jpg
+     |         +-2.jpg
+     |         +-...
+     |
+     +-PersonC-+-1.jpg
+               +-2.jpg
+               +-...</p>
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="Tag_people_from_photos.aa_PrescreenPicture.__checkFaces" class="doc doc-heading">
+<code class="highlight language-python">__checkFaces(file)</code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Find faces in pictures
+:param file: 图片路径
+:return:</p>
+
+      <details class="quote">
+        <summary>Source code in <code>Tag_people_from_photos/aa_PrescreenPicture.py</code></summary>
+        <pre class="highlight"><code class="language-python">def __checkFaces(file):
+    """
+    Find faces in pictures
+    :param file: 图片路径
+    :return:
+    """
+    global ERROR_INFO
+    try:
+        # Load the jpg file into a numpy array
+        inputPic = file
+        image = face_recognition.load_image_file(inputPic)
+        # Find all the faces in the image using the default HOG-based model.
+        # This method is fairly accurate, but not as accurate as the CNN model and not GPU accelerated.
+        # See also: find_faces_in_picture_cnn.py
+        face_locations = face_recognition.face_locations(image)
+        faceNum = len(face_locations)
+        print("Found \033[1;33;40m{0}\033[0m: face(s) in \033[1;35;40m{1}\033[0m: photograph.".format(faceNum, file),
+              end=" ==&gt; ")
+        for face_location in face_locations:
+            # Print the location of each face in this image
+            top, right, bottom, left = face_location
+            print(
+                "A face is located at pixel location Top: {}, Left: {}, Bottom: {}, Right: {}".format(top, left, bottom,
+                                                                                                      right))
+            # You can access the actual face itself like this:
+            face_image = image[top:bottom, left:right]
+            pil_image = Image.fromarray(face_image)
+            if (SEE_ALL_FACES):
+                pil_image.show()
+        # pil_image.save(file)
+    except Exception as e:
+        ERROR_INFO = "{0}\n{1}".format(ERROR_INFO, e)
+        print("\033[1;32;41m{0}\033[0m".format(e))
+        raise e
+    return faceNum</code></pre>
+      </details>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="Tag_people_from_photos.aa_PrescreenPicture.__fex" class="doc doc-heading">
+<code class="highlight language-python">__fex(path)</code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>获取扩展名
+:param path: 文件路径
+:return: 扩展名</p>
+
+      <details class="quote">
+        <summary>Source code in <code>Tag_people_from_photos/aa_PrescreenPicture.py</code></summary>
+        <pre class="highlight"><code class="language-python">def __fex(path):
+    """
+    获取扩展名
+    :param path: 文件路径
+    :return: 扩展名
+    """
+    ex = os.path.splitext(path)[1]
+    # print("__fex(path)返回扩展名:{}".format(ex[1:]))
+    return ex[1:]</code></pre>
+      </details>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="Tag_people_from_photos.aa_PrescreenPicture.__killPro" class="doc doc-heading">
+<code class="highlight language-python">__killPro(second, pro)</code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>延时杀死某进程
+:param second:
+:param pro: 进程名
+:return:</p>
+
+      <details class="quote">
+        <summary>Source code in <code>Tag_people_from_photos/aa_PrescreenPicture.py</code></summary>
+        <pre class="highlight"><code class="language-python">def __killPro(second, pro):
+    """
+    延时杀死某进程
+    :param second:
+    :param pro: 进程名
+    :return:
+    """
+    time.sleep(second)
+    print("展示时间：" + str(second) + "秒")
+    for proc in psutil.process_iter():  # 遍历当前process
+        if proc.name() == pro:  # 如果process的name是display
+            proc.kill()  # 关闭该process</code></pre>
+      </details>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="Tag_people_from_photos.aa_PrescreenPicture.__renameFile" class="doc doc-heading">
+<code class="highlight language-python">__renameFile()</code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>重命名文件
+将Prescreen中的文件重命名为 {序号}.{扩展名}
+:return:</p>
+
+      <details class="quote">
+        <summary>Source code in <code>Tag_people_from_photos/aa_PrescreenPicture.py</code></summary>
+        <pre class="highlight"><code class="language-python">def __renameFile():
+    """
+    重命名文件
+    将Prescreen中的文件重命名为 {序号}.{扩展名}
+    :return:
+    """
+    # ./Prescreen目录
+    prescreen_path = join("Prescreen")
+    # person_name : Prescreen/person_name
+    for person_name in os.listdir(prescreen_path):
+        if person_name != ".keep":  # 排除.keep文件
+            person_path = join("Prescreen", person_name)
+            person_pics = os.listdir(person_path)  # ./Prescreen/person_name/*
+            # 首先将文件全部随机重命名
+            for picture in person_pics:  # ./Prescreen/person_name/xxx.jpg
+                get_time = datetime.now()
+                # ./Prescreen/person_name/xxx.jpg
+                src_file = join(prescreen_path, person_name, picture)
+                # dst=./Prescreen/{人名}/{时间后面的秒数}.{扩展名}
+                sec_str = str(get_time)[17:]
+                dst_file = join(prescreen_path, person_name,
+                                "{0}.{1}".format(sec_str.replace(" ", ""), __fex(src_file)))
+                try:
+                    # 重命名
+                    os.rename(src_file, dst_file)
+                except Exception as e:
+                    print(e)
+            person_pics = os.listdir(person_path)
+            n = 1
+            # 接下来按序号命名
+            # picture :Prescreen/person_name/xxx
+            for picture in person_pics:
+                # Prescreen/person_name/xxx.jpg
+                src_file = join(person_path, picture)
+                # dst=Prescreen/person_name/{n}.{ext}
+                dst_file = join(person_path, "{0}.{1}".format(n, __fex(src_file)))
+                try:
+                    os.rename(src_file, dst_file)
+                except Exception as e:
+                    print(e)
+                n += 1</code></pre>
+      </details>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="Tag_people_from_photos.aa_PrescreenPicture.__rmFiles" class="doc doc-heading">
+<code class="highlight language-python">__rmFiles()</code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>删除Prescreen中无法识别的内容
+:return:</p>
+
+      <details class="quote">
+        <summary>Source code in <code>Tag_people_from_photos/aa_PrescreenPicture.py</code></summary>
+        <pre class="highlight"><code class="language-python">def __rmFiles():
+    """
+    删除Prescreen中无法识别的内容
+    :return:
+    """
+    print("\nDelete files...")
+    prescreen_path = join("Prescreen")
+    # 显示预筛选文件夹下的人物文件夹#./Prescreen/*
+    for person in os.listdir(prescreen_path):  # ./Prescreen/person
+        if person != ".keep":
+            if WINDOWS:
+                try:
+                    # del .\Prescreen\{person}\rm*
+                    commandInput = 'del /S /Q .\\Prescreen\\' + person + "\\rm*"
+                    commandImplementation = os.popen(commandInput)
+                    print("Del...")
+                except Exception as e:
+                    print(e)
+                try:
+                    # del .\Prescreen\{person}\rm*
+                    commandInput = 'del /S /Q .\\Prescreen\\' + person + "\\MF*"
+                    commandImplementation = os.popen(commandInput)
+                    print("Del...")
+                except Exception as e:
+                    print(e)
+            else:
+                try:
+                    # rm ./Prescreen/{person}/rm*
+                    commandInput = 'rm ./Prescreen/' + person + "/rm*"
+                    commandImplementation = os.popen(commandInput)
+                except Exception as e:
+                    print("REMOVE FILE ERROR.")
+                try:
+                    # rm ./Prescreen/{person}/rm*
+                    commandInput = 'rm ./Prescreen/' + person + "/MF*"
+                    commandImplementation = os.popen(commandInput)
+                except Exception as e:
+                    print("REMOVE FILE ERROR.")</code></pre>
+      </details>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="Tag_people_from_photos.aa_PrescreenPicture.filePrescreen" class="doc doc-heading">
+<code class="highlight language-python">filePrescreen()</code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>供外部调用的方法
+:return:</p>
+
+      <details class="quote">
+        <summary>Source code in <code>Tag_people_from_photos/aa_PrescreenPicture.py</code></summary>
+        <pre class="highlight"><code class="language-python">def filePrescreen():
+    """
+    供外部调用的方法
+    :return:
+    """
+    print("Prescreen Start......\n")
+    __renameFile()
+    prescreen_path = join("Prescreen")
+    # ./Prescreen/*
+    for person_name in os.listdir(prescreen_path):  # ./Prescreen/person_name/
+        if person_name != ".keep":
+            # ./Prescreen/person_name/
+            person_path = join(prescreen_path, person_name)
+            # ./Prescreen/person_name/*
+            pics = os.listdir(person_path)
+            if (len(pics) &gt;= 20) and (not WINDOWS):  # ./Prescreen/person_name/下的图片20张以上
+                taskNum = int(len(pics) / 4)
+                taskLef = len(pics) % 4
+                # 创建新线程
+                thread1 = __TaskSubmit("1", pics[0:taskNum], person_name)
+                thread2 = __TaskSubmit("2", pics[taskNum:taskNum * 2], person_name)
+                thread3 = __TaskSubmit("3", pics[taskNum * 2:taskNum * 3], person_name)
+                thread4 = __TaskSubmit("4", pics[taskNum * 3:taskNum * 4], person_name)
+                if taskLef == 0:
+                    thread1.start()
+                    thread2.start()
+                    thread3.start()
+                    thread4.start()
+                    thread1.join()
+                    thread2.join()
+                    thread3.join()
+                    thread4.join()
+                else:
+                    thread5 = __TaskSubmit("5", pics[taskNum * 4:taskNum * 4 + taskLef], person_name)
+                    thread1.start()
+                    thread2.start()
+                    thread3.start()
+                    thread4.start()
+                    thread5.start()
+                    thread1.join()
+                    thread2.join()
+                    thread3.join()
+                    thread4.join()
+                    thread5.join()
+            else:
+                for picture in pics:  # ./Prescreen/person_name/xxx.jpg
+                    get_time = datetime.now()  # 获取当前时间
+                    # "./Prescreen/"+person_name+ "/" +picture
+                    src_file = join(person_path, picture)
+                    if __checkFaces(src_file) != 1:  # 如果脸的数量不是一的不要
+                        # ./Prescreen/person_name/rm{get_time}
+                        dst_file = join(person_path, "rm{0}".format(str(get_time)[17:].replace(" ", "")))
+                    else:
+                        # ./Prescreen/person_name/1F{时间}.{扩展名}
+                        dst_file = join(person_path,
+                                        "1F{0}.{1}".format(str(get_time)[17:].replace(" ", ""), __fex(src_file)))
+                    try:
+                        os.rename(src_file, dst_file)
+                    except Exception as e:
+                        print(e)
+    __rmFiles()</code></pre>
+      </details>
+  </div>
+
+</div>
+
+
+
+  </div>
+
+  </div>
+
+</div><h2 id="ab_prescreenfaceonlypy_1">ab_PrescreenFaceOnly.py</h2>
+
+
+<div class="doc doc-object doc-module">
+
+
+<a id="Tag_people_from_photos.ab_PrescreenFaceOnly"></a>
+  <div class="doc doc-contents first">
+  
+      <p>训练材料预处理，保存成单个脸部图片
+只有当你的训练材料中有很多多人照片才这么做
+请将训练材料放在Prescreen文件夹中。
+结构要求：
+    -+-PersonA-+-1.jpg
+     |         +-2.jpg
+     |         +-...
+     |
+     +-PersonB-+-1.jpg
+     |         +-2.jpg
+     |         +-...
+     |
+     +-PersonC-+-1.jpg
+               +-2.jpg
+               +-...</p>
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="Tag_people_from_photos.ab_PrescreenFaceOnly.__checkFaces" class="doc doc-heading">
+<code class="highlight language-python">__checkFaces(file, person)</code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <h4 id="Tag_people_from_photos.ab_PrescreenFaceOnly.__checkFaces--find-faces-in-pictures">Find faces in pictures</h4>
+<p>并裁剪人脸
+FRS开头是裁剪后的文件
+:param file: 文件路径裁剪的文件路径
+:param person: 裁剪后要保存到的人名文件夹
+:return:</p>
+
+      <details class="quote">
+        <summary>Source code in <code>Tag_people_from_photos/ab_PrescreenFaceOnly.py</code></summary>
+        <pre class="highlight"><code class="language-python">def __checkFaces(file, person):
+    """
+    # Find faces in pictures
+    并裁剪人脸
+    FRS开头是裁剪后的文件
+    :param file: 文件路径裁剪的文件路径
+    :param person: 裁剪后要保存到的人名文件夹
+    :return:
+    """
+    global ERROR_INFO
+    try:
+        # Load the jpg file into a numpy array
+        inputPic = file
+        image = face_recognition.load_image_file(inputPic)
+        # Find all the faces in the image using the default HOG-based model.
+        # This method is fairly accurate, but not as accurate as the CNN model and not GPU accelerated.
+        # See also: find_faces_in_picture_cnn.py
+        # CNN:
+        # face_locations = face_recognition.face_locations(image, number_of_times_to_upsample=0, model="cnn")
+        # 这里使用HOG模型
+        face_locations = face_recognition.face_locations(image)
+        faceNum = len(face_locations)
+        print("Found \033[1;33;40m{0}\033[0m: face(s) in \033[1;35;40m{1}\033[0m: photograph.".format(faceNum, file),
+              end=" ==&gt; ")
+        for face_location in face_locations:
+            # Print the location of each face in this image
+            top, right, bottom, left = face_location
+            print("A face is located at pixel location Top: "
+                  "{}, Left: {}, Bottom: {}, Right: {}".format(top, left, bottom,right))
+            if (top - 200 &lt; 0):
+                if (top - 150 &lt; 0):
+                    if (top - 100 &lt; 0):
+                        T = top
+                    else:
+                        T = top - 100
+                else:
+                    T = top - 150
+            else:
+                T = top - 200
+            B = bottom + 100
+            if (left - 100 &lt; 0):
+                L = left
+            else:
+                L = left - 100
+            R = right + 100
+            tsleep(0.2)
+            print(T, B, L, R)
+            face_image = image[T:B, L:R]
+            pil_image = Image.fromarray(face_image)
+            if (SEE_ALL_FACES):
+                pil_image.show()
+            get_time = str(datetime.now())[17:]
+            # .{/}Prescreen{/}{person}{/}FRS{time}
+            pil_image.save(join("Prescreen", person, "FRS{0}.{1}".format(get_time, __fex(file))))
+    except Exception as e:
+        ERROR_INFO = "{0}\n{1}".format(ERROR_INFO, e)
+        print("\033[1;32;41m{0}\033[0m".format(e))
+        raise e
+    return faceNum</code></pre>
+      </details>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="Tag_people_from_photos.ab_PrescreenFaceOnly.__fex" class="doc doc-heading">
+<code class="highlight language-python">__fex(path)</code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>获取扩展名
+:param path:
+:return:</p>
+
+      <details class="quote">
+        <summary>Source code in <code>Tag_people_from_photos/ab_PrescreenFaceOnly.py</code></summary>
+        <pre class="highlight"><code class="language-python">def __fex(path):
+    """
+    获取扩展名
+    :param path:
+    :return:
+    """
+    ex = os.path.splitext(path)[1]
+    return ex[1:]</code></pre>
+      </details>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="Tag_people_from_photos.ab_PrescreenFaceOnly.__killPro" class="doc doc-heading">
+<code class="highlight language-python">__killPro(second, pro)</code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>延时杀死进程
+:param second:
+:param pro: 进程名
+:return:</p>
+
+      <details class="quote">
+        <summary>Source code in <code>Tag_people_from_photos/ab_PrescreenFaceOnly.py</code></summary>
+        <pre class="highlight"><code class="language-python">def __killPro(second, pro):
+    """
+    延时杀死进程
+    :param second:
+    :param pro: 进程名
+    :return:
+    """
+    time.sleep(second)
+    print("展示时间：" + str(second) + "秒")
+    for proc in psutil.process_iter():  # 遍历当前process
+        if proc.name() == pro:  # 如果process的name是display
+            proc.kill()  # 关闭该process</code></pre>
+      </details>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="Tag_people_from_photos.ab_PrescreenFaceOnly.__renameFile" class="doc doc-heading">
+<code class="highlight language-python">__renameFile()</code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>重命名文件
+将Prescreen中的文件重命名为 {序号}.{扩展名}
+:return:</p>
+
+      <details class="quote">
+        <summary>Source code in <code>Tag_people_from_photos/ab_PrescreenFaceOnly.py</code></summary>
+        <pre class="highlight"><code class="language-python">def __renameFile():
+    """
+    重命名文件
+    将Prescreen中的文件重命名为 {序号}.{扩展名}
+    :return:
+    """
+    # ./Prescreen目录
+    prescreen_path = join("Prescreen")
+    # person_name : Prescreen/person_name
+    for person_name in os.listdir(prescreen_path):
+        if person_name != ".keep":  # 排除.keep文件
+            person_path = join("Prescreen", person_name)
+            person_pics = os.listdir(person_path)  # ./Prescreen/person_name/*
+            # 首先将文件全部随机重命名
+            for picture in person_pics:  # ./Prescreen/person_name/xxx.jpg
+                get_time = datetime.now()
+                # ./Prescreen/person_name/xxx.jpg
+                src_file = join(prescreen_path, person_name, picture)
+                # dst=./Prescreen/{人名}/{时间后面的秒数}.{扩展名}
+                sec_str = str(get_time)[17:]
+                dst_file = join(prescreen_path, person_name, "{0}.{1}".format(sec_str.replace(" ", ""), __fex(src_file)))
+                try:
+                    # 重命名
+                    os.rename(src_file, dst_file)
+                except Exception as e:
+                    print(e)
+            person_pics = os.listdir(person_path)
+            n = 1
+            # 接下来按序号命名
+            # picture :Prescreen/person_name/xxx
+            for picture in person_pics:
+                # Prescreen/person_name/xxx.jpg
+                src_file = join(person_path, picture)
+                # dst=Prescreen/person_name/{n}.{ext}
+                dst_file = join(person_path, "{0}.{1}".format(n, __fex(src_file)))
+                try:
+                    os.rename(src_file, dst_file)
+                except Exception as e:
+                    print(e)
+                n += 1</code></pre>
+      </details>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="Tag_people_from_photos.ab_PrescreenFaceOnly.__rmFiles" class="doc doc-heading">
+<code class="highlight language-python">__rmFiles()</code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>删除无法识别人脸的文件
+:return:</p>
+
+      <details class="quote">
+        <summary>Source code in <code>Tag_people_from_photos/ab_PrescreenFaceOnly.py</code></summary>
+        <pre class="highlight"><code class="language-python">def __rmFiles():
+    """
+    删除无法识别人脸的文件
+    :return:
+    """
+    print("\nDelete files...")
+    prescreen_path = join("Prescreen")
+    # 显示预筛选文件夹下的人物文件夹#./Prescreen/*
+    for person in os.listdir(prescreen_path):  # ./Prescreen/person
+        if person != ".keep":
+            if WINDOWS:
+                try:
+                    # del .\Prescreen\{person}\rm*
+                    commandInput = 'del /S /Q .\\Prescreen\\' + person + "\\rm*"
+                    commandImplementation = os.popen(commandInput)
+                    print("Del...")
+                except Exception as e:
+                    print(e)
+                try:
+                    # del .\Prescreen\{person}\rm*
+                    commandInput = 'del /S /Q .\\Prescreen\\' + person + "\\MF*"
+                    commandImplementation = os.popen(commandInput)
+                    print("Del...")
+                except Exception as e:
+                    print(e)
+            else:
+                try:
+                    # rm ./Prescreen/{person}/rm*
+                    commandInput = 'rm ./Prescreen/' + person + "/rm*"
+                    commandImplementation = os.popen(commandInput)
+                except Exception as e:
+                    print("REMOVE FILE ERROR.")
+                try:
+                    # rm ./Prescreen/{person}/rm*
+                    commandInput = 'rm ./Prescreen/' + person + "/MF*"
+                    commandImplementation = os.popen(commandInput)
+                except Exception as e:
+                    print("REMOVE FILE ERROR.")</code></pre>
+      </details>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="Tag_people_from_photos.ab_PrescreenFaceOnly.filePrescreen" class="doc doc-heading">
+<code class="highlight language-python">filePrescreen()</code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>供外界调用的方法
+:return:</p>
+
+      <details class="quote">
+        <summary>Source code in <code>Tag_people_from_photos/ab_PrescreenFaceOnly.py</code></summary>
+        <pre class="highlight"><code class="language-python">def filePrescreen():
+    """
+    供外界调用的方法
+    :return:
+    """
+    print("Prescreen Start......\n")
+    __renameFile()
+    prescreen_path = join("Prescreen")
+    # ./Prescreen/*
+    for person in os.listdir(prescreen_path):  # ./Prescreen/person/
+        if person != ".keep":
+            person_path = join(prescreen_path, person)
+            # ./Prescreen/person/
+            pics = (os.listdir(person_path))  # ./Prescreen/person/*
+            if (len(pics) &gt;= 20) &amp; (not WINDOWS):  # ./Prescreen/person/下的图片20张以上
+                taskNum = int(len(pics) / 4)
+                taskLef = len(pics) % 4
+                # 创建新线程
+                thread1 = __TaskSubmit("1", pics[0:taskNum], person)
+                thread2 = __TaskSubmit("2", pics[taskNum:taskNum * 2], person)
+                thread3 = __TaskSubmit("3", pics[taskNum * 2:taskNum * 3], person)
+                thread4 = __TaskSubmit("4", pics[taskNum * 3:taskNum * 4], person)
+                if taskLef == 0:
+                    thread1.start()
+                    thread2.start()
+                    thread3.start()
+                    thread4.start()
+                    thread1.join()
+                    thread2.join()
+                    thread3.join()
+                    thread4.join()
+                else:
+                    thread5 = __TaskSubmit("5", pics[taskNum * 4:taskNum * 4 + taskLef], person)
+                    thread1.start()
+                    thread2.start()
+                    thread3.start()
+                    thread4.start()
+                    thread5.start()
+                    thread1.join()
+                    thread2.join()
+                    thread3.join()
+                    thread4.join()
+                    thread5.join()
+            else:
+                for picture in pics:  # ./Prescreen/person/xxx.jpg
+                    time = datetime.now()  # 获取当前时间
+                    # "./Prescreen/"+person+ "/" +picture
+                    src_file = join(person_path, picture)
+                    if __checkFaces(src_file, person) == 0:
+                        # ./Prescreen/person/rm{time}
+                        dst_file = join(person_path, "rm{0}".format(str(time)[17:].replace(" ", "")))
+                    else:
+                        # ./Prescreen/person/1F{时间}.{扩展名}
+                        dst_file = join(person_path, "1F{0}.{1}".format(str(time)[17:].replace(" ", ""), __fex(src_file)))
+                    try:
+                        os.rename(src_file, dst_file)
+                    except Exception as e:
+                        print(e)
+                    else:
+                        pass
+    __rmFiles()</code></pre>
+      </details>
+  </div>
+
+</div>
+
+
+
+  </div>
+
+  </div>
+
+</div><h2 id="ba_addknownpersonpy_1">ba_AddKnownPerson.py</h2>
+
+
+<div class="doc doc-object doc-module">
+
+
+<a id="Tag_people_from_photos.ba_AddKnownPerson"></a>
+  <div class="doc doc-contents first">
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="Tag_people_from_photos.ba_AddKnownPerson.__addPerson" class="doc doc-heading">
+<code class="highlight language-python">__addPerson(name)</code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <h4 id="Tag_people_from_photos.ba_AddKnownPerson.__addPerson--_1">新建人物</h4>
+<p>:param name:
+:return:</p>
+
+      <details class="quote">
+        <summary>Source code in <code>Tag_people_from_photos/ba_AddKnownPerson.py</code></summary>
+        <pre class="highlight"><code class="language-python">def __addPerson(name):
+    """
+    # 新建人物
+    :param name:
+    :return:
+    """
+    if WINDOWS:
+        try:
+            # move .\Prescreen\{name} .\FR_DATA\A-KnownPeople\
+            commandInput = "move /Y .\\Prescreen\\{0} .\\FR_DATA\\A-KnownPeople\\".format(name)
+            commandImplementation = os.popen(commandInput)
+            print("Windows - Person created.")
+        except Exception as e:
+            raise e
+    else:
+        try:
+            # mv ./Prescreen/{name} ./FR_DATA/A-KnownPeople/
+            commandInput = "mv ./Prescreen/{0} ./FR_DATA/A-KnownPeople/".format(name)
+            commandImplementation = os.popen(commandInput)
+            print("Person created.")
+        except Exception as e:
+            raise e</code></pre>
+      </details>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="Tag_people_from_photos.ba_AddKnownPerson.__addPicture" class="doc doc-heading">
+<code class="highlight language-python">__addPicture(name)</code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <h4 id="Tag_people_from_photos.ba_AddKnownPerson.__addPicture--_1">添加到已有</h4>
+<p>:param name:
+:return:</p>
+
+      <details class="quote">
+        <summary>Source code in <code>Tag_people_from_photos/ba_AddKnownPerson.py</code></summary>
+        <pre class="highlight"><code class="language-python">def __addPicture(name):
+    """
+    # 添加到已有
+    :param name:
+    :return:
+    """
+    if WINDOWS:
+        try:
+            # move .\Prescreen\{name}\* .\FR_DATA\A-KnownPeople\{name}\
+            commandInput = "move /Y .\\Prescreen\\{0}\\* .\\FR_DATA\\A-KnownPeople\\{1}\\".format(name, name)
+            commandImplementation = os.popen(commandInput)
+            print("Windows - Person existed,adding....")
+        except Exception as e:
+            raise e
+    else:
+        try:
+            # mv ./Prescreen/{name}/* ./FR_DATA/A-KnownPeople/{name}/
+            commandInput = "mv ./Prescreen/{0}/* ./FR_DATA/A-KnownPeople/{1}/".format(name, name)
+            commandImplementation = os.popen(commandInput)
+            print("Person existed,adding....")
+        except Exception as e:
+            raise e</code></pre>
+      </details>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="Tag_people_from_photos.ba_AddKnownPerson.__addSingleDir" class="doc doc-heading">
+<code class="highlight language-python">__addSingleDir(name)</code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <h4 id="Tag_people_from_photos.ba_AddKnownPerson.__addSingleDir--_1">单人目录添加</h4>
+<p>:param name:
+:return:</p>
+
+      <details class="quote">
+        <summary>Source code in <code>Tag_people_from_photos/ba_AddKnownPerson.py</code></summary>
+        <pre class="highlight"><code class="language-python">def __addSingleDir(name):
+    """
+    # 单人目录添加
+    :param name:
+    :return:
+    """
+    if WINDOWS:
+        try:
+            # mkdir .\FR_DATA\D-Singleface\{name}
+            com = "mkdir .\\FR_DATA\\D-Singleface\\{0}".format(name)
+            mkdir = os.popen(com)
+            print("Windows - mkdir...")
+        except Exception as e:
+            raise e
+    else:
+        try:
+            # mkdir ./FR_DATA/D-Singleface/{name}
+            com = "mkdir ./FR_DATA/D-Singleface/{0}".format(name)
+            mkdir = os.popen(com)
+        except Exception as e:
+            raise e</code></pre>
+      </details>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="Tag_people_from_photos.ba_AddKnownPerson.addKnowPeople" class="doc doc-heading">
+<code class="highlight language-python">addKnowPeople()</code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <h4 id="Tag_people_from_photos.ba_AddKnownPerson.addKnowPeople--x">主要方法X</h4>
+<p>:return:</p>
+
+      <details class="quote">
+        <summary>Source code in <code>Tag_people_from_photos/ba_AddKnownPerson.py</code></summary>
+        <pre class="highlight"><code class="language-python">def addKnowPeople():
+    """
+    # 主要方法X
+    :return:
+    """
+    # 先删除拷贝
+    m_BalanceTrain.delCopy()
+    get_time = str(datetime.now()).replace(":", "-").replace(" ", "")
+    # 复制原始文件夹
+    m_BalanceTrain.copyFiles(join("FR_DATA", "A-KnownPeople"), join("FR_DATA", "A-KnownPeople_bak_{0}".format(get_time)))
+    # 开始移动文件
+    people_to_add = os.listdir(join("Prescreen"))  # ./Prescreen/*
+    for name in people_to_add:
+        if name != ".keep":
+            # ./FR_DATA/A-KnownPeople/{name}
+            if not os.path.exists(join("FR_DATA", "A-KnownPeople", name)):
+                __addPerson(name)
+            else:
+                __addPicture(name)
+            # ./FR_DATA/D-Singleface/{name}
+            if not os.path.exists(join("FR_DATA", "D-Singleface", name)):
+                __addSingleDir(name)
+    print("人物添加完毕。")
+    if WINDOWS:
+        try:
+            # del -r ./Prescreen/*
+            commandInput = "rd /S /Q .\\Prescreen\\"
+            commandImplementation = os.popen(commandInput)
+            print("Remove Prescreen....")
+        except Exception as e:
+            raise e
+        try:
+            commandInput = "mkdir .\\Prescreen"
+            commandImplementation = os.popen(commandInput)
+            commandImplementation = os.popen('echo 1 &gt; ".\\Prescreen\\.keep"')
+            print("Windows - mkdir...")
+        except Exception as e:
+            raise e
+    else:
+        try:
+            # rm -r ./Prescreen/*
+            commandInput = "rm -r ./Prescreen/*"
+            commandImplementation = os.popen(commandInput)
+            commandImplementation = os.popen("echo 0 &gt; ./Prescreen/.keep")
+            print("Remove Prescreen....")
+        except Exception as e:
+            raise e</code></pre>
+      </details>
+  </div>
+
+</div>
+
+
+
+  </div>
+
+  </div>
+
+</div><h2 id="ca_trainingoneprocessingpy_1">ca_TrainingOneProcessing.py</h2>
+
+
+<div class="doc doc-object doc-module">
+
+
+<a id="Tag_people_from_photos.ca_TrainingOneProcessing"></a>
+  <div class="doc doc-contents first">
+  
+      <p>训练模型-单线程
+模型文件夹：./FR_DATA/
+单独运行请修改最后一行参数
+因为上次调试的训练素材是G-WorldWidePeople，一直没改</p>
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="Tag_people_from_photos.ca_TrainingOneProcessing.__calcTask" class="doc doc-heading">
+<code class="highlight language-python">__calcTask(path)</code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <h4 id="Tag_people_from_photos.ca_TrainingOneProcessing.__calcTask--_1">计算任务总量</h4>
+<p>:param path:
+:return:</p>
+
+      <details class="quote">
+        <summary>Source code in <code>Tag_people_from_photos/ca_TrainingOneProcessing.py</code></summary>
+        <pre class="highlight"><code class="language-python">def __calcTask(path):
+    """
+    # 计算任务总量
+    :param path:
+    :return:
+    """
+    dirs = listdir(path)
+    task = 0
+    for person in dirs:
+        sub_dir = join(path, person)
+        num = len(listdir(sub_dir))
+        task = task + num
+    return task</code></pre>
+      </details>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="Tag_people_from_photos.ca_TrainingOneProcessing.__train" class="doc doc-heading">
+<code class="highlight language-python">__train(train_dir, model_save_path='', n_neighbors=None, knn_algo='ball_tree', verbose=False)</code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>训练模型的方法
+:param train_dir: 训练材料
+:param model_save_path: 模型保存路径
+:param n_neighbors:
+:param knn_algo:
+:param verbose: 是否显示详情
+:return:</p>
+
+      <details class="quote">
+        <summary>Source code in <code>Tag_people_from_photos/ca_TrainingOneProcessing.py</code></summary>
+        <pre class="highlight"><code class="language-python">def __train(train_dir, model_save_path="", n_neighbors=None, knn_algo='ball_tree', verbose=False):
+    """
+    训练模型的方法
+    :param train_dir: 训练材料
+    :param model_save_path: 模型保存路径
+    :param n_neighbors:
+    :param knn_algo:
+    :param verbose: 是否显示详情
+    :return:
+    """
+    TASK = __calcTask(train_dir)
+    X = []
+    y = []
+    n = 0
+    num = 1
+    for class_dir in listdir(train_dir):
+        n += 1
+        if verbose:
+            print("\033[1;33;40m添加第{}个训练对象 \033[0m:\033[1;36;40m".format(n) + class_dir + "\033[0m")
+        if not isdir(join(train_dir, class_dir)):
+            continue
+        for img_path in image_files_in_folder(join(train_dir, class_dir)):
+            image = face_recognition.load_image_file(img_path)
+            if verbose:
+                print("\033[1;34;40m添加第({0}/{1})个文件 \033[0m:\033[1;38;40m".format(num, TASK) + img_path + "\033[0m")
+            m_Wait.view(num, TASK, "32", "")
+            num += 1
+            faces_bboxes = face_locations(image)
+            if len(faces_bboxes) != 1:
+                if verbose:
+                    print("\033[1;31;40mWARN："
+                          "\033[0m image {} not fit "
+                          "for __training: {}".format(img_path,
+                                                      "didn't find a face" if len(
+                                                          faces_bboxes) &lt; 1 else "found more than one face"))
+                continue
+            X.append(face_recognition.face_encodings(image, known_face_locations=faces_bboxes)[0])
+            y.append(class_dir)
+
+    if n_neighbors is None:
+        n_neighbors = int(round(sqrt(len(X))))
+        if verbose:
+            print("Chose n_neighbors automatically as:", n_neighbors)
+
+    knn_clf = neighbors.KNeighborsClassifier(n_neighbors=n_neighbors, algorithm=knn_algo, weights='distance')
+    knn_clf.fit(X, y)
+
+    if model_save_path != "":
+        with open(model_save_path, 'wb') as f:
+            pickle.dump(knn_clf, f)
+    return knn_clf</code></pre>
+      </details>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="Tag_people_from_photos.ca_TrainingOneProcessing.main" class="doc doc-heading">
+<code class="highlight language-python">main(train_dir, model_save_path)</code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <h4 id="Tag_people_from_photos.ca_TrainingOneProcessing.main--mainx">mainX</h4>
+<p>:param train_dir:
+:param model_save_path:
+:return:</p>
+
+      <details class="quote">
+        <summary>Source code in <code>Tag_people_from_photos/ca_TrainingOneProcessing.py</code></summary>
+        <pre class="highlight"><code class="language-python">def main(train_dir, model_save_path):
+    """
+    # mainX
+    :param train_dir:
+    :param model_save_path:
+    :return:
+    """
+    print("\033[5;33;40m开始训练模型(单线程)....\033[0m\n")
+    get_time = str(datetime.now()).replace(":", "").replace(" ", "")
+    # ./FR_DATA/"{train_dir}/		./KNN_MOD/{name}
+    if WINDOWS:
+        knn_clf = __train(join("FR_DATA", train_dir),
+                          join("KNN_MOD", "{0}{1}".format(model_save_path, get_time)),
+                          None, "ball_tree",
+                          verbose)
+    else:
+        knn_clf = __train(join("FR_DATA", train_dir),
+                          join("KNN_MOD", "{0}{1}".format(model_save_path, get_time)),
+                          None,
+                          "ball_tree",
+                          verbose)
+    print("\n\033[5;31;40m模型训练结束，已经导出到KNN_MOD文件夹下。\033[0m\n")</code></pre>
+      </details>
+  </div>
+
+</div>
+
+
+
+  </div>
+
+  </div>
+
+</div><h2 id="cb_four_processing_trainingpy_1">cb_Four_processing_training.py</h2>
+
+
+<div class="doc doc-object doc-module">
+
+
+<a id="Tag_people_from_photos.cb_Four_processing_training"></a>
+  <div class="doc doc-contents first">
+  
+      <p>同训练脚本，只不过是四线程
+记得修改最后一行main方法中的参数，因为KnownTest是调试程序用的训练数据</p>
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="Tag_people_from_photos.cb_Four_processing_training.__calcTask" class="doc doc-heading">
+<code class="highlight language-python">__calcTask(path)</code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>计算任务量
+:param path:
+:return:</p>
+
+      <details class="quote">
+        <summary>Source code in <code>Tag_people_from_photos/cb_Four_processing_training.py</code></summary>
+        <pre class="highlight"><code class="language-python">def __calcTask(path):
+    """
+    计算任务量
+    :param path:
+    :return:
+    """
+    dirs = listdir(path)
+    task = 0
+    for person in dirs:
+        sub_dir = join(path, person)
+        num = len(listdir(sub_dir))
+        task = task + num
+    return task</code></pre>
+      </details>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="Tag_people_from_photos.cb_Four_processing_training.__train" class="doc doc-heading">
+<code class="highlight language-python">__train(train_dir, model_save_path='', verbose=False, n_neighbors=None, knn_algo='ball_tree')</code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>训练模型的方法
+:param train_dir: 训练材料文件夹
+:param model_save_path:  模型保存路径
+:param verbose:  是否可视化
+:param n_neighbors:
+:param knn_algo:
+:return:</p>
+
+      <details class="quote">
+        <summary>Source code in <code>Tag_people_from_photos/cb_Four_processing_training.py</code></summary>
+        <pre class="highlight"><code class="language-python">def __train(train_dir, model_save_path="", verbose=False, n_neighbors=None, knn_algo='ball_tree'):
+    """
+    训练模型的方法
+    :param train_dir: 训练材料文件夹
+    :param model_save_path:  模型保存路径
+    :param verbose:  是否可视化
+    :param n_neighbors:
+    :param knn_algo:
+    :return:
+    """
+    X = []
+    y = []
+    T1 = []
+    T2 = []
+    T3 = []
+    T4 = []
+    person = listdir(train_dir)
+    if (len(person) &gt; 10) &amp; (not WINDOWS):
+        group = (int)(len(person) / 4)
+        left = len(person) % 4
+        # print(group)
+        gbn = group * 2
+        gcn = group * 3
+        gdn = group * 4
+        ga = person[0:group]
+        gb = person[group:gbn]
+        gc = person[gbn:gcn]
+        gd = person[gcn:gdn]
+        if left == 0:
+            pass
+        else:
+            gd = gd + person[gdn:gdn + left]
+        thread1 = TaskSubmit("1", train_dir, ga, T1, 31)
+        thread2 = TaskSubmit("2", train_dir, gb, T2, 34)
+        thread3 = TaskSubmit("3", train_dir, gc, T3, 32)
+        thread4 = TaskSubmit("4", train_dir, gd, T4, 36)
+        thread1.start()
+        thread2.start()
+        thread3.start()
+        thread4.start()
+        thread1.join()
+        thread2.join()
+        thread3.join()
+        thread4.join()
+        X = thread1.returnX() + thread2.returnX() + thread3.returnX() + thread4.returnX()
+        y = thread1.returnY() + thread2.returnY() + thread3.returnY() + thread4.returnY()
+    else:
+        TASK = __calcTask(train_dir)
+        n = 0
+        num = 1
+        for class_dir in listdir(train_dir):
+            n += 1
+            print("\n\033[1;33;40m添加第{}个训练对象 \033[0m:\033[1;36;40m".format(n) + class_dir + "\033[0m")
+            if not isdir(join(train_dir, class_dir)):
+                continue
+            for img_path in image_files_in_folder(join(train_dir, class_dir)):
+                image = face_recognition.load_image_file(img_path)
+                if verbose:
+                    print("\033[1;34;40m添加第({0}/{1})个文件 \033[0m:\033[1;38;40m".format(num, TASK) + img_path + "\033[0m")
+                if not WINDOWS:
+                    m_Wait.view(num, TASK, "31", "")
+                num += 1
+                faces_bboxes = face_locations(image)
+                if len(faces_bboxes) != 1:
+                    if verbose:
+                        print("\033[1;31;40mWARN："
+                              "\033[0m image {} not fit "
+                              "for __training: {}".format(img_path,
+                                                          "didn't find a face" if len(
+                                                              faces_bboxes) &lt; 1 else "found more than one face"))
+                    continue
+                X.append(face_recognition.face_encodings(image, known_face_locations=faces_bboxes)[0])
+                y.append(class_dir)
+
+    if n_neighbors is None:
+        n_neighbors = int(round(sqrt(len(X))))
+        if verbose:
+            print("Chose n_neighbors automatically as:", n_neighbors)
+
+    knn_clf = neighbors.KNeighborsClassifier(n_neighbors=n_neighbors, algorithm=knn_algo, weights='distance')
+    knn_clf.fit(X, y)
+    print("Generating...")
+    if model_save_path != "":
+        with open(model_save_path, 'wb') as f:
+            pickle.dump(knn_clf, f)
+    return knn_clf</code></pre>
+      </details>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="Tag_people_from_photos.cb_Four_processing_training.main" class="doc doc-heading">
+<code class="highlight language-python">main(train_dir, model_save_path)</code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <h4 id="Tag_people_from_photos.cb_Four_processing_training.main--mainx">mainX</h4>
+<p>:param train_dir:
+:param model_save_path:
+:return:</p>
+
+      <details class="quote">
+        <summary>Source code in <code>Tag_people_from_photos/cb_Four_processing_training.py</code></summary>
+        <pre class="highlight"><code class="language-python">def main(train_dir, model_save_path):
+    """
+    # mainX
+    :param train_dir:
+    :param model_save_path:
+    :return:
+    """
+    print("\033[5;33;40m开始训练模型(4线程)....\033[0m\n")
+    get_time = str(datetime.now()).replace(":", "").replace(" ", "")
+    if WINDOWS:
+        # ./F/T/
+        knn_clf = __train(join("FR_DATA", "{0}{1}".format(train_dir, get_time)),
+                          join("KNN_MOD", model_save_path),
+                          verbose)
+    else:
+        knn_clf = __train(join("FR_DATA", train_dir),
+                          join("KNN_MOD", "{0}{1}".format(model_save_path, get_time)),
+                          verbose)
+    print("\n\033[5;31;40m模型训练结束，已经导出到KNN_MOD文件夹下。\033[0m\n")</code></pre>
+      </details>
+  </div>
+
+</div>
+
+
+
+  </div>
+
+  </div>
+
+</div><h2 id="cctraining_multi_processing_of_tenpy_1">ccTraining_multi_processing_of_Ten.py</h2>
+
+
+<div class="doc doc-object doc-module">
+
+
+<a id="Tag_people_from_photos.ccTraining_multi_processing_of_Ten"></a>
+  <div class="doc doc-contents first">
+  
+      <p>虽然是10线程，但好像没四线程的快。
+这个是我测试用的，本来下用for循环，循环定义参数，但是。。。没成功……放弃了。</p>
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div><h2 id="da_findfacespy_1">da_FindFaces.py</h2>
+
+
+<div class="doc doc-object doc-module">
+
+
+<a id="Tag_people_from_photos.da_FindFaces"></a>
+  <div class="doc doc-contents first">
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="Tag_people_from_photos.da_FindFaces.FindFaces" class="doc doc-heading">
+<code class="highlight language-python">FindFaces()</code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <h4 id="Tag_people_from_photos.da_FindFaces.FindFaces--mainx">mainX</h4>
+<p>:return:</p>
+
+      <details class="quote">
+        <summary>Source code in <code>Tag_people_from_photos/da_FindFaces.py</code></summary>
+        <pre class="highlight"><code class="language-python">def FindFaces():
+    """
+    # mainX
+    :return:
+    """
+    print("\033[5;33;40m开始分类待识别的照片....\033[0m\n")
+    __renameFile()
+    __fileCtrl()
+    __copyFiles()
+    print("\033[1;32;41m{0}\033[0m".format(ERROR_REPORT))</code></pre>
+      </details>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="Tag_people_from_photos.da_FindFaces.__checkFaces" class="doc doc-heading">
+<code class="highlight language-python">__checkFaces(file)</code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>查找人脸
+:param file:
+:return:</p>
+
+      <details class="quote">
+        <summary>Source code in <code>Tag_people_from_photos/da_FindFaces.py</code></summary>
+        <pre class="highlight"><code class="language-python">def __checkFaces(file):
+    """
+    查找人脸
+    :param file:
+    :return:
+    """
+    global ERROR_REPORT
+    try:
+        # Load the jpg file into a numpy array
+        input_picture = join("INPUT_PIC", file)
+        # 如果图片大于1.5M，压缩。
+        if __getSize(input_picture) &gt;= 1500000:
+            img = Image.open(input_picture)
+            w, h = img.size
+            qua = 0.2
+            w, h = round(w * qua), round(h * qua)
+            img = img.resize((w, h), Image.ANTIALIAS)
+            image = np.array(img)
+            print("压缩图片...")
+        else:
+            image = face_recognition.load_image_file(input_picture)
+        # print("加载完成	")
+
+        # Find all the faces in the image using the default HOG-based model.
+        # This method is fairly accurate, but not as accurate as the CNN model and not GPU accelerated.
+        # See also: find_faces_in_picture_cnn.py
+
+        # face_locations = face_recognition.face_locations(image, number_of_times_to_upsample=0, model="cnn")
+        face_locations = face_recognition.face_locations(image)
+        # print("定位完成")
+        face_num = len(face_locations)
+        print("Found \033[1;33;40m{0} face(s)\033[0m: in \033[1;35;40m{1} photograph.\033[0m:".format(face_num, file),
+              end=" ==&gt; ")
+
+        for face_location in face_locations:
+            # Print the location of each face in this image
+            top, right, bottom, left = face_location
+            print(
+                "A face is located at pixel location Top: {}, Left: {}, Bottom: {}, Right: {}".format(top, left, bottom,
+                                                                                                      right))
+
+            if SEE_ALL_FACES:
+                # You can access the actual face itself like this:
+                face_image = image[top:bottom, left:right]
+                pil_image = Image.fromarray(face_image)
+                pil_image.show()
+        # print("Next")
+        return face_num
+    except Exception as e:
+        # raise e
+        ERROR_REPORT = "{0}\n{1}{2}".format(ERROR_REPORT, e, file)
+        print(e)</code></pre>
+      </details>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="Tag_people_from_photos.da_FindFaces.__copyFiles" class="doc doc-heading">
+<code class="highlight language-python">__copyFiles()</code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>复制文识别结果到temp
+:return:</p>
+
+      <details class="quote">
+        <summary>Source code in <code>Tag_people_from_photos/da_FindFaces.py</code></summary>
+        <pre class="highlight"><code class="language-python">def __copyFiles():
+    """
+    复制文识别结果到temp
+    :return:
+    """
+    if WINDOWS:
+        try:
+            # copy ./INPUT_PIC/0* ./tempNone
+            commandInput = 'copy /Y .\\INPUT_PIC\\0* .\\tempNone'
+            commandImplementation = os.popen(commandInput)
+        except Exception as e:
+            print(e)
+        try:
+            # cp ./INPUT_PIC/1* ./tempSingle
+            commandInput = 'copy /Y .\\INPUT_PIC\\1* .\\tempSingle'
+            commandImplementation = os.popen(commandInput)
+        except Exception as e:
+            print("No Singleface")
+        try:
+            # cp ./INPUT_PIC/MF* ./tempMore
+            commandInput = 'copy /Y .\\INPUT_PIC\\MF* .\\tempMore'
+            commandImplementation = os.popen(commandInput)
+        except Exception as e:
+            print(e)
+    else:
+        try:
+            # cp ./INPUT_PIC/0* ./tempNone
+            commandInput = 'cp ./INPUT_PIC/0* ./tempNone'
+            commandImplementation = os.popen(commandInput)
+        except Exception as e:
+            print("No None fece")
+        try:
+            # cp ./INPUT_PIC/1* ./tempSingle
+            commandInput = 'cp ./INPUT_PIC/1* ./tempSingle'
+            commandImplementation = os.popen(commandInput)
+        except Exception as e:
+            print("No Singleface")
+        try:
+            # cp ./INPUT_PIC/MF* ./tempMore
+            commandInput = 'cp ./INPUT_PIC/MF* ./tempMore'
+            commandImplementation = os.popen(commandInput)
+        except Exception as e:
+            print(e)</code></pre>
+      </details>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="Tag_people_from_photos.da_FindFaces.__fex" class="doc doc-heading">
+<code class="highlight language-python">__fex(path)</code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <h4 id="Tag_people_from_photos.da_FindFaces.__fex--_1">返回扩展名</h4>
+<p>:param path:
+:return:</p>
+
+      <details class="quote">
+        <summary>Source code in <code>Tag_people_from_photos/da_FindFaces.py</code></summary>
+        <pre class="highlight"><code class="language-python">def __fex(path):
+    """
+    # 返回扩展名
+    :param path:
+    :return:
+    """
+    ex = os.path.splitext(path)[1]
+    return ex[1:]</code></pre>
+      </details>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="Tag_people_from_photos.da_FindFaces.__fileCtrl" class="doc doc-heading">
+<code class="highlight language-python">__fileCtrl()</code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>INPUT_PIC文价处理
+:return:</p>
+
+      <details class="quote">
+        <summary>Source code in <code>Tag_people_from_photos/da_FindFaces.py</code></summary>
+        <pre class="highlight"><code class="language-python">def __fileCtrl():
+    """
+    INPUT_PIC文价处理
+    :return:
+    """
+    # print("File Control Start")
+    input_path = join("INPUT_PIC")
+    pics = (os.listdir(input_path))  # ./INPUT_PIC/*
+
+    # if (len(pics)&gt;=8)|(not WINDOWS):
+    if (len(pics) &gt;= 8) &amp; (not WINDOWS):
+        taskNum = int(len(pics) / 4)
+        taskLef = len(pics) % 4
+        ga = pics[0:taskNum]
+        gb = pics[taskNum:taskNum * 2]
+        gc = pics[taskNum * 2:taskNum * 3]
+        gd = pics[taskNum * 3:taskNum * 4]
+
+        thread1 = TaskSubmit("1", ga)
+        thread2 = TaskSubmit("2", gb)
+        thread3 = TaskSubmit("3", gc)
+        thread4 = TaskSubmit("4", gd)
+        if taskLef == 0:
+            thread1.start()
+            thread2.start()
+            thread3.start()
+            thread4.start()
+            thread1.join()
+            thread2.join()
+            thread3.join()
+            thread4.join()
+        else:
+            gf = pics[taskNum * 4:taskNum * 4 + taskLef]
+            thread5 = TaskSubmit("5", gf)
+            thread1.start()
+            thread2.start()
+            thread3.start()
+            thread4.start()
+            thread5.start()
+            thread1.join()
+            thread2.join()
+            thread3.join()
+            thread4.join()
+            thread5.join()
+    else:
+        n = 1
+        for picture in pics:  # ./INPUT_PIC/xxx.jpg
+            get_time = str(datetime.now()).replace(" ", "").replace(":", "")  # 获取当前时间
+            # ./INPUT_PIC/xxx.jpg
+            src_file = join(input_path, picture)
+            if __checkFaces(picture) &gt;= 2:
+                print(__fex(src_file))
+                # ./INPUT_PIC/MF{time}{ext}
+                dst_file = join(input_path, "MF{0}.{1}".format(get_time, __fex(src_file)))
+            else:
+                dst_file = join(input_path, "{0}F{1}.{2}".format(__checkFaces(picture), get_time, __fex(src_file)))
+            try:
+                os.rename(src_file, dst_file)
+            except Exception as e:
+                print(e)
+            else:
+                pass
+            n += 1
+            print("\033[1;36;40m{} of {}\033[0m".format(n, len(pics)))</code></pre>
+      </details>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="Tag_people_from_photos.da_FindFaces.__getSize" class="doc doc-heading">
+<code class="highlight language-python">__getSize(path)</code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <h4 id="Tag_people_from_photos.da_FindFaces.__getSize--_1">获取文件大小</h4>
+<p>:param path:
+:return:</p>
+
+      <details class="quote">
+        <summary>Source code in <code>Tag_people_from_photos/da_FindFaces.py</code></summary>
+        <pre class="highlight"><code class="language-python">def __getSize(path):
+    """
+    # 获取文件大小
+    :param path:
+    :return:
+    """
+    s = os.path.getsize(path)
+    return s</code></pre>
+      </details>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="Tag_people_from_photos.da_FindFaces.__renameFile" class="doc doc-heading">
+<code class="highlight language-python">__renameFile()</code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <h4 id="Tag_people_from_photos.da_FindFaces.__renameFile--_1">重命名</h4>
+<p>:return:</p>
+
+      <details class="quote">
+        <summary>Source code in <code>Tag_people_from_photos/da_FindFaces.py</code></summary>
+        <pre class="highlight"><code class="language-python">def __renameFile():
+    """
+    # 重命名
+    :return:
+    """
+    # ./INPUT_PIC
+    input_path = join("INPUT_PIC")
+    # ./INPUT_PIC/*
+    for picture in os.listdir(input_path):
+        get_time = str(datetime.now()).replace(" ", "").replace(":", "")
+        # ./INPUT_PIC/xxx.jpg
+        src_file = os.path.join(input_path, picture)
+        # ./INPUT_PIC/{time}.{ext}
+        dst_file = join(input_path, "{0}.{1}".format(get_time, __fex(src_file)))
+        try:
+            os.rename(src_file, dst_file)
+        except Exception as e:
+            print(e)
+        else:
+            pass
+    pics = (os.listdir(input_path))  # ./INPUT_PIC/*
+    n = 1
+    for picture in pics:
+        # ./INPUT_PIC/xxx.jpg
+        src_file = join(input_path, picture)
+        # ./INPUT_PIC/{n}.{ext}
+        dst_file = join(input_path, "{0}.{1}".format(n, __fex(src_file)))
+        try:
+            os.rename(src_file, dst_file)
+        except Exception as e:
+            print(e)
+        else:
+            pass
+        n += 1</code></pre>
+      </details>
+  </div>
+
+</div>
+
+
+
+  </div>
+
+  </div>
+
+</div><h2 id="ea_facerecognition_knnpy_1">ea_FaceRecognition_KNN.py</h2>
+
+
+<div class="doc doc-object doc-module">
+
+
+<a id="Tag_people_from_photos.ea_FaceRecognition_KNN"></a>
+  <div class="doc doc-contents first">
+  
+      <p>识别temp目录中已经分好类的图片，最后一行的参数是修改识别所用的模型KNN_MOD中是我训练好了的一些人物。</p>
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="Tag_people_from_photos.ea_FaceRecognition_KNN.__predict" class="doc doc-heading">
+<code class="highlight language-python">__predict(X_img_path, knn_clf=None, model_save_path='', DIST_THRESH=0.5)</code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>recognizes faces in given image, based on a trained knn classifier
+:param X_img_path: path to image to be recognized
+:param knn_clf: (optional) a knn classifier object. if not specified, model_save_path must be specified.
+:param model_save_path: (optional) path to a pickled knn classifier. if not specified, model_save_path must be knn_clf.
+:param DIST_THRESH: (optional) distance threshold in knn classification. the larger it is, the more chance of misclassifying an unknown person to a known one.
+:return: a list of names and face locations for the recognized faces in the image: [(name, bounding box), ...].
+    For faces of unrecognized persons, the name 'N/A' will be passed.</p>
+
+      <details class="quote">
+        <summary>Source code in <code>Tag_people_from_photos/ea_FaceRecognition_KNN.py</code></summary>
+        <pre class="highlight"><code class="language-python">def __predict(X_img_path, knn_clf=None, model_save_path="", DIST_THRESH=0.5):
+    """
+    recognizes faces in given image, based on a trained knn classifier
+    :param X_img_path: path to image to be recognized
+    :param knn_clf: (optional) a knn classifier object. if not specified, model_save_path must be specified.
+    :param model_save_path: (optional) path to a pickled knn classifier. if not specified, model_save_path must be knn_clf.
+    :param DIST_THRESH: (optional) distance threshold in knn classification. the larger it is, the more chance of misclassifying an unknown person to a known one.
+    :return: a list of names and face locations for the recognized faces in the image: [(name, bounding box), ...].
+        For faces of unrecognized persons, the name 'N/A' will be passed.
+    """
+    if not isfile(X_img_path) or splitext(X_img_path)[1][1:] not in ALLOWED_EXTENSIONS:
+        raise Exception("invalid image path: {}".format(X_img_path))
+
+    if knn_clf is None and model_save_path == "":
+        raise Exception("must supply knn classifier either thourgh knn_clf or model_save_path")
+    if knn_clf is None:
+        with open(model_save_path, 'rb') as f:
+            knn_clf = pickle.load(f)
+    X_img = face_recognition.load_image_file(X_img_path)
+    X_faces_loc = face_locations(X_img)
+    if len(X_faces_loc) == 0:
+        return []
+    faces_encodings = face_recognition.face_encodings(X_img, known_face_locations=X_faces_loc)
+    closest_distances = knn_clf.kneighbors(faces_encodings, n_neighbors=1)
+    is_recognized = [closest_distances[0][i][0] &lt;= DIST_THRESH for i in range(len(X_faces_loc))]
+    # predict classes and cull classifications that are not with high confidence
+    return [(pred, loc) if rec else ("N/A", loc) for pred, loc, rec in
+            zip(knn_clf.predict(faces_encodings), X_faces_loc, is_recognized)]</code></pre>
+      </details>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="Tag_people_from_photos.ea_FaceRecognition_KNN.__show_prediction_labels_on_image" class="doc doc-heading">
+<code class="highlight language-python">__show_prediction_labels_on_image(name, ext, img_path, predictions)</code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Shows the face recognition results visually.</p>
+<p>:param img_path: path to image to be recognized
+:param predictions: results of the predict function
+:return:</p>
+
+      <details class="quote">
+        <summary>Source code in <code>Tag_people_from_photos/ea_FaceRecognition_KNN.py</code></summary>
+        <pre class="highlight"><code class="language-python">def __show_prediction_labels_on_image(name, ext, img_path, predictions):
+    """
+    Shows the face recognition results visually.
+
+    :param img_path: path to image to be recognized
+    :param predictions: results of the predict function
+    :return:
+    """
+    pil_image = Image.open(img_path).convert("RGB")
+    draw = ImageDraw.Draw(pil_image)
+
+    for name, (top, right, bottom, left) in predictions:
+        # Draw a box around the face using the Pillow module
+        draw.rectangle(((left, top), (right, bottom)), outline=(0, 0, 255))
+
+        # There's a bug in Pillow where it blows up with non-UTF-8 text
+        # when using the default bitmap font
+        # name = name.encode("UTF-8")
+
+        # Draw a label with a name below the face
+        text_width, text_height = draw.textsize(name)
+        word_css = join("zh.ttf")
+        font = ImageFont.truetype(word_css, 20)
+        draw.rectangle(((left, bottom - text_height - 10), (right, bottom)), fill=(0, 0, 255), outline=(0, 0, 255))
+        draw.text((left + 6, bottom - text_height - 5), name, font=font, fill=(255, 255, 255, 255))
+
+    # Remove the drawing library from memory as per the Pillow docs
+    del draw
+
+    # Display the resulting image
+    if (SEE_ALL_FACES):
+        pil_image.show()
+    get_time = str(datetime.now())[17:]
+    # 保存识别的图片
+    pa = join("tempFaceRecognition", "{0}{1}.{2}".format(name, get_time, ext))
+    pil_image.save(pa.replace("N/A", ""))</code></pre>
+      </details>
+  </div>
+
+</div>
+
+
+
+  </div>
+
+  </div>
+
+</div><h2 id="eb_facerecognition_knn_multiprocesspy_1">eb_FaceRecognition_KNN_MultiProcess.py</h2>
+
+
+<div class="doc doc-object doc-module">
+
+
+<a id="Tag_people_from_photos.eb_FaceRecognition_KNN_MultiProcess"></a>
+  <div class="doc doc-contents first">
+  
+      <p>识别temp目录中已经分好类的图片，最后一行的参数是修改识别所用的模型KNN_MOD中是我训练好了的一些人物。</p>
+<p>This is an example of using the k-nearest-neighbors (KNN) algorithm for face recognition.
+When should I use this example?
+This example is useful when you wish to recognize a large set of known people,
+and make a prediction for an unknown person in a feasible computation time.
+Algorithm Description:
+The knn classifier is first trained on a set of labeled (known) faces and can then predict the person
+in an unknown image by finding the k most similar faces (images with closet face-features under eucledian distance)
+in its training set, and performing a majority vote (possibly weighted) on their label.
+For example, if k=3, and the three closest face images to the given image in the training set are one image of Biden
+and two images of Obama, The result would be 'Obama'.
+* This implementation uses a weighted vote, such that the votes of closer-neighbors are weighted more heavily.
+Usage:
+1. Prepare a set of images of the known people you want to recognize. Organize the images in a single directory
+   with a sub-directory for each known person.
+2. Then, call the 'train' function with the appropriate parameters. Make sure to pass in the 'model_save_path' if you
+   want to save the model to disk so you can re-use the model without having to re-train it.
+3. Call 'predict' and pass in your trained model to recognize the people in an unknown image.
+NOTE: This example requires scikit-learn to be installed! You can install it with pip:
+$ pip3 install scikit-learn</p>
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="Tag_people_from_photos.eb_FaceRecognition_KNN_MultiProcess.__firmly2tempS" class="doc doc-heading">
+<code class="highlight language-python">__firmly2tempS()</code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>temp到tempSingle
+:return:</p>
+
+      <details class="quote">
+        <summary>Source code in <code>Tag_people_from_photos/eb_FaceRecognition_KNN_MultiProcess.py</code></summary>
+        <pre class="highlight"><code class="language-python">def __firmly2tempS():
+    """
+    temp到tempSingle
+    :return:
+    """
+    if WINDOWS:
+        try:
+            # move .\Prescreen\{name} .\FR_DATA\A-KnownPeople\
+            commandInput = "move /Y .\\temp\\* .\\tempSingle\\"
+            commandImplementation = os.popen(commandInput)
+            print("Moving file")
+        except Exception as e:
+            raise e
+    else:
+        try:
+            # mv ./Prescreen/{name} ./FR_DATA/A-KnownPeople/
+            commandInput = "mv ./temp/* ./tempSingle/"
+            commandImplementation = os.popen(commandInput)
+            print("Moving file...")
+        except Exception as e:
+            raise e</code></pre>
+      </details>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="Tag_people_from_photos.eb_FaceRecognition_KNN_MultiProcess.__move2temp" class="doc doc-heading">
+<code class="highlight language-python">__move2temp()</code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>把无法精确识别的图片移动到temp
+:return:</p>
+
+      <details class="quote">
+        <summary>Source code in <code>Tag_people_from_photos/eb_FaceRecognition_KNN_MultiProcess.py</code></summary>
+        <pre class="highlight"><code class="language-python">def __move2temp():
+    """
+    把无法精确识别的图片移动到temp
+    :return:
+    """
+    if WINDOWS:
+        try:
+            # move .\Prescreen\{name} .\FR_DATA\A-KnownPeople\
+            commandInput = "move /Y .\\tempSingle\\unknown* .\\temp\\"
+            commandImplementation = os.popen(commandInput)
+            print("Moving file")
+        except Exception as e:
+            raise e
+    else:
+        try:
+            # mv ./Prescreen/{name} ./FR_DATA/A-KnownPeople/
+            commandInput = "mv ./tempSingle/unknown* ./temp/"
+            commandImplementation = os.popen(commandInput)
+            print("Moving file...")
+        except Exception as e:
+            raise e</code></pre>
+      </details>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="Tag_people_from_photos.eb_FaceRecognition_KNN_MultiProcess.__show_prediction_labels_on_image" class="doc doc-heading">
+<code class="highlight language-python">__show_prediction_labels_on_image(name, ext, img_path, predictions, isCprs)</code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Shows the face recognition results visually.</p>
+<p>:param img_path: path to image to be recognized
+:param predictions: results of the predict function
+:return:</p>
+
+      <details class="quote">
+        <summary>Source code in <code>Tag_people_from_photos/eb_FaceRecognition_KNN_MultiProcess.py</code></summary>
+        <pre class="highlight"><code class="language-python">def __show_prediction_labels_on_image(name, ext, img_path, predictions, isCprs):
+    """
+    Shows the face recognition results visually.
+
+    :param img_path: path to image to be recognized
+    :param predictions: results of the predict function
+    :return:
+    """
+    pil_image = Image.open(img_path).convert("RGB")
+    draw = ImageDraw.Draw(pil_image)
+
+    word_css = join("zh.ttf")
+    font = ImageFont.truetype(word_css, 20)
+
+    for name, (top, right, bottom, left) in predictions:
+        # Draw a box around the face using the Pillow module
+        if isCprs:
+            A = left / CQUA
+            B = top / CQUA
+            C = right / CQUA
+            D = bottom / CQUA
+            draw.rectangle(((A, B), (C, D)), outline=(0, 0, 255))
+        else:
+            draw.rectangle(((left, top), (right, bottom)), outline=(0, 0, 255))
+
+        print("Drawing" + name)
+        # name = name.encode("UTF-8")
+
+        # Draw a label with a name below the face
+        text_width, text_height = draw.textsize(name)
+        if isCprs:
+            A = left / CQUA
+            B = (bottom - text_height + 20) / CQUA
+            C = right / CQUA
+            D = bottom / CQUA
+            # 文字位置
+            E = (left + 6) / CQUA
+            F = (bottom - text_height + 13) / CQUA
+            draw.rectangle(((A, B), (C, D)), fill=(0, 0, 255), outline=(0, 0, 255))
+            # word_css  = ".{0}msyh.ttc".format(SS)
+            word_css = join("zh.ttf")
+            font = ImageFont.truetype(word_css, 20)
+
+            draw.text((E, F), name, font=font, fill=(255, 255, 255, 255))
+        else:
+            draw.rectangle(((left, bottom - text_height - 10), (right, bottom)), fill=(0, 0, 255), outline=(0, 0, 255))
+            draw.text((left + 6, bottom - text_height - 5), name, font=font, fill=(255, 255, 255, 255))
+    del draw
+
+    # Display the resulting image
+    if (SEE_ALL_FACES):
+        pil_image.show()
+    get_time = str(datetime.now())[17:]
+    # 保存识别的图片
+    pa = join("tempFaceRecognition", "{0}{1}.{2}".format(name, get_time, ext))
+    pil_image.save(pa.replace("N/A", ""))</code></pre>
+      </details>
+  </div>
+
+</div>
+
+
+
+  </div>
+
+  </div>
+
+</div><h2 id="fa_moved2datapy_1">fa_Moved2Data.py</h2>
+
+
+<div class="doc doc-object doc-module">
+
+
+<a id="Tag_people_from_photos.fa_Moved2Data"></a>
+  <div class="doc doc-contents first">
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div><h2 id="ga_findsomebodypy_1">ga_FindSomebody.py</h2>
+
+
+<div class="doc doc-object doc-module">
+
+
+<a id="Tag_people_from_photos.ga_FindSomebody"></a>
+  <div class="doc doc-contents first">
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div><h2 id="m_balancetrainpy_1">m_BalanceTrain.py</h2>
+
+
+<div class="doc doc-object doc-module">
+
+
+<a id="Tag_people_from_photos.m_BalanceTrain"></a>
+  <div class="doc doc-contents first">
+  
+      <p>用于均衡训练文件夹中的图片</p>
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div><h2 id="m_clean_up_fredpy_1">m_CLEAN_UP_FRed.py</h2>
+
+
+<div class="doc doc-object doc-module">
+
+
+<a id="Tag_people_from_photos.m_CLEAN_UP_FRed"></a>
+  <div class="doc doc-contents first">
+  
+      <p>删除已识别的数据</p>
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div><h2 id="m_clean_up_temppy_1">m_CLEAN_UP_TEMP.py</h2>
+
+
+<div class="doc doc-object doc-module">
+
+
+<a id="Tag_people_from_photos.m_CLEAN_UP_TEMP"></a>
+  <div class="doc doc-contents first">
+  
+      <p>删除临时目录中的未知人物识别</p>
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div><h2 id="m_killpy_1">m_Kill.py</h2>
+
+
+<div class="doc doc-object doc-module">
+
+
+<a id="Tag_people_from_photos.m_Kill"></a>
+  <div class="doc doc-contents first">
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div><h2 id="m_waitpy_1">m_Wait.py</h2>
+
+
+<div class="doc doc-object doc-module">
+
+
+<a id="Tag_people_from_photos.m_Wait"></a>
+  <div class="doc doc-contents first">
+  
+      <p>来源：https://blog.csdn.net/Lingdongtianxia/article/details/76359555</p>
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script>var base_url = '.';</script>
+    <script src="js/theme_extra.js" defer></script>
+    <script src="js/theme.js" defer></script>
+      <script src="search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
+
+<!--
+MkDocs version : 1.3.0
+Build Date UTC : 2022-06-13 08:07:07.977662+00:00
+-->
